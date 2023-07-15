@@ -1,7 +1,7 @@
 import logo from "@/assets/logo.png";
 import { routeConfigs } from "../../config";
 import { useState } from "react";
-import * as classNames from "classnames";
+import classNames from "classnames";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 const NavBar = () => {

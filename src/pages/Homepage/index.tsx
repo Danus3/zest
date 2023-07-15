@@ -1,6 +1,6 @@
 const Homepage = () => {
   return (
-    <div className={"pt-80 flex flex-col items-center m-auto"}>
+    <div className={"pt-40 flex flex-col items-center m-auto md:pt-56"}>
       <h1>Capital Efficiency is all you need, for Buy&Forget users.</h1>
       <div className={"flex pt-24 text-3xl justify-center gap-4"}>
         <div>Buy ETH price increase part as a discount</div>

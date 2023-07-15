@@ -1,5 +1,3 @@
-import homepageBg from "@assets/homepage-bg.jpg";
-
 const Homepage = () => {
   return (
     <div className={"pt-80 flex flex-col items-center m-auto"}>

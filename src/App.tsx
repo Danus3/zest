@@ -1,5 +1,4 @@
 import "./index.css";
-import NavBar from "./ux/NavBar";
 import Homepage from "./pages/Homepage";
 import Layout from "./ux/Layout.tsx";
 

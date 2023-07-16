@@ -3,6 +3,7 @@ import { routeConfigs } from "../../config";
 import { useState } from "react";
 import classNames from "classnames";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ const NavBar = () => {
     <>
       <div
         className={classNames(
-          "p-3 flex justify-center backdrop-blur-sm fixed md:sticky top-0 w-full  h-[100vh] md:h-auto md:visible",
+          "p-3 flex justify-center backdrop-blur-sm fixed md:fixed top-0 w-full  h-[100vh] md:h-auto md:visible",
           {
             invisible: !isMenuOpen
           }
@@ -37,10 +38,24 @@ const NavBar = () => {
           </a>
           <div className={"flex items-center gap-4 flex-col md:flex-row"}>
             {routeConfigs.map(routeConfig => {
+              if (routeConfig.external) {
+                return (
+                  <a
+                    href={routeConfig.path}
+                    key={routeConfig.path}
+                    target={"_blank"}
+                  >
+                    {routeConfig.name}
+                  </a>
+                );
+              }
+              if (routeConfig.disabled) {
+                return null;
+              }
               return (
-                <a href={"/weedpaper"} key={routeConfig.path}>
+                <Link to={routeConfig.path} key={routeConfig.path}>
                   {routeConfig.name}
-                </a>
+                </Link>
               );
             })}
             <button className={"bg-amber-400 rounded-3xl"}>Launch App</button>

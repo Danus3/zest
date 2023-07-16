@@ -1,21 +1,22 @@
 export const routeConfigs = [
   {
-    path: "/weedpaper",
+    path: "https://medium.com/@Adscendo/weedpaper-of-adscendo-773eb7356bad",
     name: "WeedPaper",
     external: true
   },
   {
-    path: "/medium",
+    path: "https://medium.com/@Adscendo",
     name: "Medium",
     external: true
   },
   {
-    path: "/docs",
+    path: "https://docs.adscendo.xyz/",
     name: "Docs",
     external: true
   },
   {
     path: "/public-sale",
-    name: "Public Sale"
+    name: "Public Sale",
+    disabled: true
   }
 ];

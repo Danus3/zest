@@ -30,7 +30,7 @@ const NavBar = () => {
         </div>
         <div
           className={
-            "max-w-4xl flex-grow flex flex-col md:flex-row justify-start md:justify-between gap-4"
+            "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4"
           }
         >
           <a href={"/"}>

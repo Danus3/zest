@@ -11,13 +11,23 @@ const Homepage = () => {
       <div className={"flex flex-col items-center gap-16 page-content"}>
         <div
           className={
-            "bg-cover absolute md:bg-contain bg-no-repeat w-full bg-top aspect-square md:aspect-[3/1]"
+            "bg-cover absolute md:bg-contain bg-no-repeat w-full bg-top aspect-square md:aspect-[3/1] z-[-1]"
           }
-          style={{
-            backgroundImage: `linear-gradient(180deg, transparent 0%, black 100%), url(${homepageBg})`,
-            zIndex: -1
-          }}
-        ></div>
+          // style={{
+          //   backgroundImage: `linear-gradient(180deg, transparent 0%, black 100%), url(${homepageBg})`
+          // }}
+        >
+          <LazyImage
+            src={homepageBg}
+            rootMargin={"0px"}
+            className={"object-cover h-full"}
+          ></LazyImage>
+          <div
+            className={
+              "inset-0 absolute bg-gradient-to-b from-transparent to-black"
+            }
+          ></div>
+        </div>
         <h1 className={"pt-32 md:pt-56"}>
           Capital Efficiency is all you need, for Buy&Forget users.
         </h1>

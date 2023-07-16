@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { useInViewport } from "ahooks";
+import { Options } from "ahooks/es/useInViewport";
 
 const LazyImage = ({
   src: outerSrc,
   loading = "lazy",
   className,
   alt,
+  rootMargin,
+  threshold,
+  root,
   ...rest
 }: React.DetailedHTMLProps<
   React.ImgHTMLAttributes<HTMLImageElement>,
   HTMLImageElement
->) => {
+> &
+  Options) => {
   // const [src, setSrc] = useState(outerSrc);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -19,7 +24,9 @@ const LazyImage = ({
   const ref = React.useRef<HTMLImageElement>(null);
 
   const [isInViewPort] = useInViewport(ref, {
-    rootMargin: "-100px"
+    rootMargin: rootMargin ?? "-100px",
+    threshold: threshold ?? 0,
+    root: root ?? null
   });
 
   useEffect(() => {

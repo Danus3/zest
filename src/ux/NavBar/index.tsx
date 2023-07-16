@@ -11,9 +11,10 @@ const NavBar = () => {
     <>
       <div
         className={classNames(
-          "p-3 flex justify-center backdrop-blur-sm fixed md:fixed top-0 w-full  h-[100vh] md:h-auto md:visible",
+          "p-3 flex justify-center md:backdrop-blur-[2px] fixed md:fixed top-0 w-full  h-[100vh] md:h-auto md:visible z-20 transition-[backdrop-filter] duration-300",
           {
-            invisible: !isMenuOpen
+            invisible: !isMenuOpen,
+            ["backdrop-blur-md"]: isMenuOpen
           }
         )}
         style={{
@@ -63,7 +64,7 @@ const NavBar = () => {
         </div>
       </div>
       <div
-        className={classNames("fixed top-4 left-4 md:invisible", {
+        className={classNames("fixed top-4 left-4 md:invisible z-20", {
           invisible: isMenuOpen
         })}
         onClick={() => {

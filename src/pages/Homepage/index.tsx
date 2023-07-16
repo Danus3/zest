@@ -4,33 +4,16 @@ import LazyImage from "../../components/image.tsx";
 import { routeConfigs } from "../../config.ts";
 import homepageBg from "@assets/homepage-bg.jpg";
 import homepageFooter from "@assets/homepage-footer.jpg";
+import ParallelBanner from "../../components/ParallelBanner.tsx";
 
 const Homepage = () => {
   return (
     <>
+      <ParallelBanner
+        src={homepageBg}
+        title={"Capital Efficiency is all you need, for Buy&Forget users."}
+      />
       <div className={"flex flex-col items-center gap-16 page-content"}>
-        <div
-          className={
-            "bg-cover absolute md:bg-contain bg-no-repeat w-full bg-top aspect-square md:aspect-[3/1] z-[-1]"
-          }
-          // style={{
-          //   backgroundImage: `linear-gradient(180deg, transparent 0%, black 100%), url(${homepageBg})`
-          // }}
-        >
-          <LazyImage
-            src={homepageBg}
-            rootMargin={"0px"}
-            className={"object-cover h-full"}
-          ></LazyImage>
-          <div
-            className={
-              "inset-0 absolute bg-gradient-to-b from-transparent to-black"
-            }
-          ></div>
-        </div>
-        <h1 className={"pt-32 md:pt-56"}>
-          Capital Efficiency is all you need, for Buy&Forget users.
-        </h1>
         <div className={"flex pt-12 justify-center gap-4"}>
           <h2>Buy ETH price increase part as a discount</h2>
           <h2>
@@ -52,7 +35,7 @@ const Homepage = () => {
           </div>
           <div
             className={
-              "flex gap-4 flex-col md:flex-row justify-center items-center"
+              "flex gap-4 flex-col md:flex-row justify-center items-start"
             }
           >
             <div className={"homepage-card px-3"}>

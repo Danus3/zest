@@ -4,8 +4,7 @@ import classNames from "classnames";
 
 const ParallelBanner: React.FC<{
   src: string;
-  title: string;
-}> = ({ src, title }) => {
+}> = ({ src }) => {
   const [translateX, setTranslateX] = React.useState(0);
   const [translateY, setTranslateY] = React.useState(0);
   const [moveOut, setMoveOut] = React.useState(false);
@@ -53,7 +52,6 @@ const ParallelBanner: React.FC<{
           "inset-0 absolute bg-gradient-to-b from-transparent to-black drop-shadow-2xl"
         }
       ></div>
-      <h1 className={"z-10 w-3/4 mb-24"}>{title}</h1>
     </div>
   );
 };

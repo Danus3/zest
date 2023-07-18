@@ -7,7 +7,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "classic",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -27,5 +27,5 @@
     "@src/*": ["src/*"],
     "@components/*": ["src/components/*"],
     "@assets/*": ["src/assets/*"]
-  }
+  },
 }

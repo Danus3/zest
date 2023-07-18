@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Crimson Text', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Bai Jamjuree", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -77,6 +78,8 @@ img.loaded {
   animation: imgShow 0.5s ease-in-out;
 }
 
-.page-content {
-  @apply w-10/12 md:w-3/4 m-auto;
+@layer {
+  .page-content {
+    @apply w-10/12 md:w-3/4 m-auto;
+  }
 }

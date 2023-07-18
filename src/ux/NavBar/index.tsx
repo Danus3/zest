@@ -59,7 +59,7 @@ const NavBar = () => {
                 </Link>
               );
             })}
-            <button className={"bg-amber-400 rounded-3xl"}>Launch App</button>
+            <button className={"bg-amber-600 rounded-2xl"}>Launch App</button>
           </div>
         </div>
       </div>

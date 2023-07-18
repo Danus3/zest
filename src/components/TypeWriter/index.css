@@ -1,0 +1,8 @@
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+.animate-blink {
+  animation: blink 1s steps(5, start) infinite;
+}

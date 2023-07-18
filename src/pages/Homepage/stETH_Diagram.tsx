@@ -7,7 +7,7 @@ const STETHDiagram = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [inViewPort] = useInViewport(ref, {
-    rootMargin: `-${window.innerHeight / 5}px`
+    rootMargin: `-${window.innerHeight / 3}px`
   });
 
   const [started, setStarted] = useState(false);

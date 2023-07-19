@@ -1,7 +1,7 @@
 @tailwind components;
 @layer components {
   .homepage-card {
-    @apply bg-neutral-900 rounded-2xl py-6 md:py-12  flex items-center flex-col;
+    @apply bg-neutral-900 rounded-2xl py-3 md:py-6  flex items-center flex-col;
   }
 
   .feature-card {
@@ -13,7 +13,7 @@
   }
 
   .diagram-explain {
-    @apply text-neutral-400 text-[0.9em] md:text-lg flex flex-nowrap gap-0 md:gap-2 w-1/2 [&:nth-child(2)]:justify-end hover:text-white cursor-pointer whitespace-nowrap;
+    @apply text-neutral-400 flex flex-nowrap gap-0 md:gap-2 w-1/2 [&:nth-child(2)]:justify-end hover:text-white cursor-pointer whitespace-nowrap;
     /*font-size: 0.5em;*/
   }
 

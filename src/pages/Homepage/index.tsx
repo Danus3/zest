@@ -17,22 +17,22 @@ const Homepage = () => {
       }
     >
       <div className={"homepage-card px-3 flex-grow"}>
-        <h2>
+        <h2 className={"font-bold"}>
           Long ETH with <span className={"text-amber-400"}>3x-6x</span> Leverage
         </h2>
         <p className={"mt-4 text-neutral-400"}>
           Enjoy on-chain leverage without{" "}
-          <span className={"text-amber-400"}>
+          <span className={"text-amber-400 font-bold"}>
             funding fees & liquidation risk
           </span>
         </p>
       </div>
       <div className={"homepage-card px-3 flex-grow"}>
-        <h2>Leverage ETH Staking Yield</h2>
+        <h2 className={"font-bold"}>Leverage ETH Staking Yield</h2>
         <p className={"mt-4 text-neutral-400"}>
           Enjoy leveraged ETH staking yield
-          <span className={"text-amber-400"}> 1x-5x </span> without ETH price
-          volatility
+          <span className={"text-amber-400 font-bold"}> 1x-5x </span> without
+          ETH price volatility
         </p>
       </div>
     </div>
@@ -70,14 +70,14 @@ const Homepage = () => {
         <div className={"flex flex-col lg:flex-row lg:items-stretch gap-16"}>
           <div className={"homepage-card w-full lg:w-5/12 shrink-0"}>
             <LazyImage src={Banner1} className={"w-1/2"} />
-            <h6 className={"my-4 text-2xl"}>stETH Genesis Pool</h6>
-            <p className={"text-neutral-400"}>
-              ETH Leverage Ratio: <span className={"text-amber-400"}>3.6x</span>
-            </p>
-            <p className={"text-neutral-400"}>
-              ETH Staking Yield Leverage Ratio:{" "}
-              <span className={"text-amber-400 "}>1.5x</span>
-            </p>
+            <h6 className={"mt-4 text-2xl"}>stETH Genesis Pool</h6>
+            {/*<p className={"text-neutral-400"}>*/}
+            {/*  ETH Leverage Ratio: <span className={"text-amber-400"}>3.6x</span>*/}
+            {/*</p>*/}
+            {/*<p className={"text-neutral-400"}>*/}
+            {/*  ETH Staking Yield Leverage Ratio:{" "}*/}
+            {/*  <span className={"text-amber-400 "}>1.5x</span>*/}
+            {/*</p>*/}
           </div>
           <div className={"flex-grow"}>
             <RatioChart />
@@ -97,10 +97,10 @@ const Homepage = () => {
         </div>
         <div className={"my-16"}></div>
         <StETH_Diagram />
-        <div className={"my-16"}></div>
+        <div className={"my-24"}></div>
         <div>
           <div className={"flex flex-col justify-center gap-6"}>
-            <h2>
+            <h2 className={"font-bold"}>
               LSD-Native Stablecoin,{" "}
               <span className={"text-amber-400"}>aUSD</span>
             </h2>
@@ -116,7 +116,7 @@ const Homepage = () => {
               <div className="feature-card">High Capital Efficiency</div>
               <div className="feature-card">Most Scalable</div>
             </div>
-            <h2 className={"mt-12"}>Core Technology</h2>
+            <h2 className={"mt-12 font-bold"}>Core Technology</h2>
             <div
               className={
                 "grid md:grid-cols-3 md:grid-rows-1 grid-rows-3 grid-cols-1 gap-4"

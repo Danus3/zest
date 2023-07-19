@@ -80,7 +80,9 @@ const RatioChart = () => {
   // console.log(lstLeverageRatio + aUSDLeverageRatio);
 
   return (
-    <div className={"w-full h-full max-w-[1200px] m-auto flex flex-col"}>
+    <div
+      className={"w-full h-full max-w-[1200px] m-auto flex flex-col font-bold"}
+    >
       <div className={"flex justify-between"}>
         <div>lstETH Value: ${calculatedLstETHPrice.toFixed(2)}</div>
         <div>stETH Price: ${calculatedStETHPrice.toFixed(2)}</div>

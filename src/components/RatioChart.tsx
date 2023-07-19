@@ -153,10 +153,10 @@ const RatioChart = () => {
           &nbsp;lstETH Value
         </span>
         <div
-          className={`h-[1.5px] bg-amber-400 absolute bottom-0 left-0 origin-left z-10 transition-all duration-500`}
+          className={`h-[1.5px] bg-amber-400 absolute bottom-0 left-0 origin-left z-10 transition-[width] duration-500`}
           style={{
-            width: isInViewPort ? slopeLength : totalWidth,
-            transform: isInViewPort ? `rotate(-${slopeDeg}deg)` : ""
+            width: isInViewPort ? slopeLength : 0,
+            transform: `rotate(-${slopeDeg}deg)`
           }}
         >
           <div

@@ -67,7 +67,11 @@ const Homepage = () => {
           </h1>
         </div>
         <div className={"my-16"}></div>
-        <div className={"flex flex-col lg:flex-row lg:items-stretch gap-16"}>
+        <div
+          className={
+            "flex flex-col lg:flex-row lg:items-stretch gap-16 relative z-10"
+          }
+        >
           <div className={"homepage-card w-full lg:w-5/12 shrink-0"}>
             <LazyImage src={Banner1} className={"w-1/2"} />
             <h6 className={"mt-4 text-2xl"}>stETH Genesis Pool</h6>

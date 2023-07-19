@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { useInViewport } from "ahooks";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const minPrice = 1300;
 const maxPrice = 8000;
@@ -29,8 +30,32 @@ const RatioChart = () => {
   const offsetXRatio = offsetX / (totalWidth || 1);
 
   // const currentStETHPrice = 1800;
-  const currentStETHPrice =
-    useQueryClient().getQueryData<number>(["stEthPrice", "usd"]) || 0;
+  // const currentStETHPrice =
+  //   useQueryClient().getQueryData<number>(["stEthPrice", "usd"]) || 0;
+
+  let { data: currentStETHPrice } = useQuery<number>(
+    ["stEthPrice", "usd"],
+    async () => {
+      return axios
+        .get<{
+          ["staked-ether"]: {
+            usd: number;
+          };
+        }>(
+          "https://api.coingecko.com/api/v3/simple/price?ids=staked-ether&vs_currencies=usd"
+        )
+        .then(response => {
+          return response.data["staked-ether"].usd;
+        });
+    },
+    {
+      refetchInterval: 30000
+    }
+  );
+
+  if (!currentStETHPrice) {
+    currentStETHPrice = 0;
+  }
 
   const currentPriceRatio =
     (Math.max(currentStETHPrice, minPrice) - minPrice) / (maxPrice - minPrice);

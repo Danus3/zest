@@ -7,7 +7,7 @@ const STETHDiagram = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [inViewPort] = useInViewport(ref, {
-    rootMargin: `-${window.innerHeight / 3}px`
+    rootMargin: `-${window.innerHeight / 4}px`
   });
 
   const [started, setStarted] = useState(false);
@@ -17,7 +17,10 @@ const STETHDiagram = () => {
   }, [inViewPort]);
 
   return (
-    <div className={"flex justify-center flex-col items-center"} ref={ref}>
+    <div
+      className={"flex justify-center flex-col items-center font-bold"}
+      ref={ref}
+    >
       <div className={"w-1/2 md:w-1/4 max-w-[250px] orb"}>stETH</div>
       <div
         className={classNames(
@@ -38,10 +41,14 @@ const STETHDiagram = () => {
           <div className={"img-container"}>
             <img src={arrow} alt="arrow" />
           </div>
-          <div className={"relative top-[100%]"}>3x-6x</div>
+          <div className={"relative top-[100%] text-amber-400 font-bold"}>
+            3x-6x
+          </div>
         </div>
         <div className={"diagram-explain"}>
-          <div className={"relative top-[100%]"}>1x-5x</div>
+          <div className={"relative top-[100%] text-amber-400 font-bold"}>
+            1x-5x
+          </div>
           <div
             className={"img-container"}
             style={{

@@ -28,7 +28,7 @@ const Index: React.FC<{
       }
       setTextToShow(text.slice(0, textToShow.length + 1));
     },
-    !started ? undefined : 1000 / (textPerSecond ?? 8),
+    !started ? undefined : 1000 / (textPerSecond ?? 24),
     {
       immediate: true
     }

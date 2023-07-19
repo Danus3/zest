@@ -10,77 +10,81 @@ import StETH_Diagram from "./stETH_Diagram.tsx";
 import RatioChart from "../../components/RatioChart.tsx";
 
 const Homepage = () => {
+  const subBanner = (
+    <div
+      className={
+        "flex gap-8 flex-col md:flex-row justify-between items-stretch w-full"
+      }
+    >
+      <div className={"homepage-card px-3 flex-grow"}>
+        <h2>
+          Long ETH with <span className={"text-amber-400"}>3x-6x</span> Leverage
+        </h2>
+        <p className={"mt-4 text-neutral-400"}>
+          Enjoy on-chain leverage without{" "}
+          <span className={"text-amber-400"}>
+            funding fees & liquidation risk
+          </span>
+        </p>
+      </div>
+      <div className={"homepage-card px-3 flex-grow"}>
+        <h2>Leverage ETH Staking Yield</h2>
+        <p className={"mt-4 text-neutral-400"}>
+          Enjoy leveraged ETH staking yield
+          <span className={"text-amber-400"}> 1x-5x </span> without ETH price
+          volatility
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <ParallelBanner src={homepageBg} />
       <div className={"page-content"}>
-        <div className={"z-10 flex gap-4 flex-col m-auto mt-[-120px] relative"}>
-          {[
-            "Capital Efficiency is all you need, for Buy&Forget users.",
-            "Buy ETH price increase part as a discount.",
-            "Get ETH staking yield with 1x-5x leverage."
-          ].map((text, index) => {
-            return (
-              <h1 key={index}>
-                <TypeWriter text={text}></TypeWriter>
-              </h1>
-            );
-          })}
+        <div
+          className={
+            "z-10 flex gap-4 flex-col m-auto mt-[-24vw] md:mt-[-12vw] relative"
+          }
+        >
+          {["Capital Efficiency is all you need, for Buy&Forget users."].map(
+            (text, index) => {
+              return (
+                <h1 key={index}>
+                  <TypeWriter text={text}></TypeWriter>
+                </h1>
+              );
+            }
+          )}
+          <div className={"my-4"}></div>
+          <h1 className={"font-normal text-2xl"}>
+            Buy ETH price increase part{" "}
+            <span className={"font-bold"}>at a discount</span>.
+          </h1>
+          <h1 className={"font-normal text-2xl"}>
+            Get ETH staking yield with{" "}
+            <span className={"font-bold"}>1x-5x</span> leverage.
+          </h1>
         </div>
         <div className={"my-16"}></div>
-        <div className={"flex flex-col items-center gap-16"}>
-          <div
-            className={
-              "flex flex-col md:flex-row gap-4 justify-start items-stretch"
-            }
-          >
-            <div
-              className={
-                "homepage-card px-12 md:px-16 lg:px-32 w-full md:w-1/2"
-              }
-            >
-              <LazyImage src={Banner1} className={"w-full"} />
-              <h6 className={"my-4 text-2xl"}>stETH Genesis Pool</h6>
-              <p className={"text-neutral-400"}>
-                ETH Leverage Ratio:{" "}
-                <span className={"text-amber-400"}>3.6x</span>
-              </p>
-              <p className={"text-neutral-400"}>
-                ETH Staking Yield Leverage Ratio:{" "}
-                <span className={"text-amber-400 "}>1.5x</span>
-              </p>
-            </div>
-            <div
-              className={
-                "flex gap-4 flex-col md:flex-col justify-center items-center md:items-stretch w-full md:w-1/2"
-              }
-            >
-              <div className={"homepage-card px-3"}>
-                <h2>
-                  <TypeWriter
-                    text={"Long ETH with 3x-6x Leverage"}
-                  ></TypeWriter>
-                </h2>
-                <p className={"mt-4 text-neutral-400"}>
-                  Enjoy on-chain leverage without{" "}
-                  <span className={"text-amber-400"}>
-                    funding fees & liquidation risk
-                  </span>
-                </p>
-              </div>
-              <div className={"homepage-card px-3"}>
-                <h2>
-                  <TypeWriter text={"Leverage ETH Staking Yield"}></TypeWriter>
-                </h2>
-                <p className={"mt-4 text-neutral-400"}>
-                  Enjoy ETH staking yield with
-                  <span className={"text-amber-400"}> 1x-5x </span>
-                  leverage without ETH price volatility
-                </p>
-              </div>
-            </div>
+        <div className={"flex flex-col lg:flex-row lg:items-stretch gap-16"}>
+          <div className={"homepage-card w-full lg:w-5/12 shrink-0"}>
+            <LazyImage src={Banner1} className={"w-1/2"} />
+            <h6 className={"my-4 text-2xl"}>stETH Genesis Pool</h6>
+            <p className={"text-neutral-400"}>
+              ETH Leverage Ratio: <span className={"text-amber-400"}>3.6x</span>
+            </p>
+            <p className={"text-neutral-400"}>
+              ETH Staking Yield Leverage Ratio:{" "}
+              <span className={"text-amber-400 "}>1.5x</span>
+            </p>
+          </div>
+          <div className={"flex-grow"}>
+            <RatioChart />
           </div>
         </div>
+        <div className={"my-8"}></div>
+        {subBanner}
         <div className={"my-8"}></div>
         <div>
           <a
@@ -94,8 +98,6 @@ const Homepage = () => {
         <div className={"my-16"}></div>
         <StETH_Diagram />
         <div className={"my-16"}></div>
-        <RatioChart />
-        <div className={"my-16"}></div>
         <div>
           <div className={"flex flex-col justify-center gap-6"}>
             <h2>
@@ -108,11 +110,11 @@ const Homepage = () => {
               }
             >
               <div className="feature-card">Stablecoin 3.0</div>
-              <div className="feature-card">Real use scenarios</div>
-              <div className="feature-card">Real high yield</div>
+              <div className="feature-card">Real Use Scenarios</div>
+              <div className="feature-card">Real High Yield</div>
               <div className="feature-card">Low Liquidation Risk</div>
               <div className="feature-card">High Capital Efficiency</div>
-              <div className="feature-card">Most scalable</div>
+              <div className="feature-card">Most Scalable</div>
             </div>
             <h2 className={"mt-12"}>Core Technology</h2>
             <div
@@ -120,13 +122,15 @@ const Homepage = () => {
                 "grid md:grid-cols-3 md:grid-rows-1 grid-rows-3 grid-cols-1 gap-4"
               }
             >
-              <div className="feature-card">
+              <div className="feature-card bg-neutral-900">
                 Split Price Volatility and Yield
               </div>
-              <div className="feature-card">
+              <div className="feature-card bg-neutral-900">
                 Adscendo Smart Arbitrage Mechanism
               </div>
-              <div className="feature-card">ADO Dynamic Buy-Back System</div>
+              <div className="feature-card bg-neutral-900">
+                ADO Dynamic Buy-Back System
+              </div>
             </div>
           </div>
           <div className={"mt-16"}>

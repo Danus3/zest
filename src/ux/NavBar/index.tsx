@@ -2,7 +2,11 @@ import logo from "@/assets/logo.png";
 import { routeConfigs } from "../../config";
 import { useState } from "react";
 import classNames from "classnames";
-import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import {
+  Cross1Icon,
+  HamburgerMenuIcon,
+  TwitterLogoIcon
+} from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
@@ -59,6 +63,11 @@ const NavBar = () => {
                 </Link>
               );
             })}
+            <a href="https://twitter.com/Adscendo_fi" target={"_blank"}>
+              <TwitterLogoIcon
+                className={"hover:text-neutral-200 relative top-0.5"}
+              />
+            </a>
             <button className={"bg-amber-600 rounded-2xl"}>Launch App</button>
           </div>
         </div>

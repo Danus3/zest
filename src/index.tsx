@@ -4,10 +4,16 @@ import Homepage from "./pages/Homepage";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSetAtom } from "jotai";
-import { adoPriceAtom, aUSDPriceAtm, stEtherPriceAtom } from "./state";
+import {
+  adoPriceAtom,
+  aUSDPriceAtm,
+  getSTETHPoolStats,
+  stEtherPriceAtom
+} from "./state";
 import Stats from "./pages/Stats";
 import { useEffect } from "react";
 import MintAndRedeem from "./pages/MintAndRedeem";
+import { useToken } from "wagmi";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +44,8 @@ const App = () => {
 
   const setAUSDPrice = useSetAtom(aUSDPriceAtm);
 
+  const setPoolState = useSetAtom(getSTETHPoolStats);
+
   useQuery<number>(
     ["stEthPrice", "usd"],
     async () => {
@@ -66,6 +74,17 @@ const App = () => {
       setAUSDPrice(1.0);
     }, 1000);
   }, [setAdoPrice, setAUSDPrice]);
+
+  const { data } = useToken({
+    address: "0xfB7B4564402E5500dB5bB6d63Ae671302777C75a"
+  });
+
+  if (data?.totalSupply?.value) {
+    setPoolState({
+      lstETHCirculatingSupply: data.totalSupply.value,
+      aUSDCirculatingSupply: data.totalSupply.value
+    });
+  }
 
   return <RouterProvider router={router}></RouterProvider>;
 };

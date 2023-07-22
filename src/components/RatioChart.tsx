@@ -143,12 +143,13 @@ const RatioChart = () => {
         >
           <div
             className={
-              "w-[0.8em] h-[0.8em] rounded-[50%] bg-amber-400 inline-block align-text-top -translate-x-1/2 -translate-y-1/2 relative"
+              "transition-[left] w-[0.8em] h-[0.8em] rounded-[50%] bg-amber-400 inline-block align-text-top -translate-x-1/2 -translate-y-1/2 relative"
             }
             style={{
               visibility:
                 (offsetXRatio || currentPriceRatio) > 0 ? "visible" : "hidden",
-              left: `${(offsetXRatio || currentPriceRatio) * slopeLength}px`
+              left: `${(offsetXRatio || currentPriceRatio) * slopeLength}px`,
+              transitionDuration: !offsetXRatio ? "0.25s" : "0s"
             }}
           ></div>
         </div>

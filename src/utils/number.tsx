@@ -1,4 +1,4 @@
-export const commas = (x: number) =>
+export const commas = (x: number | string) =>
   x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 export const normalizeNumber = (x: number, decimal = 2) => {

@@ -1,15 +1,15 @@
 import { useAtomValue } from "jotai";
 import { getAllPrices, getSTETHPoolStats } from "../../state";
-import { normalizeNumber } from "../../utils/number.tsx";
+import { commas, normalizeNumber } from "../../utils/number.tsx";
 
 import "./index.css";
 import RatioChart from "../../components/RatioChart.tsx";
+import { formatEther } from "viem";
 
 const MintAndRedeem = () => {
   const {
     stETHLockedUSD,
     aUSDCirculatingSupply,
-    lstETHCirculatingSupply,
     liquidityPrice,
     lstETHPrice,
     lstETHLeverageRatio
@@ -52,12 +52,12 @@ const MintAndRedeem = () => {
           </div>
           <div className={"stack"}>
             <p>aUSD Minted</p>
-            <h3>{aUSDCirculatingSupply}</h3>
+            <h3>{commas(formatEther(aUSDCirculatingSupply))}</h3>
             <div className="divider"></div>
           </div>
           <div className={"stack"}>
             <p>lstETH Minted</p>
-            <h3>{lstETHCirculatingSupply}</h3>
+            <h3>{commas(formatEther(aUSDCirculatingSupply))}</h3>
             <div className="divider"></div>
           </div>
           <div className={"stack"}>

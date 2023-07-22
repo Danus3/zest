@@ -1,8 +1,8 @@
-import Banner1 from "@assets/homepage-banner-1.png";
+import Banner1 from "@assets/homepage-banner-1.webp";
 import "./homepage.css";
 import LazyImage from "../../components/image.tsx";
 import { routeConfigs } from "../../config.ts";
-import homepageBg from "@assets/homepage-bg.jpg";
+import homepageBg from "@assets/homepage-bg.webp";
 import homepageFooter from "@assets/homepage-footer.jpg";
 import ParallelBanner from "../../components/ParallelBanner.tsx";
 import TypeWriter from "../../components/TypeWriter";
@@ -50,7 +50,7 @@ const Homepage = () => {
           {["Capital Efficiency is all you need, for Buy&Forget users."].map(
             (text, index) => {
               return (
-                <h1 key={index}>
+                <h1 key={index} className={"md:h-auto h-[4em]"}>
                   <TypeWriter text={text}></TypeWriter>
                 </h1>
               );

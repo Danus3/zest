@@ -39,7 +39,12 @@ const NavBar = () => {
             "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4"
           }
         >
-          <Link to={"/"}>
+          <Link
+            to={"/"}
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
+          >
             <img src={logo} className={"w-32 m-auto"} alt={"logo"} />
           </Link>
           <div className={"flex items-center gap-4 flex-col md:flex-row"}>
@@ -80,7 +85,7 @@ const NavBar = () => {
         </div>
       </div>
       <div
-        className={classNames("fixed top-4 left-4 md:invisible z-20 bg-black", {
+        className={classNames("fixed top-4 left-4 md:invisible z-20", {
           invisible: isMenuOpen
         })}
         onClick={() => {

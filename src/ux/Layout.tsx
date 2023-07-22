@@ -6,8 +6,9 @@ const Layout = () => {
   const { pathname } = useLocation();
   return (
     <div
-      className={classNames("text-center text-white pb-20", {
-        "pt-16": pathname !== "/"
+      className={classNames("text-center text-white pb-16", {
+        "pt-16": pathname !== "/",
+        "pb-0": pathname === "/"
       })}
     >
       <NavBar />

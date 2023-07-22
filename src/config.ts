@@ -4,6 +4,10 @@ export const routeConfigs = [
     name: "Dashboard"
   },
   {
+    path: "/mint-redeem",
+    name: "Mint&Redeem"
+  },
+  {
     path: "https://medium.com/@Adscendo/weedpaper-of-adscendo-773eb7356bad",
     name: "WeedPaper",
     external: true

@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 import GenesisPool from "./GenesisPool.tsx";
 
 const Stats = () => {
-  const { ethPrice, aUSDPrice, adoPrice } = useAtomValue(getAllPrices);
+  const {
+    normalizedEthPrice,
+    normalizedAUSDPrice,
+    normalizedAdoPrice
+  } = useAtomValue(getAllPrices);
 
   const TVL = commas(98765432);
 
@@ -20,18 +24,18 @@ const Stats = () => {
     <div className={"pt-8 page-content"}>
       <div className={"flexStack gap-4 items-start md:justify-between mb-4"}>
         <h1>Stats</h1>
-        <div className={"flex gap-4 md:gap-8"}>
-          <div className={"stack gap-0 text-left md:text-right"}>
+        <div className={"flex gap-4 md:gap-8 justify-between w-full md:w-fit"}>
+          <div className={"stack gap-0 text-right"}>
             <span>$ADO Price</span>
-            <span>${adoPrice}</span>
+            <span>${normalizedAdoPrice}</span>
           </div>
-          <div className={"stack gap-0 text-left md:text-right"}>
+          <div className={"stack gap-0 text-right"}>
             <span>$aUSD Price</span>
-            <span>${aUSDPrice}</span>
+            <span>${normalizedAUSDPrice}</span>
           </div>
-          <div className={"stack gap-0 text-left md:text-right"}>
+          <div className={"stack gap-0 text-right"}>
             <span>$stETH Price</span>
-            <span>${ethPrice}</span>
+            <span>${normalizedEthPrice}</span>
           </div>
         </div>
       </div>
@@ -80,7 +84,7 @@ const Stats = () => {
           <div className="divider"></div>
           <div className="item">
             <span>Price</span>
-            <span>${adoPrice}</span>
+            <span>${normalizedAdoPrice}</span>
           </div>
           <div className="item">
             <span>Circulating ADO</span>

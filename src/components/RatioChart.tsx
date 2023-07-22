@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { useInViewport } from "ahooks";
 import { useAtomValue } from "jotai";
-import { ethPriceAtom } from "../state";
+import { stEtherPriceAtom } from "../state";
 import { LIQ_PRICE } from "../constants.ts";
 
 const minPrice = LIQ_PRICE;
@@ -34,7 +34,7 @@ const RatioChart = () => {
   // const currentStETHPrice =
   //   useQueryClient().getQueryData<number>(["stEthPrice", "usd"]) || 0;
 
-  const currentStETHPrice = useAtomValue(ethPriceAtom);
+  const currentStETHPrice = useAtomValue(stEtherPriceAtom);
 
   const currentPriceRatio =
     (Math.max(currentStETHPrice, minPrice) - minPrice) / (maxPrice - minPrice);
@@ -90,10 +90,10 @@ const RatioChart = () => {
             zIndex: -1
           }}
         ></div>
-        <div className={"text-black"}>
-          &nbsp;lstETH Leverage Ratio: {lstLeverageRatio.toFixed(2)}x
+        <div className={"text-black pl-1"}>
+          lstETH Leverage Ratio: {lstLeverageRatio.toFixed(2)}x
         </div>
-        <div className={"text-black"}>
+        <div className={"text-black text-right pr-1"}>
           aUSD APR Leverage Ratio: {aUSDLeverageRatio.toFixed(2)}x&nbsp;
         </div>
       </div>
@@ -119,6 +119,9 @@ const RatioChart = () => {
                 e.currentTarget.getBoundingClientRect().left
             )
           );
+        }}
+        onTouchEnd={() => {
+          setOffsetX(0);
         }}
         onMouseLeave={() => {
           setOffsetX(0);

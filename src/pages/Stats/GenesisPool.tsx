@@ -1,19 +1,20 @@
 import { LIQ_PRICE } from "../../constants.ts";
 import { commas, normalizeNumber } from "../../utils/number.tsx";
 import { useAtomValue } from "jotai";
-import { getAllPrices } from "../../state";
+import { getAllPrices, getSTETHPoolStats } from "../../state";
 import { Link } from "react-router-dom";
 
 const GenesisPool = () => {
-  const { aUSDPrice, ethPriceNumber } = useAtomValue(getAllPrices);
+  const { normalizedAUSDPrice } = useAtomValue(getAllPrices);
 
-  const totalAUSD = commas(98765432);
+  const {
+    lstETHPrice,
+    lstETHLeverageRatio,
+    aUSDCirculatingSupply,
+    lstETHCirculatingSupply
+  } = useAtomValue(getSTETHPoolStats);
 
   const totalRevenue = commas(98765432);
-
-  const lstETHPrice = ethPriceNumber - LIQ_PRICE;
-
-  const ratio = ethPriceNumber / lstETHPrice;
 
   return (
     <div className={"stats-card stack"}>
@@ -23,11 +24,11 @@ const GenesisPool = () => {
       </div>
       <div className="item">
         <span>aUSD Price</span>
-        <span>${aUSDPrice}</span>
+        <span>${normalizedAUSDPrice}</span>
       </div>
       <div className="item">
         <span>Circulating aUSD</span>
-        <span>${totalAUSD}</span>
+        <span>${aUSDCirculatingSupply}</span>
       </div>
       <div className="item">
         <span>aUSD APR</span>
@@ -40,11 +41,13 @@ const GenesisPool = () => {
       </div>
       <div className="item">
         <span>Circulating lstETH</span>
-        <span>${totalAUSD}</span>
+        <span>${lstETHCirculatingSupply}</span>
       </div>
       <div className="item">
         <span>lstETH Leverage Ratio</span>
-        <span className={"text-amber-400"}>${normalizeNumber(ratio, 2)}</span>
+        <span className={"text-amber-400"}>
+          {normalizeNumber(lstETHLeverageRatio, 2)}
+        </span>
       </div>
       <div className={"flexRow gap-4 mt-4"}>
         <Link to={"/stack"} className={"grow"}>

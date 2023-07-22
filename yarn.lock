@@ -2628,6 +2628,11 @@ jiti@^1.18.2:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.19.1.tgz#fa99e4b76a23053e0e7cde098efe1704a14c16f1"
   integrity sha512-oVhqoRDaBXf7sjkll95LHVS6Myyyb1zaunVwk4Z0+WPSW4gjS0pl01zYKHScTuyEhQsFxV5L4DR5r+YqSyqyyg==
 
+jotai-immer@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/jotai-immer/-/jotai-immer-0.2.0.tgz#9bfa1a5a7911c5b222d22a8388a801c05bc06c65"
+  integrity sha512-hahK8EPiROS9RoNWmX/Z8rY9WkAijspX4BZ1O7umpcwI4kPNkbcCpu/PhiQ8FMcpEcF6KmbpbMpSSj/GFmo8NA==
+
 jotai@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.2.2.tgz#1e181789dcc01ced8240b18b95d9fa10169f9366"

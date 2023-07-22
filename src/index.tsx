@@ -4,9 +4,10 @@ import Homepage from "./pages/Homepage";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSetAtom } from "jotai";
-import { adoPriceAtom, aUSDPriceAtm, ethPriceAtom } from "./state";
+import { adoPriceAtom, aUSDPriceAtm, stEtherPriceAtom } from "./state";
 import Stats from "./pages/Stats";
 import { useEffect } from "react";
+import MintAndRedeem from "./pages/MintAndRedeem";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +20,8 @@ const router = createBrowserRouter([
         element: <Homepage />
       },
       {
-        path: "about",
-        element: <div>About</div>
+        path: "mint-redeem",
+        element: <MintAndRedeem />
       },
       {
         path: "stats",
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  const setEThPrice = useSetAtom(ethPriceAtom);
+  const setEThPrice = useSetAtom(stEtherPriceAtom);
 
   const setAdoPrice = useSetAtom(adoPriceAtom);
 

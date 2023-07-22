@@ -4,13 +4,15 @@ import Homepage from "./pages/Homepage";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSetAtom } from "jotai";
-import { ethPriceAtom } from "./state";
+import { adoPriceAtom, aUSDPriceAtm, ethPriceAtom } from "./state";
+import Stats from "./pages/Stats";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <div>404</div>,
+    errorElement: <div className={"text-white text-center"}>404</div>,
     children: [
       {
         path: "",
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <div>About</div>
+      },
+      {
+        path: "stats",
+        element: <Stats />
       }
     ]
   }
@@ -26,6 +32,10 @@ const router = createBrowserRouter([
 
 const App = () => {
   const setEThPrice = useSetAtom(ethPriceAtom);
+
+  const setAdoPrice = useSetAtom(adoPriceAtom);
+
+  const setAUSDPrice = useSetAtom(aUSDPriceAtm);
 
   useQuery<number>(
     ["stEthPrice", "usd"],
@@ -48,6 +58,14 @@ const App = () => {
       refetchInterval: 30000
     }
   );
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAdoPrice(1.2);
+      setAUSDPrice(1.0);
+    }, 1000);
+  }, [setAdoPrice, setAUSDPrice]);
+
   return <RouterProvider router={router}></RouterProvider>;
 };
 

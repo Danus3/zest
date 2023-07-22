@@ -3,8 +3,9 @@ import classNames from "classnames";
 import { useInViewport } from "ahooks";
 import { useAtomValue } from "jotai";
 import { ethPriceAtom } from "../state";
+import { LIQ_PRICE } from "../constants.ts";
 
-const minPrice = 1300;
+const minPrice = LIQ_PRICE;
 const maxPrice = 8000;
 
 const RatioChart = () => {
@@ -45,7 +46,7 @@ const RatioChart = () => {
 
   const lstLeverageRatio = calculatedStETHPrice / calculatedLstETHPrice;
 
-  const aUSDLeverageRatio = calculatedStETHPrice / 1300;
+  const aUSDLeverageRatio = calculatedStETHPrice / LIQ_PRICE;
 
   // const maxAUSDLeverageRatio = maxPrice / 1300;
   //

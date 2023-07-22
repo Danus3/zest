@@ -8,6 +8,7 @@ import {
   TwitterLogoIcon
 } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
+import ConnectBtn from "./ConnectBtn.tsx";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,9 +39,9 @@ const NavBar = () => {
             "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4"
           }
         >
-          <a href={"/"}>
+          <Link to={"/"}>
             <img src={logo} className={"w-32 m-auto"} alt={"logo"} />
-          </a>
+          </Link>
           <div className={"flex items-center gap-4 flex-col md:flex-row"}>
             {routeConfigs.map(routeConfig => {
               if (routeConfig.external) {
@@ -58,7 +59,13 @@ const NavBar = () => {
                 return null;
               }
               return (
-                <Link to={routeConfig.path} key={routeConfig.path}>
+                <Link
+                  to={routeConfig.path}
+                  key={routeConfig.path}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                >
                   {routeConfig.name}
                 </Link>
               );
@@ -68,12 +75,12 @@ const NavBar = () => {
                 className={"hover:text-neutral-200 relative top-0.5"}
               />
             </a>
-            <button className={"bg-amber-600 rounded-2xl"}>Launch App</button>
+            <ConnectBtn />
           </div>
         </div>
       </div>
       <div
-        className={classNames("fixed top-4 left-4 md:invisible z-20", {
+        className={classNames("fixed top-4 left-4 md:invisible z-20 bg-black", {
           invisible: isMenuOpen
         })}
         onClick={() => {

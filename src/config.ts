@@ -1,5 +1,9 @@
 export const routeConfigs = [
   {
+    path: "/stats",
+    name: "Dashboard"
+  },
+  {
     path: "https://medium.com/@Adscendo/weedpaper-of-adscendo-773eb7356bad",
     name: "WeedPaper",
     external: true

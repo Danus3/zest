@@ -6,7 +6,7 @@
   font-family: "Bai Jamjuree", Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 600;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -40,7 +40,8 @@ svg[viewBox="0 0 15 15"] {
 }
 
 button {
-  @apply text-base font-medium rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none focus:ring-amber-500 focus:ring-2;
+  font-weight: 600;
+  @apply rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none focus:ring-amber-500 focus:ring-2;
 }
 
 .button-primary {
@@ -52,7 +53,11 @@ h1 {
 }
 
 h2 {
-  @apply text-xl md:text-3xl;
+  @apply text-2xl md:text-3xl;
+}
+
+h3 {
+  @apply text-xl md:text-2xl;
 }
 
 a {
@@ -78,8 +83,19 @@ img.loaded {
   animation: imgShow 0.5s ease-in-out;
 }
 
-@layer {
+@layer components {
   .page-content {
-    @apply w-10/12 md:w-3/4 m-auto;
+    @apply w-11/12 md:w-3/4 m-auto;
+  }
+  .stack {
+    @apply flex flex-col;
+  }
+
+  .flexRow {
+    @apply flex flex-row;
+  }
+
+  .flexStack {
+    @apply flex md:flex-row flex-col;
   }
 }

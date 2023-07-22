@@ -1,5 +1,4 @@
 import React from "react";
-import LazyImage from "./image.tsx";
 import classNames from "classnames";
 
 const ParallelBanner: React.FC<{
@@ -30,23 +29,22 @@ const ParallelBanner: React.FC<{
         setMoveOut(true);
       }}
     >
-      <LazyImage
+      <img
+        alt={"banner"}
         src={src}
-        rootMargin={"0px"}
         className={classNames(
-          "object-cover absolute inset-0 h-full duration-100",
+          "object-cover absolute inset-0 h-full duration-100 origin-center",
           {
             "transition-all": moveOut
           }
         )}
         style={{
-          transformOrigin: "center",
           transform:
             window.innerWidth <= 768
               ? undefined
               : `scale(1.1) translate(${translateX}px, ${translateY}px)`
         }}
-      ></LazyImage>
+      ></img>
       <div
         className={
           "inset-0 absolute bg-gradient-to-b from-transparent to-black drop-shadow-2xl"

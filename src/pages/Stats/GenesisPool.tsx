@@ -28,7 +28,7 @@ const GenesisPool = () => {
       </div>
       <div className="item">
         <span>Circulating aUSD</span>
-        <span>${aUSDCirculatingSupply}</span>
+        <span>${aUSDCirculatingSupply.toString()}</span>
       </div>
       <div className="item">
         <span>aUSD APR</span>
@@ -41,7 +41,7 @@ const GenesisPool = () => {
       </div>
       <div className="item">
         <span>Circulating lstETH</span>
-        <span>${lstETHCirculatingSupply}</span>
+        <span>${lstETHCirculatingSupply.toString()}</span>
       </div>
       <div className="item">
         <span>lstETH Leverage Ratio</span>

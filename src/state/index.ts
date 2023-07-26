@@ -24,11 +24,8 @@ const poolState = atomWithImmer({
   stETHLocked: 0,
   stETHLockedUSD: 0,
   liquidityPrice: LIQ_PRICE,
-  lstETHPrice: 0,
-  lstETHLeverageRatio: 0,
   lstETHCirculatingSupply: BigInt(0),
-  aUSDCirculatingSupply: BigInt(0),
-  ethPrice: 0
+  aUSDCirculatingSupply: BigInt(0)
 });
 
 export const getSTETHPoolStats = atom(

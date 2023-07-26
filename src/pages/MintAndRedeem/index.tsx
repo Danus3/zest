@@ -77,7 +77,7 @@ const MintAndRedeem = () => {
           <div className={"stack"}>
             <p>lstETH Leverage Ratio</p>
             <h3 className={"text-amber-400"}>
-              {normalizeNumber(lstETHLeverageRatio)}
+              {normalizeNumber(lstETHLeverageRatio)}x
             </h3>
           </div>
         </div>

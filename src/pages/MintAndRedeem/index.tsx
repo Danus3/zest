@@ -26,7 +26,7 @@ const MintAndRedeem = () => {
 
   return (
     <div className={"page-content flex-col flex gap-4 mt-8 mint-redeem"}>
-      <div className={"flexRow justify-between"}>
+      <div className={"flex flex-col gap-2 md:flex-row  justify-between"}>
         <h1 className={"text-left"}>Overview(Technical Preview)</h1>
         <div className={"flex gap-4 md:gap-8"}>
           <div className={"stack gap-0 text-right"}>

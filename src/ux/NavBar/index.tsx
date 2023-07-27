@@ -79,6 +79,10 @@ const NavBar = () => {
             <a href="https://twitter.com/Adscendo_fi" target={"_blank"}>
               <TwitterLogoIcon
                 className={"hover:text-neutral-200 relative top-0.5"}
+                style={{
+                  width: "24px",
+                  height: "24px"
+                }}
               />
             </a>
             <ConnectBtn />

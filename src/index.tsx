@@ -14,6 +14,7 @@ import Stats from "./pages/Stats";
 import { useEffect } from "react";
 import MintAndRedeem from "./pages/MintAndRedeem";
 import { useToken } from "wagmi";
+import Earn from "./pages/Earn";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "stats",
         element: <Stats />
+      },
+      {
+        path: "earn",
+        element: <Earn />
       }
     ]
   }

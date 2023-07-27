@@ -36,8 +36,9 @@ body {
 }
 
 svg[viewBox="0 0 15 15"] {
-  width: 24px;
-  height: 24px;
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: text-bottom;
 }
 
 button {
@@ -45,8 +46,12 @@ button {
   @apply rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none focus:ring-amber-500 focus:ring-2;
 }
 
-.button-primary {
-  @apply bg-sky-500 text-white hover:bg-sky-600 focus:ring-sky-500;
+button.emphasis {
+  @apply bg-amber-400 text-black hover:bg-amber-300;
+}
+
+button.hollow {
+    @apply bg-transparent border-amber-400 border-[1px] text-white hover:bg-amber-400 hover:text-black;
 }
 
 h1 {

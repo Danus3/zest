@@ -23,7 +23,7 @@ const Stats = () => {
   return (
     <div className={"pt-8 page-content"}>
       <div className={"flexStack gap-4 items-start md:justify-between mb-4"}>
-        <h1>Stats</h1>
+        <h1>Stats(Preview)</h1>
         <div className={"flex gap-4 md:gap-8 justify-between w-full md:w-fit"}>
           <div className={"stack gap-0 text-right"}>
             <span>$ADO Price</span>
@@ -77,7 +77,7 @@ const Stats = () => {
           </div>
         </div>
       </div>
-      <h1 className={"mt-8 text-left mb-4"}>Tokens</h1>
+      <h1 className={"mt-8 text-left mb-4"}>Tokens(Preview)</h1>
       <div className={"flexStack justify-between gap-4"}>
         <div className={"stats-card stack"}>
           <h3>ADO</h3>

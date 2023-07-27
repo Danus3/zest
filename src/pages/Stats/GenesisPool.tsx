@@ -3,6 +3,7 @@ import { commas, normalizeNumber } from "../../utils/number.tsx";
 import { useAtomValue } from "jotai";
 import { getAllPrices, getSTETHPoolStats } from "../../state";
 import { Link } from "react-router-dom";
+import { formatEther } from "viem";
 
 const GenesisPool = () => {
   const { normalizedAUSDPrice } = useAtomValue(getAllPrices);
@@ -28,7 +29,7 @@ const GenesisPool = () => {
       </div>
       <div className="item">
         <span>Circulating aUSD</span>
-        <span>${aUSDCirculatingSupply.toString()}</span>
+        <span>{commas(formatEther(aUSDCirculatingSupply))}</span>
       </div>
       <div className="item">
         <span>aUSD APR</span>
@@ -41,7 +42,7 @@ const GenesisPool = () => {
       </div>
       <div className="item">
         <span>Circulating lstETH</span>
-        <span>${lstETHCirculatingSupply.toString()}</span>
+        <span>{commas(formatEther(lstETHCirculatingSupply))}</span>
       </div>
       <div className="item">
         <span>lstETH Leverage Ratio</span>

@@ -1,13 +1,11 @@
 export const routeConfigs = [
   {
     path: "/stats",
-    name: "Dashboard",
-    disabled: true
+    name: "Dashboard"
   },
   {
     path: "/mint-redeem",
-    name: "Mint&Redeem",
-    disabled: true
+    name: "Mint&Redeem"
   },
   {
     path: "https://medium.com/@Adscendo/weedpaper-of-adscendo-773eb7356bad",

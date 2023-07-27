@@ -5,6 +5,11 @@ import { commas, normalizeNumber } from "../../utils/number.tsx";
 import "./index.css";
 import RatioChart from "../../components/RatioChart.tsx";
 import { formatEther } from "viem";
+import { useState } from "react";
+import Tabs from "../../components/Tabs.tsx";
+import Mint from "./Mint.tsx";
+import Redeem from "./Redeem.tsx";
+import Buy from "./Buy.tsx";
 
 const MintAndRedeem = () => {
   const {
@@ -16,6 +21,9 @@ const MintAndRedeem = () => {
   } = useAtomValue(getSTETHPoolStats);
 
   const { aUSDPrice, ethPrice } = useAtomValue(getAllPrices);
+
+  const [tab, setTab] = useState<number>(0);
+
   return (
     <div className={"page-content flex-col flex gap-4 mt-8 mint-redeem"}>
       <div className={"flexRow justify-between"}>
@@ -82,25 +90,60 @@ const MintAndRedeem = () => {
           </div>
         </div>
       </div>
+      <div className={"my-4"}></div>
       <div className={"flex flex-col md:flex-row gap-4"}>
         <div className={"stack w-full md:w-1/2 text-left gap-4"}>
-          <h1>Mint</h1>
-          <ul>
-            <li className={"list-none"}>
-              You can mint aUSD and lstETH with stETH/ETH.
-            </li>
-            <li>aUSD: Enjoy Leveraged ETH Staking Yield (1x-5x)</li>
-            <li>
-              lstETH: Enjoy Long-term On-chain Leveraged ETH Derivative (3x-6x)
-            </li>
-          </ul>
-          <p className={"text-amber-400"}>1 stETH/ETH = 1300*aUSD+1*lstETH</p>
-          <RatioChart />
+          <h1>{tab === 0 ? "Mint" : tab === 1 ? "Redeem" : "Buy lstETH"}</h1>
+          {tab === 0 ? (
+            <>
+              {" "}
+              <ul>
+                <li className={"list-none"}>
+                  You can mint aUSD and lstETH with stETH/ETH.
+                </li>
+                <li>aUSD: Enjoy Leveraged ETH Staking Yield (1x-5x)</li>
+                <li>
+                  lstETH: Enjoy Long-term On-chain Leveraged ETH Derivative
+                  (3x-6x)
+                </li>
+              </ul>
+              <p className={"text-amber-400"}>
+                1 stETH/ETH = 1300*aUSD+1*lstETH
+              </p>
+              <RatioChart />
+            </>
+          ) : tab === 1 ? (
+            <>
+              <p>
+                You can use 1300 aUSD and 1 lstETH to redeem 1 stETH.
+                <br />{" "}
+                <span className={"text-amber-400"}>
+                  1300*aUSD+1*lstETH = 1 stETH
+                </span>
+              </p>
+
+              <a href="/">
+                <button className={"bg-amber-400 text-black"}>Buy aUSD</button>
+              </a>
+            </>
+          ) : (
+            <>
+              <p>For ETH price increase part,</p>
+              <p className={"text-amber-400 text-2xl"}>1 lstETH = 1ETH</p>
+              <RatioChart />
+            </>
+          )}
         </div>
         <div className={"stack w-full md:w-1/2 text-left gap-4"}>
-          <h1>Mint</h1>
-          <h1>Redeem</h1>
-          <h1>Buy lstETH</h1>
+          <Tabs
+            labels={["Mint", "Redeem", "Buy lstETH"]}
+            currentTab={tab}
+            onChange={(_, value) => {
+              setTab(value);
+            }}
+          />
+          <div className={"my-0"}></div>
+          {tab === 0 ? <Mint /> : tab === 1 ? <Redeem /> : <Buy />}
         </div>
       </div>
     </div>

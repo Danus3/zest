@@ -69,6 +69,10 @@ ul {
   list-style: disc;
 }
 
+input {
+    @apply rounded-md bg-transparent border-amber-400 border-[1px] outline-none p-2;
+}
+
 img[src=""] {
   content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px"><path d="M 4 4 L 20 20 M 4 20 L 20 4" /></svg>');
 }

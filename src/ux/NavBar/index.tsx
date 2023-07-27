@@ -44,6 +44,7 @@ const NavBar = () => {
             onClick={() => {
               setIsMenuOpen(false);
             }}
+            className={"shrink-0"}
           >
             <img src={logo} className={"w-32 m-auto"} alt={"logo"} />
           </Link>

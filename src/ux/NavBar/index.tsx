@@ -50,6 +50,9 @@ const NavBar = () => {
           </Link>
           <div className={"flex items-center gap-4 flex-col md:flex-row"}>
             {routeConfigs.map(routeConfig => {
+              if (routeConfig.disabled) {
+                return null;
+              }
               if (routeConfig.external) {
                 return (
                   <a
@@ -60,9 +63,6 @@ const NavBar = () => {
                     {routeConfig.name}
                   </a>
                 );
-              }
-              if (routeConfig.disabled) {
-                return null;
               }
               return (
                 <Link

@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./ux/Layout.tsx";
-import Homepage from "./pages/Homepage";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSetAtom } from "jotai";
@@ -13,10 +12,16 @@ import {
 import { lazy, Suspense, useEffect } from "react";
 // import MintAndRedeem from "./pages/MintAndRedeem";
 import { useToken } from "wagmi";
+import { isApp } from "./config.ts";
+import Homepage from "./pages/Homepage";
 
 const MintAndRedeem = lazy(() => import("./pages/MintAndRedeem"));
 const Earn = lazy(() => import("./pages/Earn"));
 const Stats = lazy(() => import("./pages/Stats"));
+
+// const Homepage = lazy(() => import("./pages/Homepage"));
+
+const routeLoading = <h1 className={"text-center my-8"}>Loading...</h1>;
 
 const router = createBrowserRouter([
   {
@@ -26,14 +31,16 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Homepage />
+        element: (
+          <Suspense fallback={routeLoading}>
+            {isApp ? <Stats /> : <Homepage />}
+          </Suspense>
+        )
       },
       {
         path: "mint-redeem",
         element: (
-          <Suspense
-            fallback={<h1 className={"text-center my-8"}>Loading...</h1>}
-          >
+          <Suspense fallback={routeLoading}>
             <MintAndRedeem />
           </Suspense>
         )
@@ -41,9 +48,7 @@ const router = createBrowserRouter([
       {
         path: "stats",
         element: (
-          <Suspense
-            fallback={<h1 className={"text-center my-8"}>Loading...</h1>}
-          >
+          <Suspense fallback={routeLoading}>
             <Stats />
           </Suspense>
         )
@@ -51,9 +56,7 @@ const router = createBrowserRouter([
       {
         path: "earn",
         element: (
-          <Suspense
-            fallback={<h1 className={"text-center my-8"}>Loading...</h1>}
-          >
+          <Suspense fallback={routeLoading}>
             <Earn />
           </Suspense>
         )

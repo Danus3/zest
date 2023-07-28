@@ -3,6 +3,7 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { Link } from "react-router-dom";
+import Slider from "../../components/Slider.tsx";
 
 type EarnBlockProps = {
   title: string;
@@ -33,7 +34,7 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
           "flex flex-col md:flex-row justify-between md:items-center gap-4"
         }
       >
-        <div className={"flex flex-row gap-4"}>
+        <div className={"flex flex-row gap-4 text-left items-center"}>
           <h2>{title}</h2>
           {buttons &&
             buttons.map((button, index) => {
@@ -48,6 +49,14 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
         </div>
         <div className={"flex flex-row gap-4 text-left"}>
           <div>
+            <p>TVL:</p>
+            <p>$20,000,000</p>
+          </div>
+          <div>
+            <p>Staked:</p>
+            <p>$100,000</p>
+          </div>
+          <div>
             {multiplier ? (
               <>
                 <p>1x APR: 15%</p>
@@ -60,18 +69,10 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
               </>
             )}
           </div>
-          <div>
-            <p>Staked:</p>
-            <p>$100,000</p>
-          </div>
-          <div>
-            <p>TVL:</p>
-            <p>$20,000,000</p>
-          </div>
         </div>
       </div>
       <div className={"flex flex-row justify-between items-center gap-4"}>
-        <h3 className={"w-full text-left"}>Earned: $10,000</h3>
+        <h3 className={"w-full text-left md:mr-8"}>Earned: $10,000</h3>
         <div className={"w-full text-left"}>
           {multiplier ? (
             <h3>
@@ -102,7 +103,29 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
             </h3>
           ) : null}
         </div>
-
+        <button className="w-1/2 hollow">Withdraw</button>
+      </div>
+      <div
+        className={
+          "flex flex-col md:flex-row justify-between items-center gap-4"
+        }
+      >
+        <div
+          className={
+            "flex flex-row w-full justify-start items-center gap-4 md:mr-8"
+          }
+        >
+          <div className={"text-left whitespace-nowrap"}>
+            <p>ADO Earned: 5,000</p>
+            <p>esADO Earned: 5,000</p>
+          </div>
+          <button className={"emphasis w-full"}>Claim</button>
+        </div>
+        <div className={"w-full text-left"}>
+          {multiplier ? (
+            <Slider maxTime={"3 months"} maxMultiplier={4} />
+          ) : null}
+        </div>
         <Tooltip.Provider delayDuration={0}>
           <Tooltip.Root>
             <Tooltip.Trigger asChild>
@@ -128,23 +151,6 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
             )}
           </Tooltip.Root>
         </Tooltip.Provider>
-      </div>
-      <div
-        className={
-          "flex flex-col md:flex-row justify-between items-center gap-4"
-        }
-      >
-        <div className={"flex flex-row w-full justify-between items-center"}>
-          <div className={"text-left"}>
-            <p>ADO Earned: 5,000</p>
-            <p>esADO Earned: 5,000</p>
-          </div>
-          <button className={"emphasis"}>Claim</button>
-        </div>
-        <div className={"w-full text-left"}>
-          <div>2X</div>
-        </div>
-        <button className="w-1/2 hollow">Withdraw</button>
       </div>
     </div>
   );

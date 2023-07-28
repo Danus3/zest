@@ -1,7 +1,7 @@
 import Banner1 from "@assets/homepage-banner-1.webp";
 import "./homepage.css";
 import LazyImage from "../../components/image.tsx";
-import { routeConfigs } from "../../config.ts";
+import { DocsURL, WeedPaperURL } from "../../config.ts";
 import homepageBg from "@assets/homepage-bg.webp";
 import homepageFooter from "@assets/homepage-footer.jpg";
 import ParallelBanner from "../../components/ParallelBanner.tsx";
@@ -91,11 +91,7 @@ const Homepage = () => {
         {subBanner}
         <div className={"my-8"}></div>
         <div>
-          <a
-            className={"link-btn"}
-            href={routeConfigs.find(e => e.name === "WeedPaper")?.path}
-            target={"_blank"}
-          >
+          <a className={"link-btn"} href={WeedPaperURL} target={"_blank"}>
             WeedPaper
           </a>
         </div>
@@ -138,11 +134,7 @@ const Homepage = () => {
             </div>
           </div>
           <div className={"mt-16"}>
-            <a
-              className={"link-btn"}
-              href={routeConfigs.find(e => e.name === "Docs")?.path}
-              target={"_blank"}
-            >
+            <a className={"link-btn"} href={DocsURL} target={"_blank"}>
               Docs
             </a>
           </div>

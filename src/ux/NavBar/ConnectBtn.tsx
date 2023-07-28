@@ -2,7 +2,8 @@ import { useAccount, useConnect, useDisconnect, useEnsName } from "wagmi";
 import Modal from "../../components/Modal.tsx";
 import { useAtom } from "jotai";
 import { connectWalletModalAtom } from "../../state/ui";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { appURL, isLandingPage } from "../../config.ts";
 
 const ConnectBtn = () => {
   const { address, isConnected } = useAccount();
@@ -19,13 +20,9 @@ const ConnectBtn = () => {
 
   const [isModalOpen, setIsModalOpen] = useAtom(connectWalletModalAtom);
 
-  const { pathname } = useLocation();
-
-  const isHomePage = pathname === "/";
-
-  if (isHomePage) {
+  if (isLandingPage) {
     return (
-      <Link to={"/stats"}>
+      <Link to={appURL} target={"_blank"}>
         <button className={btnClassName}>Launch App</button>
       </Link>
     );

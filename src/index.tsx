@@ -10,11 +10,13 @@ import {
   getSTETHPoolStats,
   stEtherPriceAtom
 } from "./state";
-import Stats from "./pages/Stats";
-import { useEffect } from "react";
-import MintAndRedeem from "./pages/MintAndRedeem";
+import { lazy, Suspense, useEffect } from "react";
+// import MintAndRedeem from "./pages/MintAndRedeem";
 import { useToken } from "wagmi";
-import Earn from "./pages/Earn";
+
+const MintAndRedeem = lazy(() => import("./pages/MintAndRedeem"));
+const Earn = lazy(() => import("./pages/Earn"));
+const Stats = lazy(() => import("./pages/Stats"));
 
 const router = createBrowserRouter([
   {
@@ -28,15 +30,33 @@ const router = createBrowserRouter([
       },
       {
         path: "mint-redeem",
-        element: <MintAndRedeem />
+        element: (
+          <Suspense
+            fallback={<h1 className={"text-center my-8"}>Loading...</h1>}
+          >
+            <MintAndRedeem />
+          </Suspense>
+        )
       },
       {
         path: "stats",
-        element: <Stats />
+        element: (
+          <Suspense
+            fallback={<h1 className={"text-center my-8"}>Loading...</h1>}
+          >
+            <Stats />
+          </Suspense>
+        )
       },
       {
         path: "earn",
-        element: <Earn />
+        element: (
+          <Suspense
+            fallback={<h1 className={"text-center my-8"}>Loading...</h1>}
+          >
+            <Earn />
+          </Suspense>
+        )
       }
     ]
   }

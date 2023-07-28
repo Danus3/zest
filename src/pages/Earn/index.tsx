@@ -212,7 +212,7 @@ const earnConfigs: EarnBlockProps[] = [
 const Earn: React.FC = () => {
   return (
     <div className={"page-content"}>
-      <div className={"my-12"}></div>
+      <div className={"my-8"}></div>
       <h1>TVL: $35,000,000</h1>
       <div className={"my-8"}></div>
       <div>

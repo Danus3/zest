@@ -51,7 +51,7 @@ button.emphasis {
 }
 
 button.hollow {
-    @apply bg-transparent border-amber-400 border-[1px] text-white hover:bg-amber-400 hover:text-black;
+  @apply bg-transparent border-amber-400 border-[1px] text-white hover:bg-amber-400 hover:text-black;
 }
 
 h1 {
@@ -75,7 +75,7 @@ ul {
 }
 
 input {
-    @apply rounded-md bg-transparent border-amber-400 border-[1px] outline-none p-2;
+  @apply rounded-md bg-transparent border-amber-400 border-[1px] outline-none p-2;
 }
 
 img[src=""] {
@@ -114,4 +114,10 @@ img.loaded {
   }
 }
 
-
+@layer utilities {
+  .card {
+    box-shadow: 0 8px 6px 0 rgba(0, 0, 0, 0.05),
+      inset 0 1px 1px 0 hsla(0, 0%, 100%, 0.25), inset 0 -1px 1px 0 #21293a,
+      inset 2px 3px 3px -3px #5f5a88;
+  }
+}

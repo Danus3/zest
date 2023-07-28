@@ -18,7 +18,7 @@ const GenesisPool = () => {
   const totalRevenue = commas(98765432);
 
   return (
-    <div className={"stats-card stack"}>
+    <div className={"stats-card stack card"}>
       <div className={"flex items-center justify-between mb-4"}>
         <h3>stETH Genesis Pool</h3>
         <p>Liq.price ${LIQ_PRICE}</p>

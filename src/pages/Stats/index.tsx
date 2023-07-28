@@ -40,7 +40,7 @@ const Stats = () => {
         </div>
       </div>
       <div className={"flexStack justify-between gap-4"}>
-        <div className={"stats-card stack"}>
+        <div className={"stats-card stack card"}>
           <h3>Overview</h3>
           <div className="divider"></div>
           <div className="item">
@@ -60,7 +60,7 @@ const Stats = () => {
             <span>${insurance}</span>
           </div>
         </div>
-        <div className={"stats-card stack "}>
+        <div className={"stats-card stack card"}>
           <h3>Revenue</h3>
           <div className="divider"></div>
           <div className="item">
@@ -77,9 +77,9 @@ const Stats = () => {
           </div>
         </div>
       </div>
-      <h1 className={"mt-8 text-left mb-4"}>Tokens(Technical Preview)</h1>
+      <h1 className={"mt-8 text-left mb-6"}>Tokens(Technical Preview)</h1>
       <div className={"flexStack justify-between gap-4"}>
-        <div className={"stats-card stack"}>
+        <div className={"stats-card stack card"}>
           <h3>ADO</h3>
           <div className="divider"></div>
           <div className="item">

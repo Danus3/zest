@@ -26,7 +26,7 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
   return (
     <div
       className={
-        "flex flex-col gap-6 justify-between w-full p-4 border-neutral-800 border-[1px] first:rounded-t-xl last:rounded-b-xl"
+        "flex flex-col gap-6 justify-between w-full p-4 card first:rounded-t-xl last:rounded-b-xl"
       }
     >
       <div

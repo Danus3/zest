@@ -2,14 +2,14 @@
 
 @layer components {
   .stats-card {
-    @apply w-full md:w-1/2 border-amber-400 border-[1px] rounded-2xl p-3 md:p-6 flex flex-col gap-1;
+    @apply w-full md:w-1/2 rounded-2xl p-3 md:p-6 flex flex-col gap-3;
   }
   .stats-card h3 {
     @apply self-start;
   }
 
   .stats-card .divider {
-    @apply w-full h-[1px] bg-neutral-800 my-4;
+    @apply w-full h-[1px] bg-neutral-800 my-2;
   }
   .stats-card .item {
     @apply flex flex-row justify-between gap-2 w-full text-left;

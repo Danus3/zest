@@ -33,7 +33,7 @@ const Slider: React.FC<{
                   "bg-amber-300": index < currentMultiplier,
                   "bg-neutral-700": index >= currentMultiplier
                 },
-                "h-[12px] w-[12px] rounded-xl absolute -translate-x-full cursor-pointer"
+                "hover:scale-125 h-[12px] w-[12px] rounded-xl absolute -translate-x-full cursor-pointer"
               )}
               style={{
                 left: `${((index + 1) / maxMultiplier) * 100}%`

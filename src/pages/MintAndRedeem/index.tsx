@@ -39,9 +39,7 @@ const MintAndRedeem = () => {
           </div>
         </div>
       </div>
-      <div
-        className={"border-neutral-800 border-[1px] p-4 rounded-2xl md:pb-0"}
-      >
+      <div className={"card p-4 rounded-2xl md:pb-0"}>
         <h3 className={"mb-8"}>stETH Genesis Pool</h3>
         <div
           className={
@@ -96,8 +94,7 @@ const MintAndRedeem = () => {
           <h1>{tab === 0 ? "Mint" : tab === 1 ? "Redeem" : "Buy lstETH"}</h1>
           {tab === 0 ? (
             <>
-              {" "}
-              <ul>
+              <ul className={"leading-6"}>
                 <li className={"list-none"}>
                   You can mint aUSD and lstETH with stETH/ETH.
                 </li>

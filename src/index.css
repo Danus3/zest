@@ -71,7 +71,7 @@ a {
 }
 
 ul {
-  list-style: disc;
+  list-style: inside disc;
 }
 
 input {

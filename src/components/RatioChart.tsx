@@ -75,8 +75,7 @@ const RatioChart = () => {
           style={{
             width: `${(lstLeverageRatio /
               (lstLeverageRatio + aUSDLeverageRatio)) *
-              100}%`,
-            zIndex: -1
+              100}%`
           }}
         ></div>
         <div
@@ -86,14 +85,13 @@ const RatioChart = () => {
           style={{
             width: `${(aUSDLeverageRatio /
               (lstLeverageRatio + aUSDLeverageRatio)) *
-              100}%`,
-            zIndex: -1
+              100}%`
           }}
         ></div>
-        <div className={"text-black pl-1"}>
+        <div className={"text-black pl-1 relative z-10"}>
           lstETH Leverage Ratio: {lstLeverageRatio.toFixed(2)}x
         </div>
-        <div className={"text-black text-right pr-1"}>
+        <div className={"text-black text-right pr-1 relative z-10"}>
           aUSD APR Leverage Ratio: {aUSDLeverageRatio.toFixed(2)}x&nbsp;
         </div>
       </div>

@@ -45,7 +45,7 @@ const Tabs = ({
               handleChange(e, index);
             }}
             className={classNames(
-              "w-full text-center text-black rounded-sm text-[0.9em] cursor-pointer",
+              "w-full text-center text-black rounded-sm cursor-pointer",
               {
                 "bg-amber-400 text-black": index === tab,
                 "text-white": index !== tab

@@ -26,7 +26,7 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
   return (
     <div
       className={
-        "flex flex-col gap-6 justify-between w-full p-4 card first:rounded-t-xl last:rounded-b-xl"
+        "flex flex-col gap-2 justify-between w-full p-4 card first:rounded-t-xl last:rounded-b-xl"
       }
     >
       <div
@@ -35,7 +35,11 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
         }
       >
         <div className={"flex flex-row gap-4 text-left items-center"}>
-          <h2>{title}</h2>
+          <div>
+            <h1>{title}</h1>
+            <p>TVL: $20,000,000</p>
+          </div>
+
           {buttons &&
             buttons.map((button, index) => {
               return (
@@ -48,10 +52,6 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
             })}
         </div>
         <div className={"flex flex-row gap-4 text-left"}>
-          <div>
-            <p>TVL:</p>
-            <p>$20,000,000</p>
-          </div>
           <div>
             <p>Staked:</p>
             <p>$100,000</p>
@@ -219,7 +219,7 @@ const Earn: React.FC = () => {
   return (
     <div className={"page-content"}>
       <div className={"my-8"}></div>
-      <h1>TVL: $35,000,000</h1>
+      <h1 className={"text-left"}>TVL: $35,000,000</h1>
       <div className={"my-8"}></div>
       <div>
         {earnConfigs.map((config, index) => {

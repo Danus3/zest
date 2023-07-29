@@ -11,6 +11,12 @@ const Layout = () => {
       className={classNames("text-center text-white pb-16", {
         [isApp || isLocalhost ? "pt-32" : "pt-0"]: true
       })}
+      style={{
+        background:
+          isApp || isLocalhost
+            ? "radial-gradient(50% 50% at 100% 0%, #111111 0%, black 100%)"
+            : undefined
+      }}
     >
       {/*<img*/}
       {/*  src={homepageBg}*/}

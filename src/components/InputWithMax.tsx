@@ -11,11 +11,13 @@ const InputWithMax = ({
     <div className={"relative"}>
       <input
         type="number"
-        className={"w-full"}
+        className={"w-full placeholder:text-neutral-600"}
         onChange={e => {
           setValue(e.target.value);
         }}
-        value={value}
+        value={value === "0" ? "" : value}
+        min={0}
+        placeholder={"Please input amount"}
       />
       <div
         className={

@@ -64,7 +64,7 @@ const Buy = () => {
       <div
         className={"text-center border-amber-400 border-[1px] py-1 rounded-md"}
       >
-        {(ethPrice / lstETHPrice) * Number(formatEther(buyValue))} stETH
+        {(ethPrice / lstETHPrice) * Number(formatEther(buyValue))} lstETH
       </div>
       <div className={"my-8"}></div>
       <button className={"bg-amber-400 text-black w-full"}>Buy</button>

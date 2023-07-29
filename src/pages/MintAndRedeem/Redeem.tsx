@@ -4,7 +4,7 @@ import { PlusCircledIcon } from "@radix-ui/react-icons";
 const Redeem = () => {
   return (
     <div>
-      <p>Burn aUSD and lstETH to get stETH/ETH.</p>
+      <p>Burn aUSD and lstETH to get stETH.</p>
       <div className={"my-2"}></div>
       <div className={"flex flex-row justify-between items-center gap-2"}>
         <InputWithMax

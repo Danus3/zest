@@ -103,7 +103,7 @@ const Stats = () => {
             <span className={"text-amber-400"}>${insurance}</span>
           </div>
           <div className="divider"></div>
-          <div className={"flexRow gap-4"}>
+          <div className={"flexRow gap-4 mt-10"}>
             <Link to={"/stack"} className={"grow"}>
               <button>Stack ADO</button>
             </Link>

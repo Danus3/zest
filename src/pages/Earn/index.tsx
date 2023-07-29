@@ -119,7 +119,7 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
             <p>ADO Earned: 5,000</p>
             <p>esADO Earned: 5,000</p>
           </div>
-          <button className={"emphasis w-full"}>Claim</button>
+          <button className={"emphasis md:grow-0 grow px-8"}>Claim</button>
         </div>
         <div className={"w-full text-left"}>
           {multiplier ? (

@@ -28,7 +28,7 @@ const MintAndRedeem = () => {
     <div className={"page-content flex-col flex gap-4 mt-8 mint-redeem"}>
       <div className={"flex flex-col gap-2 md:flex-row  justify-between"}>
         <h1 className={"text-left"}>Overview(Technical Preview)</h1>
-        <div className={"flex gap-4 md:gap-8"}>
+        <div className={"flex gap-4 md:gap-8 text-[1.1em]"}>
           <div className={"stack gap-0 text-right"}>
             <span>ETH/USD</span>
             <span>${normalizeNumber(ethPrice, 2)}</span>
@@ -89,9 +89,11 @@ const MintAndRedeem = () => {
         </div>
       </div>
       <div className={"my-4"}></div>
-      <div className={"flex flex-col md:flex-row gap-4"}>
+      <h1 className={"text-left"}>
+        {tab === 0 ? "Mint" : tab === 1 ? "Redeem" : "Buy lstETH"}
+      </h1>
+      <div className={"flex flex-col md:flex-row gap-8"}>
         <div className={"stack w-full md:w-1/2 text-left gap-4"}>
-          <h1>{tab === 0 ? "Mint" : tab === 1 ? "Redeem" : "Buy lstETH"}</h1>
           {tab === 0 ? (
             <>
               <ul className={"leading-6"}>

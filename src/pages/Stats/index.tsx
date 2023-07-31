@@ -21,7 +21,7 @@ const Stats = () => {
   const insurance = commas(98765432);
 
   return (
-    <div className={"pt-8 page-content"}>
+    <div className={"page-content"}>
       <div className={"flexStack gap-4 items-start md:justify-between mb-4"}>
         <h1>Stats(Technical Preview)</h1>
         <div className={"flex gap-4 md:gap-8 justify-between w-full md:w-fit"}>

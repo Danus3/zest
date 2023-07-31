@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <div
       className={classNames("text-center text-white pb-16", {
-        [isApp || isLocalhost ? "md:pt-32 pt-8" : "pt-0"]: true
+        [isApp || isLocalhost ? "md:pt-32 pt-16" : "pt-0"]: true
       })}
       style={{
         background:

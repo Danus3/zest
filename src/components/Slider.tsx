@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classNames from "classnames";
+import Tooltip from "./Tooltip.tsx";
 
 const Slider: React.FC<{
   maxMultiplier: number;
@@ -8,7 +9,15 @@ const Slider: React.FC<{
   const [currentMultiplier, setCurrentMultiplier] = useState(1);
   return (
     <div className="flex flex-col text-right">
-      <p>{maxMultiplier}x</p>
+      <div className={"flex flex-row justify-between"}>
+        <p>
+          Boost
+          <Tooltip
+            text={"The longer you select, the greater your reward multiplier"}
+          ></Tooltip>
+        </p>
+        <p>{maxMultiplier}x</p>
+      </div>
       <div className={"bg-neutral-800 rounded-md h-[12px] relative"}>
         <div
           className={"absolute h-full bg-amber-400 rounded-md transition-all"}

@@ -1,10 +1,10 @@
 import React from "react";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 
-import * as Tooltip from "@radix-ui/react-tooltip";
 import { Link } from "react-router-dom";
 import Slider from "../../components/Slider.tsx";
 import stETHLogo from "@assets/steth.svg";
+import Tooltip from "../../components/Tooltip.tsx";
 
 type EarnBlockProps = {
   title: string;
@@ -21,7 +21,6 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
   title,
   stakeTooltip,
   multiplier,
-  multiplierTooltip,
   buttons
 }) => {
   return (
@@ -82,51 +81,12 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
           </div>
         </div>
       </div>
-      <div className={"flex flex-row justify-between items-center gap-4"}>
-        <h3 className={"w-full text-left md:mr-8"}>Earned: $10,000</h3>
-        <div className={"w-full text-left"}>
-          {multiplier ? (
-            <h3>
-              Boost
-              <Tooltip.Provider delayDuration={0}>
-                <Tooltip.Root>
-                  <Tooltip.Trigger asChild>
-                    <InfoCircledIcon
-                      className={"inline-block ml-1"}
-                      style={{
-                        width: "0.9em"
-                      }}
-                    />
-                  </Tooltip.Trigger>
-                  <Tooltip.Portal>
-                    <Tooltip.Content
-                      sideOffset={5}
-                      className={
-                        "bg-black text-white p-2 rounded-md border-amber-400 border-[1px] text-[0.8em]"
-                      }
-                    >
-                      {multiplierTooltip}
-                      <Tooltip.Arrow className="fill-amber-400" />
-                    </Tooltip.Content>
-                  </Tooltip.Portal>
-                </Tooltip.Root>
-              </Tooltip.Provider>
-            </h3>
-          ) : null}
-        </div>
-        <button className="w-1/2 hollow">Withdraw</button>
-      </div>
       <div
-        className={
-          "flex flex-col md:flex-row justify-between items-center gap-4"
-        }
+        className={"flex flex-col md:flex-row justify-between items-end gap-4"}
       >
-        <div
-          className={
-            "flex flex-row w-full justify-start items-center gap-4 md:mr-8"
-          }
-        >
-          <div className={"text-left whitespace-nowrap"}>
+        <div className={"flex flex-row w-full justify-start items-end gap-4"}>
+          <div className={"text-left whitespace-nowrap font-normal"}>
+            <p className={"w-full text-left font-bold"}>Earned: $10,000</p>
             <p>ADO Earned: 5,000</p>
             <p>esADO Earned: 5,000</p>
           </div>
@@ -137,31 +97,17 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
             <Slider maxTime={"3 months"} maxMultiplier={4} />
           ) : null}
         </div>
-        <Tooltip.Provider delayDuration={0}>
-          <Tooltip.Root>
-            <Tooltip.Trigger asChild>
-              <button className="emphasis w-1/2 whitespace-nowrap">
-                Stake
-                {stakeTooltip && (
-                  <InfoCircledIcon className={"inline-block ml-1"} />
-                )}
-              </button>
-            </Tooltip.Trigger>
-            {stakeTooltip && (
-              <Tooltip.Portal>
-                <Tooltip.Content
-                  sideOffset={5}
-                  className={
-                    "bg-black text-white p-2 rounded-md border-amber-400 border-[1px] text-[0.8em]"
-                  }
-                >
-                  {stakeTooltip}
-                  <Tooltip.Arrow className="fill-amber-400" />
-                </Tooltip.Content>
-              </Tooltip.Portal>
-            )}
-          </Tooltip.Root>
-        </Tooltip.Provider>
+        <div className={"flex flex-col gap-2"}>
+          <button className="hollow">Withdraw</button>
+          <Tooltip text={stakeTooltip}>
+            <button className="emphasis whitespace-nowrap">
+              Stake
+              {stakeTooltip && (
+                <InfoCircledIcon className={"inline-block ml-1"} />
+              )}
+            </button>
+          </Tooltip>
+        </div>
       </div>
     </div>
   );
@@ -229,7 +175,6 @@ const earnConfigs: EarnBlockProps[] = [
 const Earn: React.FC = () => {
   return (
     <div className={"page-content"}>
-      <div className={"my-8"}></div>
       <h1 className={"text-left"}>TVL: $35,000,000</h1>
       <div className={"my-8"}></div>
       <div>

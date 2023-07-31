@@ -9,7 +9,7 @@ import {
   getSTETHPoolStats,
   stEtherPriceAtom
 } from "./state";
-import { lazy, Suspense, useEffect } from "react";
+import { Fragment, lazy, Suspense, useEffect } from "react";
 // import MintAndRedeem from "./pages/MintAndRedeem";
 import { useToken } from "wagmi";
 import { isApp } from "./config.ts";
@@ -21,7 +21,20 @@ const Stats = lazy(() => import("./pages/Stats"));
 
 // const Homepage = lazy(() => import("./pages/Homepage"));
 
-const routeLoading = <h1 className={"text-center my-8"}>Loading...</h1>;
+const routeLoading = (
+  <div className={"page-content flex flex-col gap-4"}>
+    {Array.from({ length: 2 }).map((_, index) => (
+      <Fragment key={index}>
+        <h1 className={"text-center rounded-md bg-neutral-800 w-full"}>
+          &nbsp;
+        </h1>
+        <div
+          className={"text-center rounded-md bg-neutral-800 w-full h-48"}
+        ></div>
+      </Fragment>
+    ))}
+  </div>
+);
 
 const router = createBrowserRouter([
   {
@@ -57,6 +70,7 @@ const router = createBrowserRouter([
         path: "earn",
         element: (
           <Suspense fallback={routeLoading}>
+            {/*{routeLoading}*/}
             <Earn />
           </Suspense>
         )

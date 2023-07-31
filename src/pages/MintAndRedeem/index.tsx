@@ -25,7 +25,7 @@ const MintAndRedeem = () => {
   const [tab, setTab] = useState<number>(0);
 
   return (
-    <div className={"page-content flex-col flex gap-4 mt-8 mint-redeem"}>
+    <div className={"page-content flex-col flex gap-4 mint-redeem"}>
       <div className={"flex flex-col gap-2 md:flex-row  justify-between"}>
         <h1 className={"text-left"}>Overview(Technical Preview)</h1>
         <div className={"flex gap-4 md:gap-8 text-[1.1em]"}>

@@ -4,6 +4,7 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { Link } from "react-router-dom";
 import Slider from "../../components/Slider.tsx";
+import stETHLogo from "@assets/steth.svg";
 
 type EarnBlockProps = {
   title: string;
@@ -26,9 +27,16 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
   return (
     <div
       className={
-        "flex flex-col gap-2 justify-between w-full p-4 card first:rounded-t-xl last:rounded-b-xl"
+        "flex flex-col gap-4 justify-between w-full p-4 md:pl-20 card first:rounded-t-xl last:rounded-b-xl relative"
       }
     >
+      <img
+        src={stETHLogo}
+        alt=""
+        className={
+          "w-[48px] h-[48px] absolute left-4 top-4 border-2 border-neutral-900 rounded-full p-2 invisible md:visible"
+        }
+      />
       <div
         className={
           "flex flex-col md:flex-row justify-between md:items-center gap-4"
@@ -36,8 +44,7 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
       >
         <div className={"flex flex-row gap-4 text-left items-center"}>
           <div>
-            <h1>{title}</h1>
-            <p>TVL: $20,000,000</p>
+            <h3>{title}</h3>
           </div>
 
           {buttons &&
@@ -53,10 +60,6 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
         </div>
         <div className={"flex flex-row gap-4 text-left"}>
           <div>
-            <p>Staked:</p>
-            <p>$100,000</p>
-          </div>
-          <div>
             {multiplier ? (
               <>
                 <p>1x APR: 15%</p>
@@ -68,6 +71,14 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
                 <p>15.00%</p>
               </>
             )}
+          </div>
+          <div>
+            <p>TVL:</p>
+            <p>$20,000,000</p>
+          </div>
+          <div>
+            <p>Staked:</p>
+            <p>$100,000</p>
           </div>
         </div>
       </div>

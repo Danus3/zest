@@ -4,6 +4,7 @@ import InputWithMax from "./InputWithMax.tsx";
 import { formatEther, parseEther } from "viem";
 import { useState } from "react";
 import { useAccount, useBalance } from "wagmi";
+import { TOKEN_ADDRESSES } from "../constants.ts";
 
 const DepositInput: React.FC<{
   value: bigint;
@@ -21,7 +22,7 @@ const DepositInput: React.FC<{
 
   const { data: stETHBalanceData } = useBalance({
     address,
-    token: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84"
+    token: TOKEN_ADDRESSES.stETH
   });
 
   const currentBalance: bigint =

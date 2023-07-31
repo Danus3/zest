@@ -16,11 +16,13 @@ const Tabs = ({
   ) => void;
 }) => {
   const [tab, setTab] = React.useState(initialTab);
+
   React.useEffect(() => {
     if (currentTab !== undefined) {
       setTab(currentTab);
     }
   }, [currentTab]);
+
   const handleChange = (
     event: React.MouseEvent<HTMLDivElement>,
     newValue: number

@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <div
       className={classNames("text-center text-white pb-16", {
-        [isApp || isLocalhost ? "pt-32" : "pt-0"]: true
+        [isApp || isLocalhost ? "md:pt-32 pt-8" : "pt-0"]: true
       })}
       style={{
         background:
@@ -18,17 +18,6 @@ const Layout = () => {
             : undefined
       }}
     >
-      {/*<img*/}
-      {/*  src={homepageBg}*/}
-      {/*  className={classNames(*/}
-      {/*    "w-full absolute left-0 top-0 -z-10 brightness-[35%] blur-xl",*/}
-      {/*    {*/}
-      {/*      block: isApp,*/}
-      {/*      hidden: !isApp*/}
-      {/*    }*/}
-      {/*  )}*/}
-      {/*  alt={"banner"}*/}
-      {/*/>*/}
       <NavBar />
       <Outlet></Outlet>
     </div>

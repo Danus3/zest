@@ -30,7 +30,7 @@
   }
 
   .orb {
-    @apply aspect-square flex items-center justify-center text-2xl md:text-3xl text-amber-400 bg-gradient-to-b from-neutral-800 to-transparent rounded-[50%];
+    @apply aspect-square flex items-center justify-center text-2xl md:text-3xl text-amber-400 bg-gradient-to-b from-neutral-800 to-transparent rounded-full;
   }
 
   .orb-square {

@@ -1,6 +1,6 @@
 import arrow from "./arrow.svg";
 import { useInViewport } from "ahooks";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import classNames from "classnames";
 
 const STETHDiagram = () => {
@@ -9,12 +9,6 @@ const STETHDiagram = () => {
   const [inViewPort] = useInViewport(ref, {
     rootMargin: `-${window.innerHeight / 4}px`
   });
-
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    setStarted(!!inViewPort);
-  }, [inViewPort]);
 
   return (
     <div
@@ -26,7 +20,7 @@ const STETHDiagram = () => {
         className={classNames(
           "flex justify-between w-full md:w-6/12 text-neutral-400 mt-[-1em] md:mt-[-2em] mb-8 max-w-[500px] opacity-0 transition-all duration-500",
           {
-            ["opacity-100"]: started
+            ["opacity-100"]: inViewPort
           }
         )}
       >
@@ -69,22 +63,16 @@ const STETHDiagram = () => {
       <div className={"flex justify-between w-full md:w-6/12 md:mt-8 mt-5"}>
         <div
           className={classNames("orb-square opacity-0", {
-            ["opacity-100"]: started,
-            ["translate-y-0"]: started,
-            ["translate-x-0"]: started,
-            ["translate-y-[-100%]"]: !started,
-            ["translate-x-full"]: !started
+            ["translate-x-0 translate-y-0 opacity-100"]: inViewPort,
+            ["translate-y-[-100%] translate-x-full"]: !inViewPort
           })}
         >
           lstETH
         </div>
         <div
           className={classNames("orb-square opacity-0", {
-            ["opacity-100"]: started,
-            ["translate-y-0"]: started,
-            ["translate-x-0"]: started,
-            ["translate-x-[-100%]"]: !started,
-            ["translate-y-[-100%]"]: !started
+            ["translate-x-0 translate-y-0 opacity-100"]: inViewPort,
+            ["translate-x-[-100%] translate-y-[-10"]: !inViewPort
           })}
         >
           aUSD

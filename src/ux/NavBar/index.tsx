@@ -27,7 +27,7 @@ const NavBar = () => {
         }}
       >
         <div
-          className={"absolute top-4 left-4 md:invisible"}
+          className={"absolute top-6 left-6 md:invisible"}
           onClick={() => {
             setIsMenuOpen(false);
           }}
@@ -38,6 +38,9 @@ const NavBar = () => {
           className={
             "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4"
           }
+          onClick={e => {
+            e.stopPropagation();
+          }}
         >
           <Link
             to={"/"}
@@ -90,14 +93,18 @@ const NavBar = () => {
         </div>
       </div>
       <div
-        className={classNames("fixed top-4 left-4 md:invisible z-20", {
-          invisible: isMenuOpen
-        })}
-        onClick={() => {
-          setIsMenuOpen(true);
-        }}
+        className={classNames(
+          "fixed md:invisible z-20 left-4 top-4 p-2 rounded-full backdrop-blur-sm",
+          {
+            invisible: isMenuOpen
+          }
+        )}
       >
-        <HamburgerMenuIcon />
+        <HamburgerMenuIcon
+          onClick={() => {
+            setIsMenuOpen(true);
+          }}
+        />
       </div>
     </>
   );

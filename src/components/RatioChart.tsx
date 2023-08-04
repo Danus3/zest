@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
 import { useInViewport } from "ahooks";
 import { useAtomValue } from "jotai";
 import { stEtherPriceAtom } from "../state";
@@ -152,9 +151,9 @@ const RatioChart = () => {
           ></div>
         </div>
         <div
-          className={classNames(
+          className={
             "h-full w-0 border-dashed border-l-[1px] border-neutral-200 absolute top-0"
-          )}
+          }
           style={{
             left: offsetX,
             visibility: offsetX > 0 ? "visible" : "hidden"

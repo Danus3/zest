@@ -38,10 +38,7 @@ const Slider: React.FC<{
             <div
               key={index}
               className={classNames(
-                {
-                  "bg-amber-300": index < currentMultiplier,
-                  "bg-neutral-700": index >= currentMultiplier
-                },
+                index < currentMultiplier ? "bg-amber-300" : "bg-neutral-700",
                 "hover:scale-125 h-[12px] w-[12px] rounded-xl absolute -translate-x-full cursor-pointer"
               )}
               style={{

@@ -1,6 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 
+import { twMerge } from "tailwind-merge";
+
 const Tabs = ({
   initialTab = 0,
   labels = [],
@@ -46,12 +48,13 @@ const Tabs = ({
             onClick={e => {
               handleChange(e, index);
             }}
-            className={classNames(
-              "w-full text-center text-black rounded-sm cursor-pointer",
-              {
-                "bg-amber-400 text-black": index === tab,
-                "text-white": index !== tab
-              }
+            className={twMerge(
+              classNames(
+                "w-full text-center text-white rounded-sm cursor-pointer",
+                {
+                  "bg-amber-400 text-black": index === tab
+                }
+              )
             )}
           >
             {label}

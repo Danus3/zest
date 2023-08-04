@@ -8,6 +8,7 @@ import ParallelBanner from "../../components/ParallelBanner.tsx";
 import TypeWriter from "../../components/TypeWriter";
 import StETH_Diagram from "./stETH_Diagram.tsx";
 import RatioChart from "../../components/RatioChart.tsx";
+import BalanceChart from "./BalanceChart.tsx";
 
 const Homepage = () => {
   const subBanner = (
@@ -41,6 +42,7 @@ const Homepage = () => {
   return (
     <>
       <ParallelBanner src={homepageBg} />
+
       <div className={"page-content"}>
         <div
           className={
@@ -66,6 +68,8 @@ const Homepage = () => {
             <span className={"font-bold"}>1x-5x</span> leverage.
           </h1>
         </div>
+        <div className={"my-16"}></div>
+        <BalanceChart />
         <div className={"my-16"}></div>
         <div
           className={

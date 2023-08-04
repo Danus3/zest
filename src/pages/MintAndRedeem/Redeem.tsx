@@ -5,7 +5,7 @@ const Redeem = () => {
   return (
     <div>
       <p>Burn aUSD and lstETH to get stETH.</p>
-      <div className={"my-2"}></div>
+      <div className={"my-4"}></div>
       <div className={"flex flex-row justify-between items-center gap-2"}>
         <InputWithMax
           value={"0"}

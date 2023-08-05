@@ -5,20 +5,18 @@ const BalanceChart = () => {
     <div className={"flex flex-col gap-4 mb-20 sm:mb-0 md:mb-36"}>
       <h1>Adscendo Protocol</h1>
       <p>Splitting Yield and Volatility of stETH</p>
-      <div className={"flex flex-row gap-8 relative text-left text-black"}>
+      <div className={"flex flex-row gap-8 relative text-center text-black"}>
         <div className={"balance-square left"}>
           <p>
-            aUSD: yield-bearing stablecoin
-            <br />
-            Get leveraged ETH staking yield from 6%-40%
+            I'm risk-averse. <br />I just want to hold stablecoins to earn a
+            higher annual return.
           </p>
           <p>aUSD</p>
         </div>
         <div className={"balance-square right"}>
           <p>
-            lstETH: leveraged stETH derivatives
-            <br />
-            Long ETH with 3x-6x Leverage without funding fees
+            I'm bullish on the market. <br />I want to hold leveraged stETH for
+            higher returns during a bull market.
           </p>
           <p className={"right-0"}>lstETH</p>
         </div>

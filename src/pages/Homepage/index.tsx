@@ -18,22 +18,15 @@ const Homepage = () => {
       }
     >
       <div className={"homepage-card px-3 flex-grow"}>
-        <h2 className={"font-bold"}>
-          Long ETH with <span className={"text-amber-400"}>3x-6x</span> Leverage
-        </h2>
+        <h2 className={"font-bold"}>aUSD: yield-bearing stablecoin</h2>
         <p className={"mt-4 text-neutral-400"}>
-          Enjoy on-chain leverage without{" "}
-          <span className={"text-amber-400 font-bold"}>
-            funding fees & liquidation risk
-          </span>
+          Get leveraged ETH staking yield from 6%-40%
         </p>
       </div>
       <div className={"homepage-card px-3 flex-grow"}>
-        <h2 className={"font-bold"}>Leverage ETH Staking Yield</h2>
+        <h2 className={"font-bold"}>lstETH: leveraged stETH derivatives</h2>
         <p className={"mt-4 text-neutral-400"}>
-          Enjoy leveraged ETH staking yield
-          <span className={"text-amber-400 font-bold"}> 1x-5x </span> without
-          ETH price volatility
+          Long ETH with 3x-6x Leverage without funding fees
         </p>
       </div>
     </div>
@@ -70,6 +63,8 @@ const Homepage = () => {
         </div>
         <div className={"my-16"}></div>
         <BalanceChart />
+        <div className={"my-8"}></div>
+        {subBanner}
         <div className={"my-16"}></div>
         <div>
           <a className={"link-btn"} href={MotivationURL} target={"_blank"}>
@@ -97,9 +92,7 @@ const Homepage = () => {
             <RatioChart />
           </div>
         </div>
-        <div className={"my-8"}></div>
-        {subBanner}
-        <div className={"my-8"}></div>
+
         <div>
           <a className={"link-btn"} href={WeedPaperURL} target={"_blank"}>
             WeedPaper

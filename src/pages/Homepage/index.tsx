@@ -11,33 +11,33 @@ import RatioChart from "../../components/RatioChart.tsx";
 import BalanceChart from "./BalanceChart.tsx";
 
 const Homepage = () => {
-  // const subBanner = (
-  //   <div
-  //     className={
-  //       "flex gap-8 flex-col md:flex-row justify-between items-stretch w-full"
-  //     }
-  //   >
-  //     <div className={"homepage-card px-3 flex-grow"}>
-  //       <h2 className={"font-bold"}>
-  //         Long ETH with <span className={"text-amber-400"}>3x-6x</span> Leverage
-  //       </h2>
-  //       <p className={"mt-4 text-neutral-400"}>
-  //         Enjoy on-chain leverage without{" "}
-  //         <span className={"text-amber-400 font-bold"}>
-  //           funding fees & liquidation risk
-  //         </span>
-  //       </p>
-  //     </div>
-  //     <div className={"homepage-card px-3 flex-grow"}>
-  //       <h2 className={"font-bold"}>Leverage ETH Staking Yield</h2>
-  //       <p className={"mt-4 text-neutral-400"}>
-  //         Enjoy leveraged ETH staking yield
-  //         <span className={"text-amber-400 font-bold"}> 1x-5x </span> without
-  //         ETH price volatility
-  //       </p>
-  //     </div>
-  //   </div>
-  // );
+  const subBanner = (
+    <div
+      className={
+        "flex gap-8 flex-col md:flex-row justify-between items-stretch w-full"
+      }
+    >
+      <div className={"homepage-card px-3 flex-grow"}>
+        <h2 className={"font-bold"}>
+          Long ETH with <span className={"text-amber-400"}>3x-6x</span> Leverage
+        </h2>
+        <p className={"mt-4 text-neutral-400"}>
+          Enjoy on-chain leverage without{" "}
+          <span className={"text-amber-400 font-bold"}>
+            funding fees & liquidation risk
+          </span>
+        </p>
+      </div>
+      <div className={"homepage-card px-3 flex-grow"}>
+        <h2 className={"font-bold"}>Leverage ETH Staking Yield</h2>
+        <p className={"mt-4 text-neutral-400"}>
+          Enjoy leveraged ETH staking yield
+          <span className={"text-amber-400 font-bold"}> 1x-5x </span> without
+          ETH price volatility
+        </p>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -97,10 +97,9 @@ const Homepage = () => {
             <RatioChart />
           </div>
         </div>
-        {/*<div className={"my-8"}></div>*/}
-        {/*{subBanner}*/}
-        {/*<div className={"my-8"}></div>*/}
-        <div className={"my-16"}></div>
+        <div className={"my-8"}></div>
+        {subBanner}
+        <div className={"my-8"}></div>
         <div>
           <a className={"link-btn"} href={WeedPaperURL} target={"_blank"}>
             WeedPaper

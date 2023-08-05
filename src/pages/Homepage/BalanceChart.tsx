@@ -8,23 +8,21 @@ const BalanceChart = () => {
       <div className={"flex flex-row gap-8 relative text-left text-black"}>
         <div className={"balance-square left"}>
           <p>
-            I'm risk-averse. <br />I just want to hold stablecoins to earn a
-            higher annual return.
+            aUSD: yield-bearing stablecoin
+            <br />
+            Get leveraged ETH staking yield from 6%-40%
           </p>
           <p>aUSD</p>
         </div>
         <div className={"balance-square right"}>
           <p>
-            I'm bullish on the market. <br />I want to hold leveraged stETH for
-            higher returns during a bull market.
+            lstETH: leveraged stETH derivatives
+            <br />
+            Long ETH with 3x-6x Leverage without funding fees
           </p>
           <p className={"right-0"}>lstETH</p>
         </div>
-        <img
-          src={balanceImg}
-          alt="balance"
-          className={"absolute w-7/12 top-[30%] left-[20.8%]"}
-        />
+        <img src={balanceImg} alt="balance" className={"balance-img"} />
       </div>
     </div>
   );

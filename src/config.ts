@@ -19,6 +19,8 @@ export const isLandingPage =
 export const WeedPaperURL =
   "https://medium.com/@Adscendo/weedpaper-of-adscendo-773eb7356bad";
 
+export const MotivationURL = "https://docs.adscendo.xyz/motivation";
+
 export const MediumURL = "https://medium.com/@Adscendo";
 
 export const DocsURL = "https://docs.adscendo.xyz/";

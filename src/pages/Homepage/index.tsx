@@ -1,7 +1,7 @@
 import Banner1 from "@assets/homepage-banner-1.webp";
 import "./homepage.css";
 import LazyImage from "../../components/image.tsx";
-import { DocsURL, WeedPaperURL } from "../../config.ts";
+import { DocsURL, MotivationURL, WeedPaperURL } from "../../config.ts";
 import homepageBg from "@assets/homepage-bg.webp";
 import homepageFooter from "@assets/homepage-footer.jpg";
 import ParallelBanner from "../../components/ParallelBanner.tsx";
@@ -11,33 +11,33 @@ import RatioChart from "../../components/RatioChart.tsx";
 import BalanceChart from "./BalanceChart.tsx";
 
 const Homepage = () => {
-  const subBanner = (
-    <div
-      className={
-        "flex gap-8 flex-col md:flex-row justify-between items-stretch w-full"
-      }
-    >
-      <div className={"homepage-card px-3 flex-grow"}>
-        <h2 className={"font-bold"}>
-          Long ETH with <span className={"text-amber-400"}>3x-6x</span> Leverage
-        </h2>
-        <p className={"mt-4 text-neutral-400"}>
-          Enjoy on-chain leverage without{" "}
-          <span className={"text-amber-400 font-bold"}>
-            funding fees & liquidation risk
-          </span>
-        </p>
-      </div>
-      <div className={"homepage-card px-3 flex-grow"}>
-        <h2 className={"font-bold"}>Leverage ETH Staking Yield</h2>
-        <p className={"mt-4 text-neutral-400"}>
-          Enjoy leveraged ETH staking yield
-          <span className={"text-amber-400 font-bold"}> 1x-5x </span> without
-          ETH price volatility
-        </p>
-      </div>
-    </div>
-  );
+  // const subBanner = (
+  //   <div
+  //     className={
+  //       "flex gap-8 flex-col md:flex-row justify-between items-stretch w-full"
+  //     }
+  //   >
+  //     <div className={"homepage-card px-3 flex-grow"}>
+  //       <h2 className={"font-bold"}>
+  //         Long ETH with <span className={"text-amber-400"}>3x-6x</span> Leverage
+  //       </h2>
+  //       <p className={"mt-4 text-neutral-400"}>
+  //         Enjoy on-chain leverage without{" "}
+  //         <span className={"text-amber-400 font-bold"}>
+  //           funding fees & liquidation risk
+  //         </span>
+  //       </p>
+  //     </div>
+  //     <div className={"homepage-card px-3 flex-grow"}>
+  //       <h2 className={"font-bold"}>Leverage ETH Staking Yield</h2>
+  //       <p className={"mt-4 text-neutral-400"}>
+  //         Enjoy leveraged ETH staking yield
+  //         <span className={"text-amber-400 font-bold"}> 1x-5x </span> without
+  //         ETH price volatility
+  //       </p>
+  //     </div>
+  //   </div>
+  // );
 
   return (
     <>
@@ -58,19 +58,25 @@ const Homepage = () => {
               );
             }
           )}
-          <div className={"my-4"}></div>
-          <h1 className={"font-normal text-2xl"}>
-            Buy ETH price increase part{" "}
-            <span className={"font-bold"}>at a discount</span>.
-          </h1>
-          <h1 className={"font-normal text-2xl"}>
-            Get ETH staking yield with{" "}
-            <span className={"font-bold"}>1x-5x</span> leverage.
-          </h1>
+          {/*<div className={"my-4"}></div>*/}
+          {/*<h1 className={"font-normal text-2xl"}>*/}
+          {/*  Buy ETH price increase part{" "}*/}
+          {/*  <span className={"font-bold"}>at a discount</span>.*/}
+          {/*</h1>*/}
+          {/*<h1 className={"font-normal text-2xl"}>*/}
+          {/*  Get ETH staking yield with{" "}*/}
+          {/*  <span className={"font-bold"}>1x-5x</span> leverage.*/}
+          {/*</h1>*/}
         </div>
         <div className={"my-16"}></div>
         <BalanceChart />
         <div className={"my-16"}></div>
+        <div>
+          <a className={"link-btn"} href={MotivationURL} target={"_blank"}>
+            Motivation
+          </a>
+        </div>
+        <div className={"my-8"}></div>
         <div
           className={
             "flex flex-col lg:flex-row lg:items-stretch gap-16 relative z-10"
@@ -91,9 +97,10 @@ const Homepage = () => {
             <RatioChart />
           </div>
         </div>
-        <div className={"my-8"}></div>
-        {subBanner}
-        <div className={"my-8"}></div>
+        {/*<div className={"my-8"}></div>*/}
+        {/*{subBanner}*/}
+        {/*<div className={"my-8"}></div>*/}
+        <div className={"my-16"}></div>
         <div>
           <a className={"link-btn"} href={WeedPaperURL} target={"_blank"}>
             WeedPaper

@@ -64,7 +64,7 @@ const STETHDiagram = () => {
         <div
           className={classNames("orb-square opacity-0", {
             ["translate-x-0 translate-y-0 opacity-100"]: inViewPort,
-            ["translate-y-[-100%] translate-x-full"]: !inViewPort
+            ["-translate-y-full translate-x-full"]: !inViewPort
           })}
         >
           lstETH
@@ -72,7 +72,7 @@ const STETHDiagram = () => {
         <div
           className={classNames("orb-square opacity-0", {
             ["translate-x-0 translate-y-0 opacity-100"]: inViewPort,
-            ["translate-x-[-100%] translate-y-[-10"]: !inViewPort
+            ["-translate-x-full -translate-y-full"]: !inViewPort
           })}
         >
           aUSD

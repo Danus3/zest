@@ -65,13 +65,13 @@ const Homepage = () => {
         <BalanceChart />
         <div className={"my-8"}></div>
         {subBanner}
-        <div className={"my-16"}></div>
+        <div className={"my-8"}></div>
         <div>
           <a className={"link-btn"} href={MotivationURL} target={"_blank"}>
             Motivation
           </a>
         </div>
-        <div className={"my-8"}></div>
+        <div className={"my-16"}></div>
         <div
           className={
             "flex flex-col lg:flex-row lg:items-stretch gap-16 relative z-10"
@@ -92,7 +92,7 @@ const Homepage = () => {
             <RatioChart />
           </div>
         </div>
-
+        <div className={"my-8"}></div>
         <div>
           <a className={"link-btn"} href={WeedPaperURL} target={"_blank"}>
             WeedPaper

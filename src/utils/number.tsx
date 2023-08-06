@@ -1,14 +1,21 @@
 import { formatEther } from "viem";
 
 export const commas = (x: number | string) =>
-  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  new Intl.NumberFormat(navigator.language).format(Number(x));
 
 export const normalizeNumber = (x: number, decimal = 2) => {
-  const zerosCount =
-    (String(x).split(".")?.[1] || "").match(/^0+/)?.[0]?.length || 0;
-  return x.toFixed(zerosCount + decimal).replace(/\.?0+$/, "");
+  return parseFloat(x.toFixed(decimal));
 };
 
-export const formatEtherToFixed = (x: bigint, decimal = 2) => {
-  return Number(formatEther(x)).toFixed(decimal);
+export const formatEtherToFixed = (
+  x: bigint,
+  decimal = 2,
+  addCommas = true
+) => {
+  const res = parseFloat(Number(formatEther(x)).toFixed(decimal));
+  return addCommas ? commas(res) : res;
+};
+
+export const formatEtherToNumber = (x: bigint) => {
+  return Number(formatEther(x));
 };

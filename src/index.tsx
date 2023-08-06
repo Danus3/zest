@@ -3,21 +3,17 @@ import Layout from "./ux/Layout.tsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSetAtom } from "jotai";
-import {
-  adoPriceAtom,
-  aUSDPriceAtm,
-  getSTETHPoolStats,
-  stEtherPriceAtom
-} from "./state";
+import { adoPriceAtom, aUSDPriceAtm, stEtherPriceAtom } from "./state";
 import { Fragment, lazy, Suspense, useEffect } from "react";
 // import MintAndRedeem from "./pages/MintAndRedeem";
-import { useToken } from "wagmi";
 import { isApp } from "./config.ts";
 import Homepage from "./pages/Homepage";
+import useTokenInfo from "./hooks/useTokenInfo.ts";
 
 const MintAndRedeem = lazy(() => import("./pages/MintAndRedeem"));
 const Earn = lazy(() => import("./pages/Earn"));
 const Stats = lazy(() => import("./pages/Stats"));
+const EsADO = lazy(() => import("./pages/esADO"));
 
 // const Homepage = lazy(() => import("./pages/Homepage"));
 
@@ -74,6 +70,14 @@ const router = createBrowserRouter([
             <Earn />
           </Suspense>
         )
+      },
+      {
+        path: "esADO",
+        element: (
+          <Suspense fallback={routeLoading}>
+            <EsADO />
+          </Suspense>
+        )
       }
     ]
   }
@@ -85,8 +89,6 @@ const App = () => {
   const setAdoPrice = useSetAtom(adoPriceAtom);
 
   const setAUSDPrice = useSetAtom(aUSDPriceAtm);
-
-  const setPoolState = useSetAtom(getSTETHPoolStats);
 
   useQuery<number>(
     ["stEthPrice", "usd"],
@@ -117,16 +119,7 @@ const App = () => {
     }, 1000);
   }, [setAdoPrice, setAUSDPrice]);
 
-  const { data } = useToken({
-    address: "0xfB7B4564402E5500dB5bB6d63Ae671302777C75a"
-  });
-
-  if (data?.totalSupply?.value) {
-    setPoolState({
-      lstETHCirculatingSupply: data.totalSupply.value,
-      aUSDCirculatingSupply: data.totalSupply.value
-    });
-  }
+  useTokenInfo();
 
   return <RouterProvider router={router}></RouterProvider>;
 };

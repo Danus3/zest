@@ -8,9 +8,6 @@
     @apply self-start;
   }
 
-  .stats-card .divider {
-    @apply w-full h-[1px] bg-neutral-800 my-2;
-  }
   .stats-card .item {
     @apply flex flex-row justify-between gap-2 w-full text-left;
   }

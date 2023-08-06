@@ -43,7 +43,7 @@ svg[viewBox="0 0 15 15"] {
 
 button {
   font-weight: 600;
-  @apply rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none focus:ring-amber-500 focus:ring-2;
+  @apply rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none focus:ring-amber-500 focus:ring-2 transition-opacity;
 }
 
 button.emphasis {
@@ -52,6 +52,14 @@ button.emphasis {
 
 button.hollow {
   @apply bg-transparent border-amber-400 border-[1px] text-white hover:bg-amber-400 hover:text-black;
+}
+
+button[disabled] {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+button.sm {
+  @apply text-sm py-0.5 px-2 rounded-md;
 }
 
 h1 {
@@ -112,10 +120,15 @@ img.loaded {
   .flexStack {
     @apply flex md:flex-row flex-col;
   }
+
+  .divider {
+    @apply w-full h-[1px] bg-neutral-800 my-2;
+  }
 }
 
 @layer utilities {
   .card {
+    @apply rounded-2xl  p-4;
     box-shadow: 0 8px 6px 0 rgba(0, 0, 0, 0.05),
       inset 0 1px 1px 0 hsla(0, 0%, 100%, 0.25), inset 0 -1px 1px 0 #21293a,
       inset 2px 3px 3px -3px #5f5a88;

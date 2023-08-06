@@ -20,6 +20,18 @@ export const getAllPrices = atom(get => {
   };
 });
 
+export const ADOState = atomWithImmer({
+  totalSupply: BigInt(0),
+  price: 0,
+  balance: BigInt(0)
+});
+
+export const esADOState = atomWithImmer({
+  balance: BigInt(0),
+  totalSupply: BigInt(0),
+  price: 0
+});
+
 const poolState = atomWithImmer({
   stETHLocked: 0,
   stETHLockedUSD: 0,

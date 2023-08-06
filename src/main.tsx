@@ -4,21 +4,26 @@ import "./index.css";
 import App from "./index.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { WagmiConfig, createConfig, mainnet, configureChains } from "wagmi";
+import { WagmiConfig, createConfig, configureChains } from "wagmi";
+import { mainnet, goerli } from "@wagmi/core/chains";
+
+import * as Toast from "@radix-ui/react-toast";
+
 import { createPublicClient, http } from "viem";
 import { publicProvider } from "wagmi/providers/public";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import * as ToastPrimitive from "@radix-ui/react-toast";
 
 export const queryClient = new QueryClient();
 
-const { chains } = configureChains([mainnet], [publicProvider()]);
+const { chains } = configureChains([mainnet, goerli], [publicProvider()]);
 
 const config = createConfig({
   autoConnect: true,
   publicClient: createPublicClient({
-    chain: mainnet,
+    chain: goerli,
     transport: http()
   }),
   connectors: [
@@ -41,10 +46,13 @@ const config = createConfig({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <WagmiConfig config={config}>
-        <App />
-      </WagmiConfig>
-    </QueryClientProvider>
+    <Toast.Provider swipeDirection={"right"}>
+      <QueryClientProvider client={queryClient}>
+        <WagmiConfig config={config}>
+          <App />
+          <ToastPrimitive.Viewport className="[--viewport-padding:_25px] fixed top-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[10px] w-[390px] max-w-[100vw] m-0 list-none z-[2147483647] outline-none" />
+        </WagmiConfig>
+      </QueryClientProvider>
+    </Toast.Provider>
   </React.StrictMode>
 );

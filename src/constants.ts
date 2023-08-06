@@ -1,5 +1,10 @@
 export const LIQ_PRICE = 1300;
 
-export const TOKEN_ADDRESSES: Record<string, `0x${string}`> = {
-  stETH: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84"
-};
+export const CONTRACT_ADDRESSES = {
+  stETH: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+  ADO: "0xA83f0f8e16BA770084aBA48527042cb16b2795E4",
+  esADO: "0x41edeb097a868eff87bf3f4633c87aa2aa501dde",
+  esADOOTC: "0x5664fe0bd564c18fbdd12ffd6bde7ec0e792add5",
+  aUSD: "0x9a6Ea3e3fbdd32eD9EfAD94B97B6FB32FDf8d3Ed",
+  aUSDPool: "0xBE0c13e1fD65260A5f311a82f6c04d66FdC093a5"
+} as const;

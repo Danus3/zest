@@ -47,6 +47,11 @@ export const routeConfigs: {
     disabled: isLandingPage
   },
   {
+    path: "esADO",
+    name: "esADO",
+    disabled: isLandingPage
+  },
+  {
     path: WeedPaperURL,
     name: "WeedPaper",
     external: true,

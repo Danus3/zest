@@ -1,19 +1,14 @@
 import { useContractReads } from "wagmi";
 import { CONTRACT_ADDRESSES } from "../../constants.ts";
 import { useEffect, useState } from "react";
-import {
-  formatEtherToFixed,
-  formatEtherToNumber,
-  normalizeNumber
-} from "../../utils/number.tsx";
-import { parseEther } from "viem";
+import { formatEtherToFixed } from "../../utils/number.tsx";
 import useWrappedWriteContract from "../../hooks/useWrappedWriteContract.ts";
 import RadixSlider from "../../components/RadixSlider.tsx";
-import { esADOState } from "../../state";
+import { ADOState, esADOState } from "../../state";
 import { useAtomValue } from "jotai";
 import esADOABI from "../../utils/ABIs/esADOABI.ts";
 import { formatSecondToDHMS } from "../../utils/time.ts";
-import InputWithMax from "../../components/InputWithMax.tsx";
+import TickleNumber from "../../components/TickleNumber.tsx";
 
 const esADOParams = {
   address: CONTRACT_ADDRESSES.esADO,
@@ -21,7 +16,9 @@ const esADOParams = {
 };
 
 const ESADOVesting = () => {
-  const { balance } = useAtomValue(esADOState);
+  const { balance } = useAtomValue(ADOState);
+
+  const { balance: esADOBalance } = useAtomValue(esADOState);
 
   const { data: vestingConfigData } = useContractReads({
     contracts: [
@@ -44,9 +41,13 @@ const ESADOVesting = () => {
     ]
   });
 
-  const [amount, setAmount] = useState(0n);
+  // const [amount, setAmount] = useState(0n);
+
+  const [vestRatio, setVestRatio] = useState(25n);
 
   const [duration, setDuration] = useState(0n);
+
+  const amount = (esADOBalance * vestRatio) / 100n;
 
   const { write, isLoadingWrite } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.esADO,
@@ -76,64 +77,58 @@ const ESADOVesting = () => {
 
     return (
       <div className={"flexStack items-stretch gap-4"}>
-        <p className={"self-center"}>Boost</p>
+        <div className={"shrink-0 text-left text-xl self-center"}>
+          <p className={"text-neutral-500"}>Balance</p>
+          <p>
+            esADO:{" "}
+            <TickleNumber
+              numberString={String(formatEtherToFixed(esADOBalance, 4))}
+              continuously
+            ></TickleNumber>
+          </p>
+          <p>
+            ADO{" "}
+            <TickleNumber
+              numberString={String(formatEtherToFixed(balance, 4))}
+              continuously
+            ></TickleNumber>
+          </p>
+        </div>
         <div className={"flex-1"}>
+          <p>Boos duration</p>
+          <RadixSlider
+            min={minDuration}
+            max={maxDuration}
+            step={3600 * 24}
+            onValueChange={([duration]) => {
+              setDuration(BigInt(duration));
+            }}
+            prefix={`${currentRatio}%`}
+            affix={`${formatSecondToDHMS(Number(duration))}`}
+          />
+        </div>
+        <div className={"self-stretch flex flex-col gap-2"}>
+          <button
+            className={"emphasis h-16"}
+            disabled={amount === 0n || duration === 0n || isLoadingWrite}
+            onClick={() => {
+              write?.();
+            }}
+          >
+            Vest
+          </button>
           <div>
-            <RadixSlider
-              min={minDuration}
-              max={maxDuration}
-              step={3600 * 12}
-              onValueChange={([duration]) => {
-                setDuration(BigInt(duration));
+            Amount&nbsp;&nbsp;
+            <button
+              className={"emphasis px-8"}
+              onClick={() => {
+                setVestRatio(vestRatio === 100n ? 25n : vestRatio + 25n);
               }}
-              prefix={"Stake duration:"}
-              affix={`${formatSecondToDHMS(
-                Number(duration)
-              )}(${currentRatio}% boost)`}
-            />
-            <div className={"divider"}></div>
-            <div
-              className={
-                "grid md:grid-cols-[1fr_1fr] md:grid-rows-1 grid-rows-2 flex-1 items-center gap-2"
-              }
             >
-              <InputWithMax
-                value={String(formatEtherToFixed(amount, 4, false))}
-                setValue={value => {
-                  setAmount(parseEther(value));
-                }}
-                onMaxClick={() => {
-                  setAmount(balance);
-                }}
-              />
-              <RadixSlider
-                min={0}
-                value={[formatEtherToNumber(amount)]}
-                max={formatEtherToNumber(balance)}
-                onValueChange={([amount]) => {
-                  setAmount(parseEther(String(amount)));
-                }}
-                prefix={`Vest ${normalizeNumber(
-                  (Number(amount) / Number(balance || 1n)) * 100,
-                  2
-                )}%(${normalizeNumber(formatEtherToNumber(amount), 4)}) esADO`}
-                affix={`Output ${normalizeNumber(
-                  (formatEtherToNumber(amount) * currentRatio) / 100,
-                  4
-                )} ADO`}
-              />
-            </div>
+              {vestRatio.toString()}%
+            </button>
           </div>
         </div>
-        <button
-          className={"emphasis self-stretch"}
-          disabled={amount === 0n || duration === 0n || isLoadingWrite}
-          onClick={() => {
-            write?.();
-          }}
-        >
-          Vest
-        </button>
       </div>
     );
   } else {

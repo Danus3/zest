@@ -10,3 +10,5 @@ export const CONTRACT_ADDRESSES = {
   aUSD: "0x9a6Ea3e3fbdd32eD9EfAD94B97B6FB32FDf8d3Ed",
   aUSDPool: "0xBE0c13e1fD65260A5f311a82f6c04d66FdC093a5"
 } as const;
+
+export const OTC_RATE = 0.15;

@@ -1,4 +1,5 @@
 import { useAccount, useBalance } from "wagmi";
+import { CONTRACT_ADDRESSES } from "../constants.ts";
 
 const useETHorStETHBalance = (selected: "ETH" | "stETH") => {
   const { address } = useAccount();
@@ -9,7 +10,7 @@ const useETHorStETHBalance = (selected: "ETH" | "stETH") => {
 
   const { data: stETHBalanceData } = useBalance({
     address,
-    token: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84"
+    token: CONTRACT_ADDRESSES.stETH
   });
 
   return selected === "ETH"

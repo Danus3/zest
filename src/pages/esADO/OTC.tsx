@@ -10,6 +10,7 @@ import esADOSwapABI from "../../utils/ABIs/esADOSwapABI.ts";
 import { useState } from "react";
 import RadixSlider from "../../components/RadixSlider.tsx";
 import { parseEther } from "viem";
+import InputWithMax from "../../components/InputWithMax.tsx";
 
 const EsADOOTC = () => {
   const { balance } = useAtomValue(esADOState);
@@ -36,13 +37,27 @@ const EsADOOTC = () => {
         <span>{formatEtherToFixed(balance)}&nbsp;</span>
       </p>
       <div className={"flex justify-between gap-4 items-center"}>
-        <div className={"flex-1"}>
+        <div
+          className={
+            "grid md:grid-cols-[1fr_1fr] md:grid-rows-1 grid-rows-2 flex-1 items-center gap-2"
+          }
+        >
+          <InputWithMax
+            value={String(formatEtherToFixed(amount, 4, false))}
+            setValue={value => {
+              setAmount(parseEther(value));
+            }}
+            onMaxClick={() => {
+              setAmount(balance);
+            }}
+          />
           <RadixSlider
             max={formatEtherToNumber(balance)}
             onValueChange={([value]) => {
               setAmount(parseEther(String(value)));
             }}
             prefix={`OTC esADO: ${formatEtherToFixed(amount, 2)}`}
+            affix={<span>&nbsp;</span>}
           />
         </div>
         <button

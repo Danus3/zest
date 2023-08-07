@@ -1,7 +1,8 @@
 const InputWithMax = ({
   value,
   setValue,
-  onMaxClick
+  onMaxClick,
+  ...props
 }: {
   value: string;
   setValue: (value: string) => void;
@@ -18,6 +19,7 @@ const InputWithMax = ({
         value={value === "0" ? "" : value}
         min={0}
         placeholder={"Please input amount"}
+        {...props}
       />
       <div
         className={

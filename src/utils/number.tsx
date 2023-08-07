@@ -13,7 +13,11 @@ export const formatEtherToFixed = (
   addCommas = true
 ) => {
   const res = parseFloat(Number(formatEther(x)).toFixed(decimal));
-  return addCommas ? commas(res) : res;
+  if (addCommas) {
+    return commas(res);
+  } else {
+    return res;
+  }
 };
 
 export const formatEtherToNumber = (x: bigint) => {

@@ -1,11 +1,16 @@
 import { ADOState, esADOState } from "../../state";
 import { useAtomValue } from "jotai";
-import { formatEtherToFixed, normalizeNumber } from "../../utils/number.tsx";
+import {
+  formatEtherToFixed,
+  formatEtherToNumber,
+  normalizeNumber
+} from "../../utils/number.tsx";
 import useUserBalance from "../../hooks/useUserBalance.ts";
 import ESADOVesting from "./vesting.tsx";
 import EsADOOTC from "./OTC.tsx";
 import VestingPositions from "./vestingPositions.tsx";
 import TickleNumber from "../../components/TickleNumber.tsx";
+import { ADO_MAX_SUPPLY } from "../../constants.ts";
 
 const EsADO = () => {
   const { totalSupply, price, balance } = useAtomValue(ADOState);
@@ -22,8 +27,8 @@ const EsADO = () => {
           }
         >
           <div className={"stack"}>
-            <p>ADO Total Supply</p>
-            <h3>{formatEtherToFixed(totalSupply, 0)}</h3>
+            <p>ADO Burned</p>
+            <h3>{ADO_MAX_SUPPLY - formatEtherToNumber(totalSupply)}</h3>
           </div>
           <div className={"stack"}>
             <p>ADO Price</p>

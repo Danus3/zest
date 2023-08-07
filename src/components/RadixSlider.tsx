@@ -3,13 +3,13 @@ import { SliderProps } from "@radix-ui/react-slider";
 
 const RadixSlider = (
   props: SliderProps & {
-    prefix?: string;
-    affix?: string;
+    prefix?: React.ReactNode;
+    affix?: React.ReactNode;
   }
 ) => {
   const { prefix, affix, ...rest } = props;
   return (
-    <div>
+    <div className={"flex-grow"}>
       {prefix && <p className={"text-right"}>{prefix}</p>}
       <Slider.Root
         className="relative flex items-center select-none touch-none h-5"

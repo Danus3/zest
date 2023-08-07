@@ -2,107 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: "Bai Jamjuree", Inter, system-ui, Avenir, Helvetica, Arial,
+@layer base {
+  :root {
+    font-family: "Bai Jamjuree", Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
-  line-height: 1.5;
-  font-weight: 600;
+    line-height: 1.5;
+    font-weight: 600;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-#root {
-  min-height: 100vh;
-  flex-grow: 1;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-height: 100vh;
-  background: black;
-  /*letter-spacing: 1px;*/
-}
-
-svg[viewBox="0 0 15 15"] {
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: text-bottom;
-}
-
-button {
-  font-weight: 600;
-  @apply rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none focus:ring-amber-500 focus:ring-2 transition-opacity;
-}
-
-button.emphasis {
-  @apply bg-amber-400 text-black hover:bg-amber-300;
-}
-
-button.hollow {
-  @apply bg-transparent border-amber-400 border-[1px] text-white hover:bg-amber-400 hover:text-black;
-}
-
-button[disabled] {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-button.sm {
-  @apply text-sm py-0.5 px-2 rounded-md;
-}
-
-h1 {
-  @apply text-3xl font-bold md:text-4xl;
-}
-
-h2 {
-  @apply text-2xl md:text-3xl;
-}
-
-h3 {
-  @apply text-xl md:text-2xl;
-}
-
-a {
-  @apply text-white hover:underline hover:text-white;
-}
-
-ul {
-  list-style: inside disc;
-}
-
-input {
-  @apply rounded-md bg-transparent border-amber-400 border-[1px] outline-none p-2;
-}
-
-img[src=""] {
-  content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px"><path d="M 4 4 L 20 20 M 4 20 L 20 4" /></svg>');
-}
-
-@keyframes imgShow {
-  from {
-    opacity: 0;
-    filter: blur(5px);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
   }
-  to {
-    opacity: 1;
-    filter: none;
-  }
-}
 
-img.loaded {
-  animation: imgShow 0.5s ease-in-out;
+  #root {
+    min-height: 100vh;
+    flex-grow: 1;
+  }
+
+  a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-height: 100vh;
+    background: black;
+    /*letter-spacing: 1px;*/
+  }
+
+  svg[viewBox="0 0 15 15"] {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: text-bottom;
+  }
+
+  button {
+    font-weight: 600;
+    @apply rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none focus:ring-amber-500 focus:ring-2 transition-opacity;
+  }
+
+  button.emphasis {
+    @apply bg-amber-400 text-black hover:bg-amber-300;
+  }
+
+  button.hollow {
+    @apply bg-transparent border-amber-400 border-[1px] text-white hover:bg-amber-400 hover:text-black;
+  }
+
+  button[disabled] {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  button.sm {
+    @apply text-sm py-0.5 px-2 rounded-md;
+  }
+
+  h1 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+
+  a {
+    @apply text-white hover:underline hover:text-white;
+  }
+
+  ul {
+    list-style: inside disc;
+  }
+
+  input {
+    @apply rounded-md bg-transparent border-neutral-800 hover:border-amber-400 focus:border-amber-400 border-[1px] outline-none p-2;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  img[src=""] {
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px"><path d="M 4 4 L 20 20 M 4 20 L 20 4" /></svg>');
+  }
+
+  @keyframes imgShow {
+    from {
+      opacity: 0;
+      filter: blur(5px);
+    }
+    to {
+      opacity: 1;
+      filter: none;
+    }
+  }
+
+  img.loaded {
+    animation: imgShow 0.5s ease-in-out;
+  }
 }
 
 @layer components {

@@ -1,7 +1,11 @@
 import { useContractReads } from "wagmi";
 import { CONTRACT_ADDRESSES } from "../../constants.ts";
 import { useEffect, useState } from "react";
-import { formatEtherToNumber, normalizeNumber } from "../../utils/number.tsx";
+import {
+  formatEtherToFixed,
+  formatEtherToNumber,
+  normalizeNumber
+} from "../../utils/number.tsx";
 import { parseEther } from "viem";
 import useWrappedWriteContract from "../../hooks/useWrappedWriteContract.ts";
 import RadixSlider from "../../components/RadixSlider.tsx";
@@ -9,6 +13,7 @@ import { esADOState } from "../../state";
 import { useAtomValue } from "jotai";
 import esADOABI from "../../utils/ABIs/esADOABI.ts";
 import { formatSecondToDHMS } from "../../utils/time.ts";
+import InputWithMax from "../../components/InputWithMax.tsx";
 
 const esADOParams = {
   address: CONTRACT_ADDRESSES.esADO,
@@ -86,22 +91,38 @@ const ESADOVesting = () => {
                 Number(duration)
               )}(${currentRatio}% boost)`}
             />
-            <div className={"my-4"}></div>
-            <RadixSlider
-              min={0}
-              max={formatEtherToNumber(balance)}
-              onValueChange={([amount]) => {
-                setAmount(parseEther(String(amount)));
-              }}
-              prefix={`Vest ${normalizeNumber(
-                (Number(amount) / Number(balance || 1n)) * 100,
-                2
-              )}%(${normalizeNumber(formatEtherToNumber(amount), 4)}) esADO`}
-              affix={`Output ${normalizeNumber(
-                (formatEtherToNumber(amount) * currentRatio) / 100,
-                4
-              )} ADO`}
-            />
+            <div className={"divider"}></div>
+            <div
+              className={
+                "grid md:grid-cols-[1fr_1fr] md:grid-rows-1 grid-rows-2 flex-1 items-center gap-2"
+              }
+            >
+              <InputWithMax
+                value={String(formatEtherToFixed(amount, 4, false))}
+                setValue={value => {
+                  setAmount(parseEther(value));
+                }}
+                onMaxClick={() => {
+                  setAmount(balance);
+                }}
+              />
+              <RadixSlider
+                min={0}
+                value={[formatEtherToNumber(amount)]}
+                max={formatEtherToNumber(balance)}
+                onValueChange={([amount]) => {
+                  setAmount(parseEther(String(amount)));
+                }}
+                prefix={`Vest ${normalizeNumber(
+                  (Number(amount) / Number(balance || 1n)) * 100,
+                  2
+                )}%(${normalizeNumber(formatEtherToNumber(amount), 4)}) esADO`}
+                affix={`Output ${normalizeNumber(
+                  (formatEtherToNumber(amount) * currentRatio) / 100,
+                  4
+                )} ADO`}
+              />
+            </div>
           </div>
         </div>
         <button

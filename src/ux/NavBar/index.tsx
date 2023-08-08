@@ -2,11 +2,7 @@ import logo from "@/assets/logo.png";
 import { routeConfigs } from "../../config";
 import { useState } from "react";
 import classNames from "classnames";
-import {
-  Cross1Icon,
-  HamburgerMenuIcon,
-  TwitterLogoIcon
-} from "@radix-ui/react-icons";
+import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
 import ConnectBtn from "./ConnectBtn.tsx";
 
@@ -27,7 +23,10 @@ const NavBar = () => {
         }}
       >
         <div
-          className={"absolute top-6 left-6 md:invisible"}
+          className={classNames(
+            "absolute top-6 left-6 md:invisible transition-opacity duration-300",
+            isMenuOpen ? "opacity-100" : "opacity-0"
+          )}
           onClick={() => {
             setIsMenuOpen(false);
           }}
@@ -79,14 +78,14 @@ const NavBar = () => {
                 </Link>
               );
             })}
-            <a href="https://twitter.com/Adscendo_fi" target={"_blank"}>
-              <TwitterLogoIcon
-                className={"hover:text-neutral-200 relative top-0.5"}
-                style={{
-                  width: "24px",
-                  height: "24px"
-                }}
-              />
+            <a
+              href="https://twitter.com/Adscendo_fi"
+              target={"_blank"}
+              className={
+                "hover:text-neutral-200 relative text-2xl hover:no-underline"
+              }
+            >
+              𝕏
             </a>
             <ConnectBtn />
           </div>
@@ -97,7 +96,9 @@ const NavBar = () => {
           "fixed md:invisible z-20 left-4 top-4 p-2 rounded-full backdrop-blur-sm",
           {
             invisible: isMenuOpen
-          }
+          },
+          "transition-opacity duration-300",
+          isMenuOpen ? "opacity-0" : "opacity-100"
         )}
       >
         <HamburgerMenuIcon

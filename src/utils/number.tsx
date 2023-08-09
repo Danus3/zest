@@ -12,6 +12,12 @@ export const formatEtherToFixed = (
   decimal = 2,
   addCommas = true
 ) => {
+  // if (!x || x === 0n) {
+  //   return 0;
+  // }
+  if (x === undefined) {
+    return 0;
+  }
   const res = parseFloat(Number(formatEther(x)).toFixed(decimal));
   if (addCommas) {
     return commas(res);
@@ -21,5 +27,8 @@ export const formatEtherToFixed = (
 };
 
 export const formatEtherToNumber = (x: bigint) => {
+  if (!x || x === 0n) {
+    return 0;
+  }
   return Number(formatEther(x));
 };

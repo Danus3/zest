@@ -42,17 +42,19 @@
     vertical-align: text-bottom;
   }
 
-  button {
-    font-weight: 600;
-    @apply rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none focus:ring-amber-500 focus:ring-2 transition-opacity;
-  }
+  /*button {*/
+  /*  font-weight: 600;*/
+  /*  @apply rounded-lg py-2 px-3 hover:bg-amber-500 focus:outline-none transition-opacity;*/
+  /*}*/
 
   button.emphasis {
-    @apply bg-amber-400 text-black hover:bg-amber-300;
+    font-weight: 600;
+    @apply bg-amber-400 text-black hover:bg-amber-300 rounded-lg py-2 px-3 focus:outline-none transition-opacity;
   }
 
   button.hollow {
-    @apply bg-transparent border-amber-400 border-[1px] text-white hover:bg-amber-400 hover:text-black;
+    font-weight: 600;
+    @apply bg-transparent border-amber-400 border-[1px] py-2 px-3  rounded-lg text-white hover:bg-amber-400 hover:text-black;
   }
 
   button[disabled] {
@@ -62,6 +64,8 @@
   button.sm {
     @apply text-sm py-0.5 px-2 rounded-md;
   }
+
+
 
   h1 {
     @apply text-3xl font-bold md:text-4xl;

@@ -5,8 +5,8 @@ import { isApp, isLocalhost } from "@src/config.ts";
 import { useAtomValue } from "jotai/index";
 import { transactionsToastAtom } from "@src/state/ui.ts";
 import * as ToastPrimitive from "@radix-ui/react-toast";
-import { useWalletClient } from "wagmi";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import { useChains } from "connectkit";
 
 // import homepageBg from "@assets/homepage-bg.webp";
 
@@ -15,12 +15,12 @@ const defaultTxUrl = "https://etherscan.io";
 const Layout = () => {
   const sentHashes = useAtomValue(transactionsToastAtom);
 
-  const { data: walletClient } = useWalletClient();
-
   let txUrl = defaultTxUrl;
 
-  if (walletClient) {
-    txUrl = walletClient.chain.blockExplorers?.default?.url || defaultTxUrl;
+  const [chain] = useChains();
+
+  if (chain) {
+    txUrl = chain?.blockExplorers?.default?.url || defaultTxUrl;
   }
 
   return (

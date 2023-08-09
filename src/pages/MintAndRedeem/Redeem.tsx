@@ -30,7 +30,9 @@ const Redeem = () => {
         1stETH
       </div>
       <div className={"my-8"}></div>
-      <button className={"bg-amber-400 text-black w-full"}>Redeem</button>
+      <button className={"bg-amber-400 text-black w-full emphasis"}>
+        Redeem
+      </button>
     </div>
   );
 };

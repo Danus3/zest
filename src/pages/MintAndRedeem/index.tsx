@@ -122,7 +122,9 @@ const MintAndRedeem = () => {
               </p>
 
               <a href="/">
-                <button className={"bg-amber-400 text-black"}>Buy aUSD</button>
+                <button className={"bg-amber-400 text-black"} disabled>
+                  Buy aUSD
+                </button>
               </a>
             </>
           ) : (

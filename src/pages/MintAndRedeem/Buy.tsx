@@ -22,7 +22,7 @@ const Buy = () => {
         {(ethPrice / lstETHPrice) * Number(formatEther(buyValue))} lstETH
       </div>
       <div className={"my-8"}></div>
-      <button className={"bg-amber-400 text-black w-full"}>Buy</button>
+      <button className={"bg-amber-400 text-black w-full emphasis"}>Buy</button>
     </div>
   );
 };

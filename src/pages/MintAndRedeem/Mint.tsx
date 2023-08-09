@@ -34,7 +34,9 @@ const Mint = () => {
         </div>
       </div>
       <div className={"my-8"}></div>
-      <button className={"w-full bg-amber-400 text-black"}>Mint</button>
+      <button className={"w-full bg-amber-400 text-black emphasis"}>
+        Mint
+      </button>
     </div>
   );
 };

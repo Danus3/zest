@@ -1,13 +1,13 @@
 import Banner1 from "@assets/homepage-banner-1.webp";
 import "./homepage.css";
-import LazyImage from "../../components/image.tsx";
-import { DocsURL, MotivationURL, WeedPaperURL } from "../../config.ts";
+import LazyImage from "@src/components/image.tsx";
+import { DocsURL, MotivationURL, WeedPaperURL } from "@src/config.ts";
 import homepageBg from "@assets/homepage-bg.webp";
 import homepageFooter from "@assets/homepage-footer.jpg";
-import ParallelBanner from "../../components/ParallelBanner.tsx";
-import TypeWriter from "../../components/TypeWriter";
+import ParallelBanner from "@src/components/ParallelBanner.tsx";
+import TypeWriter from "@src/components/TypeWriter";
 import StETH_Diagram from "./stETH_Diagram.tsx";
-import RatioChart from "../../components/RatioChart.tsx";
+import RatioChart from "@src/components/RatioChart.tsx";
 import BalanceChart from "./BalanceChart.tsx";
 
 const Homepage = () => {

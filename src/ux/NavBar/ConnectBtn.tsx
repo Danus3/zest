@@ -1,9 +1,9 @@
 import { useAccount, useConnect, useDisconnect, useEnsName } from "wagmi";
-import Modal from "../../components/Modal.tsx";
+import Modal from "@src/components/Modal.tsx";
 import { useAtom } from "jotai";
-import { connectWalletModalAtom } from "../../state/ui";
+import { connectWalletModalAtom } from "@src/state/ui";
 import { Link } from "react-router-dom";
-import { appURL, isLandingPage } from "../../config.ts";
+import { appURL, isLandingPage } from "@src/config.ts";
 
 const ConnectBtn = () => {
   const { address, isConnected } = useAccount();

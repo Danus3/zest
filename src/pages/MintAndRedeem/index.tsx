@@ -1,12 +1,12 @@
 import { useAtomValue } from "jotai";
-import { getAllPrices, getSTETHPoolStats } from "../../state";
-import { commas, normalizeNumber } from "../../utils/number.tsx";
+import { getAllPrices, getSTETHPoolStats } from "@src/state";
+import { commas, normalizeNumber } from "@src/utils/number.tsx";
 
 import "./index.css";
-import RatioChart from "../../components/RatioChart.tsx";
+import RatioChart from "@src/components/RatioChart.tsx";
 import { formatEther } from "viem";
 import { useState } from "react";
-import Tabs from "../../components/Tabs.tsx";
+import Tabs from "@src/components/Tabs.tsx";
 import Mint from "./Mint.tsx";
 import Redeem from "./Redeem.tsx";
 import Buy from "./Buy.tsx";

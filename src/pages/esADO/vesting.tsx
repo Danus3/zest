@@ -1,18 +1,18 @@
 import { useContractReads } from "wagmi";
-import { CONTRACT_ADDRESSES } from "../../constants.ts";
+import { CONTRACT_ADDRESSES } from "@src/constants.ts";
 import { useEffect, useState } from "react";
-import { formatEtherToFixed } from "../../utils/number.tsx";
-import useWrappedWriteContract from "../../hooks/useWrappedWriteContract.ts";
-import RadixSlider from "../../components/RadixSlider.tsx";
-import { ADOState, esADOState } from "../../state";
+import { formatEtherToFixed } from "@src/utils/number.tsx";
+import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
+import RadixSlider from "@src/components/RadixSlider.tsx";
+import { ADOState, esADOState } from "@src/state";
 import { useAtomValue } from "jotai";
-import esADOABI from "../../utils/ABIs/esADOABI.ts";
-import { formatSecondToDHMS } from "../../utils/time.ts";
-import TickleNumber from "../../components/TickleNumber.tsx";
+import esADOABI from "@src/utils/ABIs/esADOABI.ts";
+import { formatSecondToDHMS } from "@src/utils/time.ts";
+import TickleNumber from "@src/components/TickleNumber.tsx";
 
 const esADOParams = {
-  address: CONTRACT_ADDRESSES.esADO,
-  abi: esADOABI
+  abi: esADOABI,
+  address: CONTRACT_ADDRESSES.esADO
 };
 
 const ESADOVesting = () => {

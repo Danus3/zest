@@ -1,4 +1,4 @@
-import InputWithMax from "../../components/InputWithMax.tsx";
+import InputWithMax from "@src/components/InputWithMax.tsx";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 
 const Redeem = () => {

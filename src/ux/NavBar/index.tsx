@@ -1,5 +1,5 @@
 import logo from "@/assets/logo.png";
-import { routeConfigs } from "../../config";
+import { routeConfigs } from "@src/config";
 import { useState } from "react";
 import classNames from "classnames";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";

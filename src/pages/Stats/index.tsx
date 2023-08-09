@@ -1,7 +1,7 @@
 import { useAtomValue } from "jotai";
-import { getAllPrices } from "../../state";
+import { getAllPrices } from "@src/state";
 import "./index.css";
-import { commas } from "../../utils/number.tsx";
+import { commas } from "@src/utils/number.tsx";
 import { Link } from "react-router-dom";
 import GenesisPool from "./GenesisPool.tsx";
 

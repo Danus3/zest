@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { formatEtherToFixed } from "../../utils/number.tsx";
+import { formatEtherToFixed } from "@src/utils/number.tsx";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
-import DepositInput from "../../components/DepositInput.tsx";
+import DepositInput from "@src/components/DepositInput.tsx";
 
 const Mint = () => {
   const [mintValue, setMintValue] = useState(0n);

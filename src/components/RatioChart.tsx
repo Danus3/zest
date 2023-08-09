@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useInViewport } from "ahooks";
 import { useAtomValue } from "jotai";
-import { stEtherPriceAtom } from "../state";
-import { LIQ_PRICE } from "../constants.ts";
+import { stEtherPriceAtom } from "@src/state";
+import { LIQ_PRICE } from "@src/constants.ts";
 
-const minPrice = LIQ_PRICE;
+const minPrice: number = LIQ_PRICE;
 const maxPrice = 8000;
 
 const RatioChart = () => {

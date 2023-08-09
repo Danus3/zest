@@ -1,9 +1,9 @@
 import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
 import classNames from "classnames";
-import { isApp, isLocalhost } from "../config.ts";
+import { isApp, isLocalhost } from "@src/config.ts";
 import { useAtomValue } from "jotai/index";
-import { transactionsToastAtom } from "../state/ui.ts";
+import { transactionsToastAtom } from "@src/state/ui.ts";
 import * as ToastPrimitive from "@radix-ui/react-toast";
 import { useWalletClient } from "wagmi";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
@@ -48,7 +48,7 @@ const Layout = () => {
               Transaction sent! <br />
               <a
                 className={"underline"}
-                href={txUrl + "/tx/" + hash}
+                href={`${txUrl}/tx/${hash}`}
                 target={"_blank"}
               >
                 View on Chain Explorer{" "}

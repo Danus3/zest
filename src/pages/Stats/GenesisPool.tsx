@@ -1,7 +1,7 @@
-import { LIQ_PRICE } from "../../constants.ts";
-import { commas, normalizeNumber } from "../../utils/number.tsx";
+import { LIQ_PRICE } from "@src/constants.ts";
+import { commas, normalizeNumber } from "@src/utils/number.tsx";
 import { useAtomValue } from "jotai";
-import { getAllPrices, getSTETHPoolStats } from "../../state";
+import { getAllPrices, getSTETHPoolStats } from "@src/state";
 import { Link } from "react-router-dom";
 import { formatEther } from "viem";
 

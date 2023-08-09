@@ -1,4 +1,4 @@
-import balanceImg from "../../assets/balance.webp";
+import balanceImg from "@src/assets/balance.webp";
 
 const BalanceChart = () => {
   return (

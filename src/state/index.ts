@@ -1,6 +1,6 @@
 import { atom, ExtractAtomValue } from "jotai";
-import { normalizeNumber } from "../utils/number.tsx";
-import { LIQ_PRICE } from "../constants.ts";
+import { normalizeNumber } from "@src/utils/number.tsx";
+import { LIQ_PRICE } from "@src/constants.ts";
 import { atomWithImmer } from "jotai-immer";
 
 export const stEtherPriceAtom = atom(0);

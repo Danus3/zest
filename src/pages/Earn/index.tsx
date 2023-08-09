@@ -2,9 +2,9 @@ import React from "react";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 import { Link } from "react-router-dom";
-import Slider from "../../components/Slider.tsx";
+import Slider from "@components/Slider.tsx";
 import stETHLogo from "@assets/steth.svg";
-import Tooltip from "../../components/Tooltip.tsx";
+import Tooltip from "@components/Tooltip.tsx";
 
 type EarnBlockProps = {
   title: string;

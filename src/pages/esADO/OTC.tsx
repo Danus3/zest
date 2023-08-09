@@ -1,9 +1,9 @@
 import { useAtomValue } from "jotai";
-import { esADOState } from "../../state";
-import { formatEtherToFixed } from "../../utils/number.tsx";
-import useWrappedWriteContract from "../../hooks/useWrappedWriteContract.ts";
-import { CONTRACT_ADDRESSES, OTC_RATE } from "../../constants.ts";
-import esADOSwapABI from "../../utils/ABIs/esADOSwapABI.ts";
+import { esADOState } from "@src/state";
+import { formatEtherToFixed } from "@src/utils/number.tsx";
+import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
+import { CONTRACT_ADDRESSES, OTC_RATE } from "@src/constants.ts";
+import esADOSwapABI from "@src/utils/ABIs/esADOSwapABI.ts";
 import { useState } from "react";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 

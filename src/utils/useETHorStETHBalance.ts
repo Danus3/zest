@@ -1,5 +1,5 @@
 import { useAccount, useBalance } from "wagmi";
-import { CONTRACT_ADDRESSES } from "../constants.ts";
+import { CONTRACT_ADDRESSES } from "@src/constants.ts";
 
 const useETHorStETHBalance = (selected: "ETH" | "stETH") => {
   const { address } = useAccount();

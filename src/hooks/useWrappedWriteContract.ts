@@ -6,7 +6,7 @@ import {
 } from "wagmi";
 import { useDebounce } from "ahooks";
 import { useEffect } from "react";
-import { transactionsToastAtom } from "../state/ui.ts";
+import { transactionsToastAtom } from "@src/state/ui.ts";
 import { useSetAtom } from "jotai/index";
 
 const useWrappedWriteContract = ({

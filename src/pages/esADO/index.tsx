@@ -1,15 +1,15 @@
-import { ADOState } from "../../state";
+import { ADOState } from "@src/state";
 import { useAtomValue } from "jotai";
 import {
   formatEtherToFixed,
   formatEtherToNumber,
   normalizeNumber
-} from "../../utils/number.tsx";
-import useUserBalance from "../../hooks/useUserBalance.ts";
+} from "@src/utils/number.tsx";
+import useUserBalance from "@src/hooks/useUserBalance.ts";
 import ESADOVesting from "./vesting.tsx";
 import EsADOOTC from "./OTC.tsx";
 import VestingPositions from "./vestingPositions.tsx";
-import { ADO_MAX_SUPPLY } from "../../constants.ts";
+import { ADO_MAX_SUPPLY } from "@src/constants.ts";
 
 const EsADO = () => {
   const { totalSupply, price } = useAtomValue(ADOState);

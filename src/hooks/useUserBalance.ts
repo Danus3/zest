@@ -1,7 +1,7 @@
 import { useAccount, useBalance } from "wagmi";
-import { CONTRACT_ADDRESSES } from "../constants.ts";
+import { CONTRACT_ADDRESSES } from "@src/constants.ts";
 import { useSetAtom } from "jotai";
-import { ADOState, esADOState } from "../state";
+import { ADOState, esADOState } from "@src/state";
 import { useEffect } from "react";
 
 const useUserBalance = () => {

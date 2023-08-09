@@ -1,9 +1,9 @@
 import { useAccount, useContractRead } from "wagmi";
-import { CONTRACT_ADDRESSES } from "../../constants.ts";
-import esADOABI from "../../utils/ABIs/esADOABI.ts";
-import { formatEtherToNumber } from "../../utils/number.tsx";
-import { prettyDate } from "../../utils/time.ts";
-import useWrappedWriteContract from "../../hooks/useWrappedWriteContract.ts";
+import { CONTRACT_ADDRESSES } from "@src/constants.ts";
+import esADOABI from "@src/utils/ABIs/esADOABI.ts";
+import { formatEtherToNumber } from "@src/utils/number.tsx";
+import { prettyDate } from "@src/utils/time.ts";
+import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
 
 const VestingPositionBlock: React.FC<{
   index: number;

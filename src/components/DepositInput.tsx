@@ -1,10 +1,10 @@
 import classNames from "classnames";
-import { formatEtherToFixed } from "../utils/number.tsx";
+import { formatEtherToFixed } from "@src/utils/number.tsx";
 import InputWithMax from "./InputWithMax.tsx";
 import { formatEther, parseEther } from "viem";
 import { useState } from "react";
 import { useAccount, useBalance } from "wagmi";
-import { CONTRACT_ADDRESSES } from "../constants.ts";
+import { CONTRACT_ADDRESSES } from "@src/constants.ts";
 
 const DepositInput: React.FC<{
   value: bigint;

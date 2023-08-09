@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { formatEther } from "viem";
 import { useAtomValue } from "jotai";
-import { getSTETHPoolStats } from "../../state";
-import DepositInput from "../../components/DepositInput.tsx";
+import { getSTETHPoolStats } from "@src/state";
+import DepositInput from "@src/components/DepositInput.tsx";
 
 const Buy = () => {
   const [buyValue, setBuyValue] = useState(0n);

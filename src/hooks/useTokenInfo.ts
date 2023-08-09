@@ -1,10 +1,10 @@
 import { useContractReads } from "wagmi";
-import { CONTRACT_ADDRESSES } from "../constants.ts";
+import { CONTRACT_ADDRESSES } from "@src/constants.ts";
 import { useEffect } from "react";
 import { useSetAtom } from "jotai/index";
-import { ADOState, esADOState } from "../state";
-import ADOABI from "../utils/ABIs/ADOABI.ts";
-import esADOABI from "../utils/ABIs/esADOABI.ts";
+import { ADOState, esADOState } from "@src/state";
+import ADOABI from "@src/utils/ABIs/ADOABI.ts";
+import esADOABI from "@src/utils/ABIs/esADOABI.ts";
 
 const useTokenInfo = () => {
   const setADO = useSetAtom(ADOState);

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import useMounted from "../hooks/utils/useMounted.ts";
+import useMounted from "@src/hooks/utils/useMounted.ts";
 
 const oneTimeRotateTransitionString =
   "transform 0.2s cubic-bezier(0.18, 0.89, 0.48, 1.55)";
 
 const getContinuousRotateTransitionString = (distance = 0) =>
-  `transform ${0.4 / distance}s linear`;
+  `transform ${0.3 / distance}s linear`;
 
 const numberArray = Array.from(Array(10).keys());
 

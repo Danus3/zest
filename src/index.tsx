@@ -6,7 +6,7 @@ import { useSetAtom } from "jotai";
 import { adoPriceAtom, aUSDPriceAtm, stEtherPriceAtom } from "./state";
 import { Fragment, lazy, Suspense, useEffect } from "react";
 // import MintAndRedeem from "./pages/MintAndRedeem";
-import { isApp } from "./config.ts";
+import { isApp } from "./config.tsx";
 import Homepage from "./pages/Homepage";
 import useTokenInfo from "./hooks/useTokenInfo.ts";
 

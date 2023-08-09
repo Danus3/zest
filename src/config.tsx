@@ -25,11 +25,14 @@ export const MediumURL = "https://medium.com/@Adscendo";
 
 export const DocsURL = "https://docs.adscendo.xyz/";
 
+export const TwitterURL = "https://twitter.com/Adscendo_fi";
+
 export const routeConfigs: {
   path: string;
   name: string;
   external?: boolean;
   disabled?: boolean;
+  icon?: React.ReactNode;
 }[] = [
   {
     path: isApp ? "/" : "/stats",
@@ -68,5 +71,12 @@ export const routeConfigs: {
     name: "Docs",
     external: true,
     disabled: isApp
+  },
+  {
+    path: TwitterURL,
+    name: "Twitter",
+    external: true,
+    disabled: isApp,
+    icon: <span className={"text-2xl"}>𝕏</span>
   }
 ];

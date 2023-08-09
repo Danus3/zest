@@ -1,7 +1,7 @@
 import Banner1 from "@assets/homepage-banner-1.webp";
 import "./homepage.css";
 import LazyImage from "@src/components/image.tsx";
-import { DocsURL, MotivationURL, WeedPaperURL } from "@src/config.ts";
+import { DocsURL, MotivationURL, WeedPaperURL } from "@src/config";
 import homepageBg from "@assets/homepage-bg.webp";
 import homepageFooter from "@assets/homepage-footer.jpg";
 import ParallelBanner from "@src/components/ParallelBanner.tsx";

@@ -5,18 +5,16 @@ import classNames from "classnames";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
 import ConnectBtn from "./ConnectBtn.tsx";
+import { twMerge } from "tailwind-merge";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
       <div
-        className={classNames(
-          "p-3 flex justify-center md:backdrop-blur-[2px] fixed md:fixed top-0 w-full  h-[100vh] md:h-auto md:visible z-20 transition-[backdrop-filter] duration-300",
-          {
-            invisible: !isMenuOpen,
-            ["backdrop-blur-md"]: isMenuOpen
-          }
+        className={twMerge(
+          "p-3 flex justify-center backdrop-blur-md md:backdrop-blur-[2px] fixed md:fixed top-0 w-full  h-[100vh] md:h-auto md:block z-20 transition-[backdrop-filter] duration-300",
+          !isMenuOpen && "hidden"
         )}
         style={{
           background: "rgba(0, 0, 0, 0.20)"
@@ -61,8 +59,9 @@ const NavBar = () => {
                     href={routeConfig.path}
                     key={routeConfig.path}
                     target={"_blank"}
+                    className={twMerge("animate-slideIn md:animate-none")}
                   >
-                    {routeConfig.name}
+                    {routeConfig.icon || routeConfig.name}
                   </a>
                 );
               }
@@ -73,20 +72,12 @@ const NavBar = () => {
                   onClick={() => {
                     setIsMenuOpen(false);
                   }}
+                  className={"animate-slideIn md:animate-none"}
                 >
                   {routeConfig.name}
                 </Link>
               );
             })}
-            <a
-              href="https://twitter.com/Adscendo_fi"
-              target={"_blank"}
-              className={
-                "hover:text-neutral-200 relative text-2xl hover:no-underline"
-              }
-            >
-              𝕏
-            </a>
             <ConnectBtn />
           </div>
         </div>

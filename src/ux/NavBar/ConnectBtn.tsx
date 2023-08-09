@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { appURL, isLandingPage } from "@src/config.ts";
+import { appURL, isLandingPage } from "@src/config";
 import { ConnectKitButton } from "connectkit";
 
 const ConnectBtn = () => {

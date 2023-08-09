@@ -1,7 +1,7 @@
 import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
 import classNames from "classnames";
-import { isApp, isLocalhost } from "@src/config.ts";
+import { isApp, isLocalhost } from "@src/config";
 import { useAtomValue } from "jotai/index";
 import { transactionsToastAtom } from "@src/state/ui.ts";
 import * as ToastPrimitive from "@radix-ui/react-toast";

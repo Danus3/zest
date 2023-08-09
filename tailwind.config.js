@@ -11,7 +11,7 @@ export default {
         },
         slideIn: {
           from: {
-            transform: "translateX(calc(100% + var(--viewport-padding)))"
+            transform: "translateX(calc(100% + var(--viewport-padding, 0px)))"
           },
           to: { transform: "translateX(0)" }
         },

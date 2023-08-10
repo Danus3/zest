@@ -7,7 +7,8 @@ const Tabs = ({
   initialTab = 0,
   labels = [],
   currentTab = 0,
-  onChange
+  onChange,
+  disabled = []
 }: {
   initialTab?: number;
   labels: string[];
@@ -16,6 +17,7 @@ const Tabs = ({
     event: React.MouseEvent<HTMLDivElement>,
     newValue: number
   ) => void;
+  disabled?: boolean[];
 }) => {
   const [tab, setTab] = React.useState(initialTab);
 
@@ -46,6 +48,9 @@ const Tabs = ({
           <div
             key={index}
             onClick={e => {
+              if (disabled[index]) {
+                return;
+              }
               handleChange(e, index);
             }}
             className={twMerge(
@@ -53,6 +58,10 @@ const Tabs = ({
                 "w-full text-center text-white rounded-sm cursor-pointer",
                 {
                   "bg-amber-400 text-black": index === tab
+                },
+                {
+                  "text-neutral-600": disabled[index],
+                  "cursor-not-allowed": disabled[index]
                 }
               )
             )}

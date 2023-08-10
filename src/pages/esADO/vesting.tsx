@@ -9,6 +9,8 @@ import { useAtomValue } from "jotai";
 import esADOABI from "@src/utils/ABIs/esADOABI.ts";
 import { formatSecondToDHMS } from "@src/utils/time.ts";
 import TickleNumber from "@src/components/TickleNumber.tsx";
+import Tooltip from "@components/Tooltip.tsx";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 const esADOParams = {
   abi: esADOABI,
@@ -118,15 +120,17 @@ const ESADOVesting = () => {
             Vest
           </button>
           <div>
-            Amount&nbsp;&nbsp;
-            <button
-              className={"emphasis px-8"}
-              onClick={() => {
-                setVestRatio(vestRatio === 100n ? 25n : vestRatio + 25n);
-              }}
-            >
-              {vestRatio.toString()}%
-            </button>
+            <Tooltip text={"% of your balance"}>
+              <button
+                className={"emphasis px-8"}
+                onClick={() => {
+                  setVestRatio(vestRatio === 100n ? 25n : vestRatio + 25n);
+                }}
+              >
+                {vestRatio.toString()}%&nbsp;
+                <InfoCircledIcon className={"inline-block"} />
+              </button>
+            </Tooltip>
           </div>
         </div>
       </div>

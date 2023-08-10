@@ -33,7 +33,7 @@ const NavBar = () => {
         </div>
         <div
           className={
-            "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4"
+            "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4 m-auto"
           }
           onClick={e => {
             e.stopPropagation();
@@ -44,7 +44,7 @@ const NavBar = () => {
             onClick={() => {
               setIsMenuOpen(false);
             }}
-            className={"shrink-0"}
+            className={"shrink-0 self-center"}
           >
             <img src={logo} className={"w-32 m-auto"} alt={"logo"} />
           </Link>

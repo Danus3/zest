@@ -8,7 +8,8 @@ export const CONTRACT_ADDRESSES = {
   esADO: "0x41edeb097a868eff87bf3f4633c87aa2aa501dde",
   esADOOTC: "0x5664fe0bd564c18fbdd12ffd6bde7ec0e792add5",
   aUSD: "0x9a6Ea3e3fbdd32eD9EfAD94B97B6FB32FDf8d3Ed",
-  aUSDPool: "0xBE0c13e1fD65260A5f311a82f6c04d66FdC093a5"
+  aUSDPool: "0xBE0c13e1fD65260A5f311a82f6c04d66FdC093a5",
+  adscendoPool: "0xC1F35309f999a1493071e4524ba26D5c4e0cD616"
 } as const;
 
 export const OTC_RATE = 0.15;

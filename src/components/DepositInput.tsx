@@ -29,6 +29,7 @@ const DepositInput: React.FC<{
     selected === "ETH"
       ? ETHBalanceData?.value || 0n
       : stETHBalanceData?.value || 0n;
+
   return (
     <>
       <p className={"flex flex-row justify-between"}>

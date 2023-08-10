@@ -3,7 +3,7 @@ import { appURL, isLandingPage } from "@src/config";
 import { ConnectKitButton } from "connectkit";
 
 const ConnectBtn = () => {
-  const btnClassName = "bg-amber-600 rounded-2xl";
+  const btnClassName = "bg-amber-600 rounded-2xl emphasis";
 
   if (isLandingPage) {
     return (

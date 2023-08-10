@@ -122,7 +122,7 @@ const MintAndRedeem = () => {
               </p>
 
               <a href="/">
-                <button className={"bg-amber-400 text-black"} disabled>
+                <button className={"bg-amber-400 text-black emphasis"} disabled>
                   Buy aUSD
                 </button>
               </a>
@@ -142,6 +142,7 @@ const MintAndRedeem = () => {
             onChange={(_, value) => {
               setTab(value);
             }}
+            disabled={[false, false, true]}
           />
           <div className={"my-0"}></div>
           {tab === 0 ? <Mint /> : tab === 1 ? <Redeem /> : <Buy />}

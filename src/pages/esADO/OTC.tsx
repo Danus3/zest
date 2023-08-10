@@ -5,7 +5,8 @@ import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
 import { CONTRACT_ADDRESSES, OTC_RATE } from "@src/constants.ts";
 import esADOSwapABI from "@src/utils/ABIs/esADOSwapABI.ts";
 import { useState } from "react";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
+import { ArrowRightIcon, InfoCircledIcon } from "@radix-ui/react-icons";
+import Tooltip from "@components/Tooltip.tsx";
 
 const EsADOOTC = () => {
   const { balance } = useAtomValue(esADOState);
@@ -49,17 +50,17 @@ const EsADOOTC = () => {
           >
             OTC esADO
           </button>
-          <div>
-            Amount&nbsp;&nbsp;
+          <Tooltip text={"% of your balance"}>
             <button
               className={"emphasis px-8"}
               onClick={() => {
                 setRatio(ratio === 100n ? 25n : ratio + 25n);
               }}
             >
-              {ratio.toString()}%
+              {ratio.toString()}%&nbsp;
+              <InfoCircledIcon className={"inline-block"} />
             </button>
-          </div>
+          </Tooltip>
         </div>
       </div>
     </div>

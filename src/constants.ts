@@ -9,7 +9,10 @@ export const CONTRACT_ADDRESSES = {
   esADOOTC: "0x5664fe0bd564c18fbdd12ffd6bde7ec0e792add5",
   aUSD: "0x9a6Ea3e3fbdd32eD9EfAD94B97B6FB32FDf8d3Ed",
   aUSDPool: "0xBE0c13e1fD65260A5f311a82f6c04d66FdC093a5",
-  adscendoPool: "0xC1F35309f999a1493071e4524ba26D5c4e0cD616"
+  adscendoPool: "0xC1F35309f999a1493071e4524ba26D5c4e0cD616",
+  lstETH: "0xdC4005E7CB3C8805D208cA31ee13CC9F0fFbf94C"
 } as const;
 
 export const OTC_RATE = 0.15;
+
+export const MINT_REF_ADDR = "0x9fee24bde6229dfd03b7169ff2bffc09b9c4c05a";

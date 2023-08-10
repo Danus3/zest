@@ -47,16 +47,6 @@ const RatioChart = () => {
 
   const aUSDLeverageRatio = calculatedStETHPrice / LIQ_PRICE;
 
-  // const maxAUSDLeverageRatio = maxPrice / 1300;
-  //
-  // const minAUSDLeverageRatio = minPrice / 1300;
-  //
-  // const maxLSTLeverageRatio = Infinity;
-  //
-  // const minLSTLeverageRatio = (maxPrice - minPrice) / maxPrice;
-
-  // console.log(lstLeverageRatio + aUSDLeverageRatio);
-
   return (
     <div
       className={"w-full h-full max-w-[1200px] m-auto flex flex-col font-bold"}

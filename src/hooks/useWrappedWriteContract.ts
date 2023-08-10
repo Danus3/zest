@@ -10,11 +10,9 @@ import { transactionsToastAtom } from "@src/state/ui.ts";
 import { useSetAtom } from "jotai/index";
 
 const useWrappedWriteContract = ({
-  address,
-  abi,
-  functionName,
+  enabled = true,
   args,
-  enabled = true
+  ...rest
 }: UsePrepareContractWriteConfig) => {
   const argsArr = [];
 
@@ -33,21 +31,26 @@ const useWrappedWriteContract = ({
   }
 
   const { config, isLoading: isLoadingWrite } = usePrepareContractWrite({
-    address,
-    abi,
-    functionName,
     args: argsArr,
-    enabled
+    enabled,
+    ...rest
   });
   const { data, write } = useContractWrite(config);
 
   const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash
+    hash: data?.hash,
+    onSuccess: () => {
+      data &&
+        setTransactions(prev => [
+          ...prev,
+          { hash: data.hash, status: "complete" }
+        ]);
+    }
   });
 
   useEffect(() => {
     if (data?.hash) {
-      setTransactions(prev => [...prev, data.hash]);
+      setTransactions(prev => [...prev, { hash: data.hash, status: "init" }]);
     }
   }, [data, setTransactions]);
 

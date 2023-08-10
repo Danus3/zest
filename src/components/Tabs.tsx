@@ -18,8 +18,13 @@ const Tabs = ({
     newValue: number
   ) => void;
   disabled?: boolean[];
+  name?: string;
 }) => {
   const [tab, setTab] = React.useState(initialTab);
+
+  // const { [name]: currentTabParam } = useParams();
+
+  // const s = usePus
 
   React.useEffect(() => {
     if (currentTab !== undefined) {

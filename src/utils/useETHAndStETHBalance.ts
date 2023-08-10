@@ -1,21 +1,21 @@
 import { useAccount, useBalance } from "wagmi";
 import { CONTRACT_ADDRESSES } from "@src/constants.ts";
 
-const useETHorStETHBalance = (selected: "ETH" | "stETH") => {
+const useETHAndStETHBalance = () => {
   const { address } = useAccount();
 
   const { data: ETHBalanceData } = useBalance({
-    address
+    address,
+    watch: true
   });
 
   const { data: stETHBalanceData } = useBalance({
     address,
-    token: CONTRACT_ADDRESSES.stETH
+    token: CONTRACT_ADDRESSES.stETH,
+    watch: true
   });
 
-  return selected === "ETH"
-    ? ETHBalanceData?.value || 0n
-    : stETHBalanceData?.value || 0n;
+  return [ETHBalanceData?.value || 0n, stETHBalanceData?.value || 0n];
 };
 
-export default useETHorStETHBalance;
+export default useETHAndStETHBalance;

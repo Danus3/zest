@@ -1,19 +1,23 @@
 import { LIQ_PRICE } from "@src/constants.ts";
 import { commas, normalizeNumber } from "@src/utils/number.tsx";
 import { useAtomValue } from "jotai";
-import { getAllPrices, getSTETHPoolStats } from "@src/state";
+import {
+  aUSDState,
+  getAllPrices,
+  getSTETHPoolStats,
+  lstETHState
+} from "@src/state";
 import { Link } from "react-router-dom";
 import { formatEther } from "viem";
 
 const GenesisPool = () => {
   const { normalizedAUSDPrice } = useAtomValue(getAllPrices);
 
-  const {
-    lstETHPrice,
-    lstETHLeverageRatio,
-    aUSDCirculatingSupply,
-    lstETHCirculatingSupply
-  } = useAtomValue(getSTETHPoolStats);
+  const { lstETHPrice, lstETHLeverageRatio } = useAtomValue(getSTETHPoolStats);
+
+  const { totalSupply: aUSDCirculatingSupply } = useAtomValue(aUSDState);
+
+  const { totalSupply: lstETHCirculatingSupply } = useAtomValue(lstETHState);
 
   const totalRevenue = commas(98765432);
 

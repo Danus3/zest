@@ -9,7 +9,7 @@ export const normalizeNumber = (x: number, decimal = 2) => {
 
 export const formatEtherToFixed = (
   x: bigint,
-  decimal = 2,
+  decimal = 4,
   addCommas = true
 ) => {
   // if (!x || x === 0n) {

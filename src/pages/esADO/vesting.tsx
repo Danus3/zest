@@ -105,8 +105,8 @@ const ESADOVesting = () => {
             onValueChange={([duration]) => {
               setDuration(BigInt(duration));
             }}
-            prefix={`${currentRatio}%`}
-            affix={`${formatSecondToDHMS(Number(duration))}`}
+            sliderPrefix={<span>Conversion rate: {currentRatio}%</span>}
+            sliderAffix={`${formatSecondToDHMS(Number(duration))}`}
           />
         </div>
         <div className={"self-stretch flex flex-col gap-2"}>

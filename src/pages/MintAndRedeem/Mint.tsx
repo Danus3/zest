@@ -1,30 +1,71 @@
 import { useState } from "react";
 import { formatEtherToFixed } from "@src/utils/number.tsx";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
-import DepositInput from "@src/components/DepositInput.tsx";
+import DepositInput, { MintAsset } from "@src/components/DepositInput.tsx";
 import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
-import { CONTRACT_ADDRESSES } from "@src/constants";
+import { CONTRACT_ADDRESSES, LIQ_PRICE, MINT_REF_ADDR } from "@src/constants";
 import { AdscendoPoolABI } from "@utils/ABIs/AdscendoPoolABI.ts";
+import { useContractRead } from "wagmi";
+import ApproveCheck from "@components/ApproveCheck.tsx";
+import lstETHABI from "@utils/ABIs/lstETHABI.ts";
+
+const MintStETH: React.FC<{
+  mintValue: bigint;
+}> = ({ mintValue }) => {
+  const {
+    write: mintUsingEther,
+    isLoadingWrite,
+    isLoading
+  } = useWrappedWriteContract({
+    address: CONTRACT_ADDRESSES.adscendoPool,
+    abi: AdscendoPoolABI,
+    enabled: mintValue > 0n,
+    functionName: "mint",
+    args: [mintValue]
+  });
+
+  return (
+    <button
+      className={"w-full emphasis"}
+      onClick={() => {
+        mintUsingEther?.();
+      }}
+      disabled={isLoadingWrite || isLoading}
+    >
+      Mint
+    </button>
+  );
+};
 
 const Mint = () => {
   const [mintValue, setMintValue] = useState(0n);
 
-  const mintAUSDAmount = mintValue * 1300n;
+  const [mintAsset, setMintAsset] = useState<MintAsset>("ETH");
 
-  const { write: mintUsingEther } = useWrappedWriteContract({
+  const mintAUSDAmount = mintValue * BigInt(LIQ_PRICE);
+
+  const { write: mintUsingEther, isLoadingWrite } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.adscendoPool,
     abi: AdscendoPoolABI,
+    enabled: mintValue > 0n,
     functionName: "mintWithEth",
-    args: ["0x259B259E3D05338495d23984eDDe3Dc07dE5a8a5"],
-    // overrides: {
-    //   value: mintValue
-    // },
-    enabled: mintValue > 0n
+    args: [MINT_REF_ADDR],
+    value: mintValue
+  });
+
+  const { data: mintFee } = useContractRead({
+    address: CONTRACT_ADDRESSES.adscendoPool,
+    abi: AdscendoPoolABI,
+    functionName: "mintFee"
   });
 
   return (
     <div>
-      <DepositInput value={mintValue} setValue={setMintValue} />
+      <DepositInput
+        value={mintValue}
+        setValue={setMintValue}
+        setMintAsset={setMintAsset}
+      />
       <div className={"my-12"}></div>
       <p>Mint</p>
       <div className={"my-4"}></div>
@@ -44,18 +85,37 @@ const Mint = () => {
             "rounded-md border-amber-400 border-[1px] w-full text-center py-1"
           }
         >
-          ~{formatEtherToFixed(mintValue, 4)} lstETH
+          ~
+          {formatEtherToFixed(
+            mintValue - ((mintFee ?? 0n) * mintValue) / 1000n,
+            4
+          )}{" "}
+          lstETH
         </div>
       </div>
       <div className={"my-8"}></div>
-      <button
-        className={"w-full bg-amber-400 text-black emphasis"}
-        onClick={() => {
-          mintUsingEther?.();
-        }}
-      >
-        Mint
-      </button>
+      {mintAsset === "ETH" ? (
+        <button
+          className={"w-full emphasis"}
+          onClick={() => {
+            mintUsingEther?.();
+          }}
+          disabled={isLoadingWrite || mintValue === 0n}
+        >
+          Mint
+        </button>
+      ) : (
+        <ApproveCheck
+          spender={CONTRACT_ADDRESSES.adscendoPool}
+          token={CONTRACT_ADDRESSES.stETH}
+          spendingAmount={mintValue}
+          tokenABI={lstETHABI}
+          className={"w-full"}
+          tokenName={"stETH"}
+        >
+          <MintStETH mintValue={mintValue} />
+        </ApproveCheck>
+      )}
     </div>
   );
 };

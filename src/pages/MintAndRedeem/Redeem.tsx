@@ -1,10 +1,20 @@
 import InputWithMax from "@src/components/InputWithMax.tsx";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
+import { useAtomValue } from "jotai";
+import { aUSDState, lstETHState } from "@state";
+import { formatEtherToNumber } from "@utils/number.tsx";
 
 const Redeem = () => {
+  const { balance: AUSDBalance } = useAtomValue(aUSDState);
+  const { balance: lstETHBalance } = useAtomValue(lstETHState);
+
   return (
     <div>
       <p>Burn aUSD and lstETH to get stETH.</p>
+      <p>
+        AUSD balance: {formatEtherToNumber(AUSDBalance)}, lstETHBalance:{" "}
+        {formatEtherToNumber(lstETHBalance)}
+      </p>
       <div className={"my-4"}></div>
       <div className={"flex flex-row justify-between items-center gap-2"}>
         <InputWithMax

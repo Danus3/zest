@@ -3,32 +3,20 @@ import { formatEtherToFixed } from "@src/utils/number.tsx";
 import InputWithMax from "./InputWithMax.tsx";
 import { formatEther, parseEther } from "viem";
 import { useState } from "react";
-import { useAccount, useBalance } from "wagmi";
-import { CONTRACT_ADDRESSES } from "@src/constants.ts";
+import useETHAndStETHBalance from "@utils/useETHAndStETHBalance.ts";
+
+export type MintAsset = "ETH" | "stETH";
 
 const DepositInput: React.FC<{
   value: bigint;
   setValue: (value: bigint) => void;
-}> = ({ value: mintValue, setValue: setMintValue }) => {
-  const [selected, setSelected] = useState("ETH");
+  setMintAsset?: (value: MintAsset) => void;
+}> = ({ value: mintValue, setValue: setMintValue, setMintAsset }) => {
+  const [selected, setSelected] = useState<MintAsset>("ETH");
 
   // const [mintValue, setMintValue] = useState(0n);
 
-  const { address } = useAccount();
-
-  const { data: ETHBalanceData } = useBalance({
-    address
-  });
-
-  const { data: stETHBalanceData } = useBalance({
-    address,
-    token: CONTRACT_ADDRESSES.stETH
-  });
-
-  const currentBalance: bigint =
-    selected === "ETH"
-      ? ETHBalanceData?.value || 0n
-      : stETHBalanceData?.value || 0n;
+  const currentBalance = useETHAndStETHBalance()[selected === "ETH" ? 0 : 1];
 
   return (
     <>
@@ -40,8 +28,10 @@ const DepositInput: React.FC<{
               "text-amber-400": selected === "ETH"
             })}
             onClick={() => {
+              if (selected === "ETH") return;
               setSelected("ETH");
               setMintValue(0n);
+              setMintAsset?.("ETH");
             }}
           >
             ETH
@@ -52,8 +42,10 @@ const DepositInput: React.FC<{
               "text-amber-400": selected === "stETH"
             })}
             onClick={() => {
+              if (selected === "stETH") return;
               setSelected("stETH");
               setMintValue(0n);
+              setMintAsset?.("stETH");
             }}
           >
             stETH

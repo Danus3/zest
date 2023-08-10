@@ -1,5 +1,8 @@
 import { atom } from "jotai";
 
-export const connectWalletModalAtom = atom(false);
-
-export const transactionsToastAtom = atom<string[]>([] as string[]);
+export const transactionsToastAtom = atom<
+  {
+    hash: string;
+    status: "init" | "complete";
+  }[]
+>([]);

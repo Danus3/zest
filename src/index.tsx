@@ -3,17 +3,18 @@ import Layout from "./ux/Layout.tsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSetAtom } from "jotai";
-import { adoPriceAtom, aUSDPriceAtm, stEtherPriceAtom } from "./state";
-import { Fragment, lazy, Suspense, useEffect } from "react";
+import { stEtherPriceAtom } from "@state";
+import { Fragment, lazy, Suspense } from "react";
 // import MintAndRedeem from "./pages/MintAndRedeem";
 import { isApp } from "./config.tsx";
-import Homepage from "./pages/Homepage";
-import useTokenInfo from "./hooks/useTokenInfo.ts";
+import Homepage from "@pages/Homepage";
+import useTokenInfo from "@hooks/useTokenInfo.ts";
+import useUserBalance from "@hooks/useUserBalance.ts";
 
-const MintAndRedeem = lazy(() => import("./pages/MintAndRedeem"));
-const Earn = lazy(() => import("./pages/Earn"));
-const Stats = lazy(() => import("./pages/Stats"));
-const EsADO = lazy(() => import("./pages/esADO"));
+const MintAndRedeem = lazy(() => import("@pages/MintAndRedeem"));
+const Earn = lazy(() => import("@pages/Earn"));
+const Stats = lazy(() => import("@pages/Stats"));
+const EsADO = lazy(() => import("@pages/esADO"));
 
 // const Homepage = lazy(() => import("./pages/Homepage"));
 
@@ -86,10 +87,9 @@ const router = createBrowserRouter([
 const App = () => {
   const setEThPrice = useSetAtom(stEtherPriceAtom);
 
-  const setAdoPrice = useSetAtom(adoPriceAtom);
-
-  const setAUSDPrice = useSetAtom(aUSDPriceAtm);
-
+  /**
+   * @description Fetch stETH price from coingecko
+   */
   useQuery<number>(
     ["stEthPrice", "usd"],
     async () => {
@@ -112,14 +112,9 @@ const App = () => {
     }
   );
 
-  useEffect(() => {
-    setTimeout(() => {
-      setAdoPrice(1.2);
-      setAUSDPrice(1.0);
-    }, 1000);
-  }, [setAdoPrice, setAUSDPrice]);
-
   useTokenInfo();
+
+  useUserBalance();
 
   return <RouterProvider router={router}></RouterProvider>;
 };

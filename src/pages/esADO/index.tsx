@@ -5,7 +5,6 @@ import {
   formatEtherToNumber,
   normalizeNumber
 } from "@src/utils/number.tsx";
-import useUserBalance from "@src/hooks/useUserBalance.ts";
 import ESADOVesting from "./vesting.tsx";
 import EsADOOTC from "./OTC.tsx";
 import VestingPositions from "./vestingPositions.tsx";
@@ -13,8 +12,6 @@ import { ADO_MAX_SUPPLY } from "@src/constants.ts";
 
 const EsADO = () => {
   const { totalSupply, price } = useAtomValue(ADOState);
-
-  useUserBalance();
 
   return (
     <div className={"page-content"}>

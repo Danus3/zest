@@ -7,7 +7,7 @@ import DepositInput from "@src/components/DepositInput.tsx";
 const Buy = () => {
   const [buyValue, setBuyValue] = useState(0n);
 
-  const { lstETHPrice, ethPrice } = useAtomValue(getSTETHPoolStats);
+  const { lstETHPrice, stETHPrice } = useAtomValue(getSTETHPoolStats);
 
   return (
     <div>
@@ -19,7 +19,7 @@ const Buy = () => {
       <div
         className={"text-center border-amber-400 border-[1px] py-1 rounded-md"}
       >
-        {(ethPrice / lstETHPrice) * Number(formatEther(buyValue))} lstETH
+        {(stETHPrice / lstETHPrice) * Number(formatEther(buyValue))} lstETH
       </div>
       <div className={"my-8"}></div>
       <button className={"bg-amber-400 text-black w-full emphasis"}>Buy</button>

@@ -1,6 +1,15 @@
 import { useAtomValue } from "jotai";
-import { getAllPrices, getSTETHPoolStats } from "@src/state";
-import { commas, normalizeNumber } from "@src/utils/number.tsx";
+import {
+  aUSDState,
+  getAllPrices,
+  getSTETHPoolStats,
+  lstETHState
+} from "@src/state";
+import {
+  commas,
+  formatEtherToFixed,
+  normalizeNumber
+} from "@src/utils/number.tsx";
 
 import "./index.css";
 import RatioChart from "@src/components/RatioChart.tsx";
@@ -13,14 +22,17 @@ import Buy from "./Buy.tsx";
 
 const MintAndRedeem = () => {
   const {
-    stETHLockedUSD,
-    aUSDCirculatingSupply,
+    stETHLocked,
     liquidityPrice,
     lstETHPrice,
     lstETHLeverageRatio
   } = useAtomValue(getSTETHPoolStats);
 
-  const { aUSDPrice, ethPrice } = useAtomValue(getAllPrices);
+  const { totalSupply: aUSDCirculatingSupply } = useAtomValue(aUSDState);
+
+  const { totalSupply: lstETHCirculatingSupply } = useAtomValue(lstETHState);
+
+  const { aUSDPrice, stETHPrice } = useAtomValue(getAllPrices);
 
   const [tab, setTab] = useState<number>(0);
 
@@ -31,7 +43,7 @@ const MintAndRedeem = () => {
         <div className={"flex gap-4 md:gap-8 text-[1.1em]"}>
           <div className={"stack gap-0 text-right"}>
             <span>ETH/USD</span>
-            <span>${normalizeNumber(ethPrice, 2)}</span>
+            <span>${normalizeNumber(stETHPrice, 2)}</span>
           </div>
           <div className={"stack gap-0 text-right"}>
             <span>aUSD/USDC</span>
@@ -48,12 +60,12 @@ const MintAndRedeem = () => {
         >
           <div className={"stack"}>
             <p>stETH Locked</p>
-            <h3>${stETHLockedUSD}</h3>
+            <h3>Ξ{formatEtherToFixed(stETHLocked, 4)}</h3>
             <div className="divider"></div>
           </div>
           <div className={"stack"}>
             <p>Collateral Ratio</p>
-            <h3>0</h3>
+            <h3>{lstETHLeverageRatio.toFixed(4)}</h3>
             <div className="divider"></div>
           </div>
           <div className={"stack"}>
@@ -63,7 +75,7 @@ const MintAndRedeem = () => {
           </div>
           <div className={"stack"}>
             <p>lstETH Minted</p>
-            <h3>{commas(formatEther(aUSDCirculatingSupply))}</h3>
+            <h3>{commas(formatEther(lstETHCirculatingSupply))}</h3>
             <div className="divider"></div>
           </div>
           <div className={"stack"}>
@@ -143,6 +155,7 @@ const MintAndRedeem = () => {
               setTab(value);
             }}
             disabled={[false, false, true]}
+            name={"tab"}
           />
           <div className={"my-0"}></div>
           {tab === 0 ? <Mint /> : tab === 1 ? <Redeem /> : <Buy />}

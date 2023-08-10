@@ -16,9 +16,9 @@ const Mint = () => {
     abi: AdscendoPoolABI,
     functionName: "mintWithEth",
     args: ["0x259B259E3D05338495d23984eDDe3Dc07dE5a8a5"],
-    overrides: {
-      value: mintValue
-    },
+    // overrides: {
+    //   value: mintValue
+    // },
     enabled: mintValue > 0n
   });
 

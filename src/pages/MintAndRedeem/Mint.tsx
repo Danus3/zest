@@ -45,7 +45,11 @@ const Mint = () => {
 
   const mintAUSDAmount = mintValue * BigInt(LIQ_PRICE);
 
-  const { write: mintUsingEther, isLoadingWrite } = useWrappedWriteContract({
+  const {
+    write: mintUsingEther,
+    isLoadingWrite,
+    prepareContractError
+  } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.adscendoPool,
     abi: AdscendoPoolABI,
     enabled: mintValue > 0n,
@@ -111,7 +115,9 @@ const Mint = () => {
           onClick={() => {
             mintUsingEther?.();
           }}
-          disabled={isLoadingWrite || mintValue === 0n}
+          disabled={
+            isLoadingWrite || mintValue === 0n || !!prepareContractError
+          }
         >
           Mint
         </button>

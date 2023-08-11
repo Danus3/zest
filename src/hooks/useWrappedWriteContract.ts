@@ -30,7 +30,11 @@ const useWrappedWriteContract = ({
     }
   }
 
-  const { config, isLoading: isLoadingWrite } = usePrepareContractWrite({
+  const {
+    config,
+    isLoading: isLoadingWrite,
+    error: prepareContractError
+  } = usePrepareContractWrite({
     args: argsArr,
     enabled,
     ...rest
@@ -54,7 +58,13 @@ const useWrappedWriteContract = ({
     }
   }, [data, setTransactions]);
 
-  return { write, isLoading, isSuccess, isLoadingWrite };
+  return {
+    write,
+    isLoading,
+    isSuccess,
+    isLoadingWrite,
+    prepareContractError
+  };
 };
 
 // Path: src/hooks/useWrappedReadContract.ts

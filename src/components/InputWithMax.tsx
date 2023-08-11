@@ -1,33 +1,48 @@
+import { useEffect, useState } from "react";
+
 const InputWithMax = ({
-  value,
   setValue,
-  onMaxClick,
-  ...props
+  maxValue,
+  value
 }: {
-  value: string;
   setValue: (value: string) => void;
-  onMaxClick: () => void;
+  maxValue: string;
+  value?: string;
 }) => {
+  const [internalValue, setInternalValue] = useState("");
+
+  useEffect(() => {
+    if (value === undefined) return;
+    setInternalValue(value);
+  }, [value]);
+
   return (
     <div className={"relative"}>
       <input
-        type="number"
+        // type="number"
         className={"w-full placeholder:text-neutral-600"}
         onChange={e => {
+          setInternalValue(e.target.value);
+          if (
+            isNaN(Number(e.target.value)) ||
+            e.target.value.match(/^[0.]+$/)
+          ) {
+            return;
+          }
           setValue(e.target.value);
         }}
-        value={value === "0" ? "" : value}
-        min={0}
+        min={"0"}
+        value={internalValue}
         placeholder={"Please input amount"}
         step={"any"}
-        {...props}
       />
       <div
         className={
           "absolute top-2 right-2 flex flex-col justify-center text-black bg-amber-400 px-1 rounded-md cursor-pointer"
         }
         onClick={() => {
-          onMaxClick();
+          setInternalValue(maxValue);
+          setValue(maxValue);
         }}
       >
         MAX

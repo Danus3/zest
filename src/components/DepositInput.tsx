@@ -11,7 +11,7 @@ const DepositInput: React.FC<{
   value: bigint;
   setValue: (value: bigint) => void;
   setMintAsset?: (value: MintAsset) => void;
-}> = ({ value: mintValue, setValue: setMintValue, setMintAsset }) => {
+}> = ({ setValue: setMintValue, setMintAsset }) => {
   const [selected, setSelected] = useState<MintAsset>("ETH");
 
   // const [mintValue, setMintValue] = useState(0n);
@@ -62,11 +62,8 @@ const DepositInput: React.FC<{
       </p>
       <div className={"my-4"}></div>
       <InputWithMax
-        value={formatEther(mintValue)}
         setValue={value => setMintValue(parseEther(value))}
-        onMaxClick={() => {
-          setMintValue(currentBalance);
-        }}
+        maxValue={formatEther(currentBalance)}
       />
     </>
   );

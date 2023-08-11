@@ -4,13 +4,14 @@ import { useAtomValue } from "jotai";
 import { aUSDState, lstETHState } from "@state";
 import { formatEtherToNumber } from "@utils/number.tsx";
 import { useState } from "react";
-import { parseEther } from "viem";
+import { formatEther, parseEther } from "viem";
 import { CONTRACT_ADDRESSES, LIQ_PRICE } from "@src/constants.ts";
 import ApproveCheck from "@components/ApproveCheck.tsx";
 import AUSDABI from "@utils/ABIs/aUSDABI.ts";
 import lstETHABI from "@utils/ABIs/lstETHABI.ts";
 import useWrappedWriteContract from "@hooks/useWrappedWriteContract.ts";
 import { AdscendoPoolABI } from "@utils/ABIs/AdscendoPoolABI.ts";
+import TickleNumber from "@components/TickleNumber.tsx";
 
 const RedeemButton: React.FC<{
   disabled: boolean;
@@ -54,29 +55,23 @@ const Redeem = () => {
       <div className={"my-4"}></div>
       <div className={"flex flex-row justify-between items-center gap-2"}>
         <InputWithMax
-          value={String(formatEtherToNumber(aUSDAmount))}
           setValue={value => {
             const parsedValue = parseEther(value);
             setAUSDAmount(parsedValue);
             setLstETHAmount(parsedValue / BigInt(LIQ_PRICE));
           }}
-          onMaxClick={() => {
-            setAUSDAmount(AUSDBalance);
-            setLstETHAmount(AUSDBalance / BigInt(LIQ_PRICE));
-          }}
+          maxValue={formatEther(AUSDBalance)}
+          value={formatEther(aUSDAmount)}
         />
         <PlusCircledIcon />
         <InputWithMax
-          value={String(formatEtherToNumber(lstETHAmount))}
           setValue={value => {
             const parsedValue = parseEther(value);
             setLstETHAmount(parsedValue);
             setAUSDAmount(parsedValue * BigInt(LIQ_PRICE));
           }}
-          onMaxClick={() => {
-            setLstETHAmount(lstETHBalance);
-            setAUSDAmount(lstETHBalance * BigInt(LIQ_PRICE));
-          }}
+          maxValue={formatEther(lstETHBalance)}
+          value={formatEther(lstETHAmount)}
         />
       </div>
       <div className={"my-8"}></div>
@@ -87,7 +82,10 @@ const Redeem = () => {
           "border-amber-400 border-[1px] rounded-md w-full text-center py-1"
         }
       >
-        {formatEtherToNumber(lstETHAmount)} stETH
+        <TickleNumber
+          numberString={String(formatEtherToNumber(lstETHAmount))}
+        />{" "}
+        stETH
       </div>
       <div className={"my-8"}></div>
       <ApproveCheck

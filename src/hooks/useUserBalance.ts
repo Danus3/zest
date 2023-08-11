@@ -53,19 +53,19 @@ const useUserBalance = () => {
   useEffect(() => {
     if (!accountInfoData) return;
     setADO(prev => {
-      prev.balance = accountInfoData[0].result as bigint;
+      prev.balance = (accountInfoData[0].result as bigint) ?? 0n;
       return prev;
     });
     setESAdO(prev => {
-      prev.balance = accountInfoData[1].result as bigint;
+      prev.balance = (accountInfoData[1].result as bigint) ?? 0n;
       return prev;
     });
     setAUSD(prev => {
-      prev.balance = accountInfoData[2].result as bigint;
+      prev.balance = (accountInfoData[2].result as bigint) ?? 0n;
       return prev;
     });
     setLstETH(prev => {
-      prev.balance = accountInfoData[3].result as bigint;
+      prev.balance = (accountInfoData[3].result as bigint) ?? 0n;
       return prev;
     });
   }, [accountInfoData, setADO, setESAdO, setAUSD, setLstETH]);

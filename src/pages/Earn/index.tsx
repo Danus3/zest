@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Slider from "@components/Slider.tsx";
 import stETHLogo from "@assets/steth.svg";
 import Tooltip from "@components/Tooltip.tsx";
+import { twMerge } from "tailwind-merge";
 
 type EarnBlockProps = {
   title: string;
@@ -25,9 +26,11 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
 }) => {
   return (
     <div
-      className={
-        "flex flex-col gap-4 justify-between w-full p-4 md:pl-20 card first:rounded-t-xl last:rounded-b-xl relative"
-      }
+      className={twMerge(
+        "card",
+        "flex flex-col gap-4 justify-between w-full p-4 md:pl-20 card first:rounded-t-xl last:rounded-b-xl relative",
+        "rounded-none"
+      )}
     >
       <img
         src={stETHLogo}

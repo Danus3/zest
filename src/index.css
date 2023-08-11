@@ -136,13 +136,11 @@
   .divider {
     @apply w-full h-[1px] bg-neutral-800 my-2;
   }
-}
-
-@layer utilities {
   .card {
     @apply rounded-2xl  p-4;
     box-shadow: 0 8px 6px 0 rgba(0, 0, 0, 0.05),
-      inset 0 1px 1px 0 hsla(0, 0%, 100%, 0.25), inset 0 -1px 1px 0 #21293a,
-      inset 2px 3px 3px -3px #5f5a88;
+    inset 0 1px 1px 0 hsla(0, 0%, 100%, 0.25), inset 0 -1px 1px 0 #21293a,
+    inset 2px 3px 3px -3px #5f5a88;
   }
 }
+

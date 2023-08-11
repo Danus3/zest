@@ -19,6 +19,7 @@ const InputWithMax = ({
         value={value === "0" ? "" : value}
         min={0}
         placeholder={"Please input amount"}
+        step={"any"}
         {...props}
       />
       <div

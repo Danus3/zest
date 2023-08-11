@@ -40,7 +40,7 @@ const EsADO = () => {
         </div>
       </div>
       <div className={"my-8"}></div>
-      <div className="card p-2">
+      <div className="card">
         <div className={"flexStack items-center justify-between gap-2"}>
           <h3 className={"shrink-0"}>ADO</h3>
           <p>

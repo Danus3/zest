@@ -21,7 +21,7 @@ const EsADOOTC = () => {
   });
 
   return (
-    <div className={"card p-2 stack gap-2"}>
+    <div className={"card stack gap-2"}>
       <div className={"flexStack justify-between items-center"}>
         <h3>OTC</h3>
         <p>

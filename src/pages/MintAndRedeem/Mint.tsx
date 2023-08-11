@@ -75,7 +75,10 @@ const Mint = () => {
             "rounded-md border-amber-400 border-[1px] w-full text-center py-1"
           }
         >
-          ~{formatEtherToFixed(mintAUSDAmount)} aUSD
+          {formatEtherToFixed(
+            mintAUSDAmount - ((mintFee ?? 0n) * mintAUSDAmount) / 1000n
+          )}{" "}
+          aUSD
         </div>
         <div>
           <PlusCircledIcon />
@@ -85,7 +88,6 @@ const Mint = () => {
             "rounded-md border-amber-400 border-[1px] w-full text-center py-1"
           }
         >
-          ~
           {formatEtherToFixed(
             mintValue - ((mintFee ?? 0n) * mintValue) / 1000n,
             4

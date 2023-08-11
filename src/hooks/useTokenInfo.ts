@@ -60,22 +60,22 @@ const useTokenInfo = () => {
   useEffect(() => {
     if (tokenInfoData) {
       setADO(prev => {
-        prev.totalSupply = tokenInfoData[0].result as bigint;
+        prev.totalSupply = (tokenInfoData[0].result as bigint) ?? 0n;
         return prev;
       });
       setESAdO(prev => {
-        prev.totalSupply = tokenInfoData[1].result as bigint;
+        prev.totalSupply = (tokenInfoData[1].result as bigint) ?? 0n;
         return prev;
       });
       setAUSD(prev => {
-        prev.totalSupply = tokenInfoData[2].result as bigint;
+        prev.totalSupply = (tokenInfoData[2].result as bigint) ?? 0n;
       });
       setLstETH(prev => {
-        prev.totalSupply = tokenInfoData[3].result as bigint;
+        prev.totalSupply = (tokenInfoData[3].result as bigint) ?? 0n;
         return prev;
       });
       setPool({
-        stETHLocked: tokenInfoData[4].result as bigint
+        stETHLocked: (tokenInfoData[4].result as bigint) ?? 0n
       });
     }
   }, [tokenInfoData, setADO, setESAdO, setLstETH, setAUSD, setPool]);

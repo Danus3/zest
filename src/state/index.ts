@@ -6,26 +6,26 @@ import { atomWithImmer } from "jotai-immer";
 export const stEtherPriceAtom = atom(0);
 
 export const ADOState = atomWithImmer({
-  totalSupply: BigInt(0),
+  totalSupply: 0n,
   price: 0,
-  balance: BigInt(0)
+  balance: 0n
 });
 
 export const esADOState = atomWithImmer({
-  balance: BigInt(0),
-  totalSupply: BigInt(0),
+  balance: 0n,
+  totalSupply: 0n,
   price: 0
 });
 
 export const aUSDState = atomWithImmer({
-  balance: BigInt(0),
-  totalSupply: BigInt(0),
+  balance: 0n,
+  totalSupply: 0n,
   price: 0
 });
 
 export const lstETHState = atomWithImmer({
-  balance: BigInt(0),
-  totalSupply: BigInt(0),
+  balance: 0n,
+  totalSupply: 0n,
   price: 0
 });
 

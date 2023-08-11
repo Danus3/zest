@@ -50,7 +50,7 @@ const ApproveCheck: React.FC<{
   if (isLoadingAllowance || isLoading) {
     return (
       <button className={twMerge("emphasis", className)} disabled>
-        Loading...
+        {isLoadingAllowance ? "Loading..." : "Approving..."}
       </button>
     );
   }

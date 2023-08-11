@@ -45,7 +45,7 @@ const ESADOVesting = () => {
 
   // const [amount, setAmount] = useState(0n);
 
-  const [vestRatio, setVestRatio] = useState(25n);
+  const [vestRatio, setVestRatio] = useState(100n);
 
   const [duration, setDuration] = useState(0n);
 

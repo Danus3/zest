@@ -11,7 +11,7 @@ import Tooltip from "@components/Tooltip.tsx";
 const EsADOOTC = () => {
   const { balance } = useAtomValue(esADOState);
 
-  const [ratio, setRatio] = useState(25n);
+  const [ratio, setRatio] = useState(100n);
 
   const { write, isLoadingWrite } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.esADOOTC,

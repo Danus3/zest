@@ -115,7 +115,7 @@ const TickleNumberCell = ({
   return (
     <span className={"relative inline-flex overflow-hidden"}>
       <span
-        className={"inline-flex absolute flex-col"}
+        className={"inline-flex absolute flex-col left-0 right-0"}
         style={style}
         onTransitionEnd={reset}
       >

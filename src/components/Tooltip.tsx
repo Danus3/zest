@@ -9,7 +9,7 @@ const Tooltip = ({
   text?: string;
   children?: React.ReactNode;
 }) => {
-  if (!text) return <>children</>;
+  if (!text) return <>{children}</>;
   return (
     <RadixTooltip.Root>
       <RadixTooltip.Trigger asChild>

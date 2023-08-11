@@ -51,7 +51,7 @@ const Layout = () => {
               <br />
               <a
                 className={"underline"}
-                href={`${txUrl}/tx/${hash}`}
+                href={`${txUrl}/tx/${hash.hash}`}
                 target={"_blank"}
               >
                 View on Chain Explorer{" "}

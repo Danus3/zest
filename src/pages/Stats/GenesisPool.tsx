@@ -56,13 +56,19 @@ const GenesisPool = () => {
       </div>
       <div className={"flexRow gap-4 mt-4"}>
         <Link to={"/stack"} className={"grow"}>
-          <button className={"emphasis"}>Buy aUSD</button>
+          <button disabled className={"emphasis"}>
+            Buy aUSD
+          </button>
         </Link>
         <Link to={"/buy"} className={"grow"}>
-          <button className={"emphasis"}>Stake aUSD</button>
+          <button disabled className={"emphasis"}>
+            Stake aUSD
+          </button>
         </Link>
         <Link to={"/buy"} className={"grow"}>
-          <button className={"emphasis"}>Buy lstETH</button>
+          <button disabled className={"emphasis"}>
+            Buy lstETH
+          </button>
         </Link>
       </div>
     </div>

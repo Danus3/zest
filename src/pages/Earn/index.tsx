@@ -100,10 +100,12 @@ const EarnBlock: React.FC<EarnBlockProps> = ({
             <Slider maxTime={"3 months"} maxMultiplier={4} />
           ) : null}
         </div>
-        <div className={"flex flex-col gap-2"}>
-          <button className="hollow">Withdraw</button>
+        <div
+          className={"flex flex-row md:flex-col gap-2 justify-between w-full"}
+        >
+          <button className="hollow w-full">Withdraw</button>
           <Tooltip text={stakeTooltip}>
-            <button className="emphasis whitespace-nowrap">
+            <button className="emphasis whitespace-nowrap w-full">
               Stake
               {stakeTooltip && (
                 <InfoCircledIcon className={"inline-block ml-1"} />

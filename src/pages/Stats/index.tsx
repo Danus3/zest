@@ -109,10 +109,14 @@ const Stats = () => {
           <div className="divider"></div>
           <div className={"flexRow gap-4 mt-10"}>
             <Link to={"/stack"} className={"grow"}>
-              <button className={"emphasis"}>Stack ADO</button>
+              <button disabled className={"emphasis"}>
+                Stack ADO
+              </button>
             </Link>
             <Link to={"/buy"} className={"grow"}>
-              <button className={"emphasis"}>Buy ADO</button>
+              <button disabled className={"emphasis"}>
+                Buy ADO
+              </button>
             </Link>
           </div>
         </div>

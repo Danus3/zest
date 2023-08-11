@@ -47,12 +47,15 @@ const Redeem = () => {
 
   return (
     <div>
-      <p>Burn aUSD and lstETH to get stETH.</p>
-      <p>
-        AUSD balance: {formatEtherToNumber(AUSDBalance)}, lstETHBalance:{" "}
-        {formatEtherToNumber(lstETHBalance)}
-      </p>
-      <div className={"my-4"}></div>
+      {/*<p>Burn aUSD and lstETH to get stETH.</p>*/}
+      <div>
+        <p>Balance</p>
+        <div className={"flex flex-row justify-between"}>
+          <span>aUSD: {formatEtherToNumber(AUSDBalance)}</span>
+          <span>lstETH: {formatEtherToNumber(lstETHBalance)}</span>
+        </div>
+      </div>
+      {/*<div className={"my-4"}></div>*/}
       <div className={"flex flex-row justify-between items-center gap-2"}>
         <InputWithMax
           setValue={value => {

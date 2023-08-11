@@ -10,7 +10,6 @@ import { transactionsToastAtom } from "@src/state/ui.ts";
 import { useSetAtom } from "jotai/index";
 
 const useWrappedWriteContract = ({
-  enabled = true,
   args,
   ...rest
 }: UsePrepareContractWriteConfig) => {
@@ -36,7 +35,6 @@ const useWrappedWriteContract = ({
     error: prepareContractError
   } = usePrepareContractWrite({
     args: argsArr,
-    enabled,
     ...rest
   });
   const { data, write } = useContractWrite(config);

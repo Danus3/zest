@@ -37,7 +37,8 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <div className={"text-white text-center"}>404</div>,
+    errorElement: <div className={"text-white text-center"}>Error</div>,
+
     children: [
       {
         path: "",
@@ -67,7 +68,6 @@ const router = createBrowserRouter([
         path: "earn",
         element: (
           <Suspense fallback={routeLoading}>
-            {/*{routeLoading}*/}
             <Earn />
           </Suspense>
         )

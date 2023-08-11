@@ -1,7 +1,7 @@
 import { useAtomValue } from "jotai";
-import { getAllPrices } from "@src/state";
+import { ADOState, esADOState, getAllPrices } from "@src/state";
 import "./index.css";
-import { commas } from "@src/utils/number.tsx";
+import { commas, formatEtherToNumber } from "@src/utils/number.tsx";
 import { Link } from "react-router-dom";
 import GenesisPool from "./GenesisPool.tsx";
 
@@ -19,6 +19,10 @@ const Stats = () => {
   const totalRevenue = commas(98765432);
 
   const insurance = commas(98765432);
+
+  const ADOStats = useAtomValue(ADOState);
+
+  const esADOStates = useAtomValue(esADOState);
 
   return (
     <div className={"page-content"}>
@@ -88,11 +92,11 @@ const Stats = () => {
           </div>
           <div className="item">
             <span>Circulating ADO</span>
-            <span>${totalAUSD}</span>
+            <span>{formatEtherToNumber(ADOStats.totalSupply)}</span>
           </div>
           <div className="item">
             <span>Circulating esADO</span>
-            <span>${totalRevenue}</span>
+            <span>{formatEtherToNumber(esADOStates.totalSupply)}</span>
           </div>
           <div className="item">
             <span>Circulating Market Cap</span>

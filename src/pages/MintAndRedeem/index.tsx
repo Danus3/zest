@@ -19,6 +19,7 @@ import Tabs from "@src/components/Tabs.tsx";
 import Mint from "./Mint.tsx";
 import Redeem from "./Redeem.tsx";
 import Buy from "./Buy.tsx";
+import { LIQ_PRICE } from "@src/constants.ts";
 
 const MintAndRedeem = () => {
   const {
@@ -65,7 +66,7 @@ const MintAndRedeem = () => {
           </div>
           <div className={"stack"}>
             <p>Collateral Ratio</p>
-            <h3>{lstETHLeverageRatio.toFixed(4)}</h3>
+            <h3>{(stETHPrice / LIQ_PRICE).toFixed(4)}</h3>
             <div className="divider"></div>
           </div>
           <div className={"stack"}>

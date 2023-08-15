@@ -50,7 +50,8 @@ const Mint = () => {
   const {
     write: mintUsingEther,
     isLoadingWrite,
-    prepareContractError
+    prepareContractError,
+    isLoading
   } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.adscendoPool,
     abi: AdscendoPoolABI,
@@ -121,10 +122,11 @@ const Mint = () => {
             isLoadingWrite ||
             mintValue === 0n ||
             !!prepareContractError ||
-            !isConnected
+            !isConnected ||
+            isLoading
           }
         >
-          Mint
+          {isLoading ? "Minting..." : "Mint"}
         </button>
       ) : (
         <ApproveCheck

@@ -66,7 +66,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <RadixTooltip.Provider delayDuration={0}>
         <QueryClientProvider client={queryClient}>
           <WagmiConfig config={config}>
-            <ConnectKitProvider>
+            <ConnectKitProvider
+              options={{
+                hideNoWalletCTA: true,
+                overlayBlur: 4
+              }}
+            >
               <App />
             </ConnectKitProvider>
             <ToastPrimitive.Viewport className="[--viewport-padding:_25px] fixed top-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[10px] w-[390px] max-w-[100vw] m-0 list-none z-[2147483647] outline-none" />

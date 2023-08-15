@@ -26,7 +26,7 @@ const WrappedButton: React.FC<{
       <span
         className={twMerge(
           isLoading ? "opacity-0 scale-75" : "opacity-100 scale-100",
-          "transition-opacity transition-all duration-500"
+          "transition-all duration-500 inline-block"
         )}
       >
         {children}

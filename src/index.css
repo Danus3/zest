@@ -33,6 +33,7 @@
         place-items: center;
         min-height: 100vh;
         background: black;
+        -webkit-tap-highlight-color: transparent;
         /*letter-spacing: 1px;*/
     }
 
@@ -78,7 +79,7 @@
     }
 
     a {
-        @apply text-white hover:underline hover:text-white;
+        @apply text-white hover:underline;
     }
 
     ul {

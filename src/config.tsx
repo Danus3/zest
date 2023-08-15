@@ -50,7 +50,7 @@ export const routeConfigs: {
     disabled: isLandingPage
   },
   {
-    path: "esADO",
+    path: "/esADO",
     name: "esADO",
     disabled: isLandingPage
   },

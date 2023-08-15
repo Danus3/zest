@@ -127,7 +127,6 @@ const Mint = () => {
             isLoading
           }
           isLoading={isLoadingWrite || isLoading}
-          // isLoading
         >
           {isLoading ? "Minting..." : "Mint"}
         </WrappedButton>

@@ -3,12 +3,16 @@ import { routeConfigs } from "@src/config";
 import { useState } from "react";
 import classNames from "classnames";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ConnectBtn from "./ConnectBtn.tsx";
 import { twMerge } from "tailwind-merge";
+import { ConnectKitButton } from "connectkit";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { pathname } = useLocation();
+
   return (
     <>
       <div
@@ -22,7 +26,7 @@ const NavBar = () => {
       >
         <div
           className={classNames(
-            "absolute top-6 left-6 md:invisible transition-opacity duration-300",
+            "absolute top-4 left-4 md:invisible transition-opacity duration-300 rounded-full p-2 bg-[rgba(45,45,45,0.9)] transition-opacity",
             isMenuOpen ? "opacity-100" : "opacity-0"
           )}
           onClick={() => {
@@ -31,9 +35,10 @@ const NavBar = () => {
         >
           <Cross1Icon />
         </div>
+
         <div
           className={
-            "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4 m-auto"
+            "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4 mt-8 md:m-auto"
           }
           onClick={e => {
             e.stopPropagation();
@@ -70,9 +75,15 @@ const NavBar = () => {
                   to={routeConfig.path}
                   key={routeConfig.path}
                   onClick={() => {
-                    setIsMenuOpen(false);
+                    setTimeout(() => {
+                      setIsMenuOpen(false);
+                    }, 300);
                   }}
-                  className={"animate-slideIn md:animate-none"}
+                  className={twMerge(
+                    "animate-slideIn md:animate-none underline-offset-1 transition-all",
+                    pathname === routeConfig.path &&
+                      "text-amber-400 underline underline-offset-4"
+                  )}
                 >
                   {routeConfig.name}
                 </Link>
@@ -84,7 +95,7 @@ const NavBar = () => {
       </div>
       <div
         className={classNames(
-          "fixed md:invisible z-20 left-4 top-4 p-2 rounded-full backdrop-blur-sm",
+          "fixed md:invisible z-20 left-4 top-4 p-2 rounded-full bg-[rgba(45,45,45,0.9)]",
           {
             invisible: isMenuOpen
           },
@@ -97,6 +108,25 @@ const NavBar = () => {
             setIsMenuOpen(true);
           }}
         />
+      </div>
+      <div
+        className={classNames(
+          "fixed top-4 right-4 md:hidden inline-block z-20",
+          isMenuOpen ? "opacity-0" : "opacity-100"
+        )}
+      >
+        <ConnectKitButton.Custom>
+          {({ isConnected, show, truncatedAddress }) => {
+            return (
+              <button
+                onClick={show}
+                className={"p-2 rounded-xl bg-[rgba(45,45,45,0.9)]"}
+              >
+                {isConnected ? truncatedAddress : "Connect Wallet"}
+              </button>
+            );
+          }}
+        </ConnectKitButton.Custom>
       </div>
     </>
   );

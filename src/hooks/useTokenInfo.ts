@@ -14,9 +14,11 @@ import esADOABI from "@src/utils/ABIs/esADOABI.ts";
 import aUSDABI from "@utils/ABIs/aUSDABI.ts";
 import lstETHABI from "@utils/ABIs/lstETHABI.ts";
 import { AdscendoPoolABI } from "@utils/ABIs/AdscendoPoolABI.ts";
+import useTabFocused from "@hooks/utils/useTabFocused.ts";
 
 const useTokenInfo = () => {
   const setADO = useSetAtom(ADOState);
+  const focused = useTabFocused();
 
   const setESAdO = useSetAtom(esADOState);
 
@@ -54,7 +56,7 @@ const useTokenInfo = () => {
         functionName: "stakedAmount"
       }
     ],
-    watch: true
+    watch: focused
   });
 
   useEffect(() => {

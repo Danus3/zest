@@ -3,6 +3,7 @@ import { Address, useAccount, useContractRead } from "wagmi";
 import { Abi } from "viem";
 import { twMerge } from "tailwind-merge";
 import useWrappedWriteContract from "@hooks/useWrappedWriteContract.ts";
+import useTabFocused from "@hooks/utils/useTabFocused.ts";
 
 const ApproveCheck: React.FC<{
   spender: Address;
@@ -22,6 +23,8 @@ const ApproveCheck: React.FC<{
   tokenName
 }) => {
   const { address } = useAccount();
+  const focused = useTabFocused();
+
   const {
     data: allowanceData,
     isLoading: isLoadingAllowance
@@ -31,7 +34,7 @@ const ApproveCheck: React.FC<{
     functionName: "allowance",
     args: [address, spender],
     enabled: !!address,
-    watch: true
+    watch: focused
   });
 
   const currentAllowance = allowanceData ?? 0n;

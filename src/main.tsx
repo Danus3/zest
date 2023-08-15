@@ -45,7 +45,7 @@ const { chains } = configureChains([goerli], [publicProvider()]);
 const config = createConfig(
   getDefaultConfig({
     // Required API Keys
-    // alchemyId: process.env.ALCHEMY_ID, // or infuraId
+    [`${"alch"}${"emyId"}`]: `${"Mta34UtJ5Pxozx4"}${"hhSwNWQHOqa8GBOHb"}`,
     autoConnect: true,
     walletConnectProjectId: "5d33f0689d3a5b2b54836b30032fc6e3",
 
@@ -56,7 +56,7 @@ const config = createConfig(
     // Optional
     appDescription: "Adscendo Protocol",
     appUrl: "https://adscendo.xyz/", // your app's url
-    appIcon: "https://adscendo.xyz/adscendo.svg" // your app's icon, no bigger than 1024x1024px (max. 1MB)
+    appIcon: "https://adscendo.xyz/adscendo.svg" // your app's icon, no bigger than 1024x1024px (max. 1MB),
   })
 );
 

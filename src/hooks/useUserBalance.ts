@@ -7,6 +7,7 @@ import aUSDABI from "@utils/ABIs/aUSDABI.ts";
 import lstETHABI from "@utils/ABIs/lstETHABI.ts";
 import ADOABI from "@utils/ABIs/ADOABI.ts";
 import esADOABI from "@utils/ABIs/esADOABI.ts";
+import useTabFocused from "@hooks/utils/useTabFocused.ts";
 
 const useUserBalance = () => {
   const setADO = useSetAtom(ADOState);
@@ -18,6 +19,8 @@ const useUserBalance = () => {
   const setLstETH = useSetAtom(lstETHState);
 
   const { address } = useAccount();
+
+  const focused = useTabFocused();
 
   const { data: accountInfoData } = useContractReads({
     contracts: [
@@ -46,7 +49,7 @@ const useUserBalance = () => {
         args: [address as Address]
       }
     ],
-    watch: true,
+    watch: focused,
     enabled: !!address
   });
 

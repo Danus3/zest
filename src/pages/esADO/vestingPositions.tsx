@@ -4,6 +4,7 @@ import esADOABI from "@src/utils/ABIs/esADOABI.ts";
 import { formatEtherToNumber } from "@src/utils/number.tsx";
 import { prettyDate } from "@src/utils/time.ts";
 import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
+import useTabFocused from "@hooks/utils/useTabFocused.ts";
 
 const VestingPositionBlock: React.FC<{
   index: number;
@@ -92,13 +93,15 @@ const VestingPositionBlock: React.FC<{
 
 const VestingPositions = () => {
   const { address } = useAccount();
+
+  const focused = useTabFocused();
   const { data, isLoading } = useContractRead({
     address: CONTRACT_ADDRESSES.esADO,
     abi: esADOABI,
     functionName: "getUserRedeemsLength",
     args: address ? [address] : ["0x1"],
     enabled: !!address,
-    watch: true,
+    watch: focused,
     cacheOnBlock: false
   });
 

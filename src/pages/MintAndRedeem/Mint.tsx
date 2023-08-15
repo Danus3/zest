@@ -9,6 +9,7 @@ import { useAccount, useContractRead } from "wagmi";
 import ApproveCheck from "@components/ApproveCheck.tsx";
 import lstETHABI from "@utils/ABIs/lstETHABI.ts";
 import TickleNumber from "@components/TickleNumber.tsx";
+import WrappedButton from "@components/WrappedButton.tsx";
 
 const MintStETH: React.FC<{
   mintValue: bigint;
@@ -113,12 +114,12 @@ const Mint = () => {
       </div>
       <div className={"my-8"}></div>
       {mintAsset === "ETH" ? (
-        <button
-          className={"w-full emphasis"}
+        <WrappedButton
+          className={"w-full"}
           onClick={() => {
             mintUsingEther?.();
           }}
-          disabled={
+          isLoading={
             isLoadingWrite ||
             mintValue === 0n ||
             !!prepareContractError ||
@@ -127,7 +128,7 @@ const Mint = () => {
           }
         >
           {isLoading ? "Minting..." : "Mint"}
-        </button>
+        </WrappedButton>
       ) : (
         <ApproveCheck
           spender={CONTRACT_ADDRESSES.adscendoPool}

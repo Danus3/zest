@@ -27,15 +27,15 @@ const MintStETH: React.FC<{
   });
 
   return (
-    <button
+    <WrappedButton
       className={"w-full emphasis"}
       onClick={() => {
         mintUsingEther?.();
       }}
-      disabled={isLoadingWrite || isLoading}
+      isLoading={isLoadingWrite || isLoading}
     >
       Mint
-    </button>
+    </WrappedButton>
   );
 };
 
@@ -57,7 +57,7 @@ const Mint = () => {
     address: CONTRACT_ADDRESSES.adscendoPool,
     abi: AdscendoPoolABI,
     enabled: mintValue > 0n && mintAsset === "ETH",
-    functionName: "mintWithEth",
+    functionName: "mintWithETH",
     args: [MINT_REF_ADDR],
     value: mintValue
   });
@@ -119,13 +119,15 @@ const Mint = () => {
           onClick={() => {
             mintUsingEther?.();
           }}
-          isLoading={
+          disabled={
             isLoadingWrite ||
             mintValue === 0n ||
             !!prepareContractError ||
             !isConnected ||
             isLoading
           }
+          isLoading={isLoadingWrite || isLoading}
+          // isLoading
         >
           {isLoading ? "Minting..." : "Mint"}
         </WrappedButton>

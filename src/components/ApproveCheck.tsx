@@ -4,6 +4,7 @@ import { Abi } from "viem";
 import { twMerge } from "tailwind-merge";
 import useWrappedWriteContract from "@hooks/useWrappedWriteContract.ts";
 import useTabFocused from "@hooks/utils/useTabFocused.ts";
+import WrappedButton from "@components/WrappedButton.tsx";
 
 const ApproveCheck: React.FC<{
   spender: Address;
@@ -50,24 +51,25 @@ const ApproveCheck: React.FC<{
     enabled: needsIncreaseAllowance && !!address && spendingAmount > 0n
   });
 
-  if (isLoadingAllowance || isLoading) {
-    return (
-      <button className={twMerge("emphasis", className)} disabled>
-        {isLoadingAllowance ? "Loading..." : "Approving..."}
-      </button>
-    );
-  }
+  // if (isLoadingAllowance || isLoading) {
+  //   return (
+  //     <WrappedButton className={twMerge("emphasis", className)} isLoading>
+  //       {isLoadingAllowance ? "Loading..." : "Approving..."}
+  //     </WrappedButton>
+  //   );
+  // }
   if (needsIncreaseAllowance) {
     return (
-      <button
+      <WrappedButton
         className={twMerge("emphasis", className)}
-        disabled={isLoadingWrite || spendingAmount === 0n}
+        disabled={spendingAmount === 0n}
+        isLoading={isLoadingAllowance || isLoading || isLoadingWrite}
         onClick={() => {
           write?.();
         }}
       >
         Approve{tokenName ? ` ${tokenName}` : ""}
-      </button>
+      </WrappedButton>
     );
   }
   if (currentAllowance >= spendingAmount) {

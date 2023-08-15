@@ -11,6 +11,7 @@ import { formatSecondToDHMS } from "@src/utils/time.ts";
 import TickleNumber from "@src/components/TickleNumber.tsx";
 import Tooltip from "@components/Tooltip.tsx";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
+import WrappedButton from "@components/WrappedButton.tsx";
 
 const esADOParams = {
   abi: esADOABI,
@@ -110,7 +111,7 @@ const ESADOVesting = () => {
           />
         </div>
         <div className={"self-stretch flex flex-col gap-2"}>
-          <button
+          <WrappedButton
             className={"emphasis h-16"}
             disabled={amount === 0n || duration === 0n || isLoadingWrite}
             onClick={() => {
@@ -118,7 +119,7 @@ const ESADOVesting = () => {
             }}
           >
             Vest
-          </button>
+          </WrappedButton>
           <div>
             <Tooltip text={"% of your balance"}>
               <button

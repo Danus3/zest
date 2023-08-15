@@ -18,12 +18,17 @@ export default {
         swipeOut: {
           from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
           to: { transform: "translateX(calc(100% + var(--viewport-padding)))" }
+        },
+        rotate: {
+          from: { rotate: "0deg" },
+          to: { rotate: "360deg" }
         }
       },
       animation: {
         hide: "hide 100ms ease-in",
         slideIn: "slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1)",
-        swipeOut: "swipeOut 100ms ease-out"
+        swipeOut: "swipeOut 100ms ease-out",
+        rotate: "rotate 1s linear infinite"
       }
     }
   },

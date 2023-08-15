@@ -12,12 +12,14 @@ import lstETHABI from "@utils/ABIs/lstETHABI.ts";
 import useWrappedWriteContract from "@hooks/useWrappedWriteContract.ts";
 import { AdscendoPoolABI } from "@utils/ABIs/AdscendoPoolABI.ts";
 import TickleNumber from "@components/TickleNumber.tsx";
+import WrappedButton from "@components/WrappedButton.tsx";
 
 const RedeemButton: React.FC<{
   disabled: boolean;
   lstETHAmount: bigint;
-}> = ({ disabled, lstETHAmount }) => {
-  const { write } = useWrappedWriteContract({
+  onRedeem: () => void;
+}> = ({ disabled, lstETHAmount, onRedeem }) => {
+  const { write, isLoading } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.adscendoPool,
     abi: AdscendoPoolABI,
     enabled: !disabled,
@@ -26,15 +28,19 @@ const RedeemButton: React.FC<{
   });
 
   return (
-    <button
+    <WrappedButton
       className={"bg-amber-400 text-black w-full emphasis"}
+      isLoading={isLoading}
       disabled={disabled}
       onClick={() => {
-        write?.();
+        if (write) {
+          write();
+          onRedeem();
+        }
       }}
     >
       Redeem
-    </button>
+    </WrappedButton>
   );
 };
 
@@ -115,6 +121,10 @@ const Redeem = () => {
               lstETHAmount > lstETHBalance
             }
             lstETHAmount={lstETHAmount}
+            onRedeem={() => {
+              setAUSDAmount(0n);
+              setLstETHAmount(0n);
+            }}
           />
         </ApproveCheck>
       </ApproveCheck>

@@ -61,6 +61,11 @@ export const AdscendoPoolABI = [
     type: "constructor"
   },
   {
+    inputs: [],
+    name: "ReentrancyGuardReentrantCall",
+    type: "error"
+  },
+  {
     anonymous: false,
     inputs: [
       {
@@ -183,6 +188,25 @@ export const AdscendoPoolABI = [
     type: "function"
   },
   {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "ausdAmount",
+        type: "uint256"
+      }
+    ],
+    name: "emergencyRedeemNoFee",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
     inputs: [],
     name: "factory",
     outputs: [
@@ -203,6 +227,25 @@ export const AdscendoPoolABI = [
         internalType: "address",
         name: "",
         type: "address"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address"
+      }
+    ],
+    name: "isFeeWhitelist",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool"
       }
     ],
     stateMutability: "view",
@@ -302,13 +345,45 @@ export const AdscendoPoolABI = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "stAmount",
+        type: "uint256"
+      }
+    ],
+    name: "mintNoFee",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "_ref",
         type: "address"
       }
     ],
-    name: "mintWithEth",
+    name: "mintWithETH",
     outputs: [],
+    stateMutability: "payable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_ref",
+        type: "address"
+      }
+    ],
+    name: "mintWithETHNoFee",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
     stateMutability: "payable",
     type: "function"
   },
@@ -352,6 +427,19 @@ export const AdscendoPoolABI = [
     type: "function"
   },
   {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "stAmount",
+        type: "uint256"
+      }
+    ],
+    name: "redeemNoFee",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
     inputs: [],
     name: "safePrice",
     outputs: [
@@ -386,6 +474,24 @@ export const AdscendoPoolABI = [
       }
     ],
     name: "setRedeemFee",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address"
+      },
+      {
+        internalType: "bool",
+        name: "value",
+        type: "bool"
+      }
+    ],
+    name: "setStakingPool",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function"

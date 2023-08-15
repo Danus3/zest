@@ -5,7 +5,7 @@ import DepositInput, { MintAsset } from "@src/components/DepositInput.tsx";
 import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
 import { CONTRACT_ADDRESSES, LIQ_PRICE, MINT_REF_ADDR } from "@src/constants";
 import { AdscendoPoolABI } from "@utils/ABIs/AdscendoPoolABI.ts";
-import { useContractRead } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 import ApproveCheck from "@components/ApproveCheck.tsx";
 import lstETHABI from "@utils/ABIs/lstETHABI.ts";
 import TickleNumber from "@components/TickleNumber.tsx";
@@ -40,6 +40,8 @@ const MintStETH: React.FC<{
 
 const Mint = () => {
   const [mintValue, setMintValue] = useState(0n);
+
+  const { isConnected } = useAccount();
 
   const [mintAsset, setMintAsset] = useState<MintAsset>("ETH");
 
@@ -116,7 +118,10 @@ const Mint = () => {
             mintUsingEther?.();
           }}
           disabled={
-            isLoadingWrite || mintValue === 0n || !!prepareContractError
+            isLoadingWrite ||
+            mintValue === 0n ||
+            !!prepareContractError ||
+            !isConnected
           }
         >
           Mint

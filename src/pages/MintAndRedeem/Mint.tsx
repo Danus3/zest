@@ -54,7 +54,7 @@ const Mint = () => {
   } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.adscendoPool,
     abi: AdscendoPoolABI,
-    enabled: mintValue > 0n,
+    enabled: mintValue > 0n && mintAsset === "ETH",
     functionName: "mintWithEth",
     args: [MINT_REF_ADDR],
     value: mintValue

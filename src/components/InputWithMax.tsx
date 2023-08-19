@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 const InputWithMax = ({
   setValue,
   maxValue,
-  value
+  value,
+  placeholder
 }: {
   setValue: (value: string) => void;
   maxValue: string;
   value?: string;
+  placeholder?: string;
 }) => {
   const [internalValue, setInternalValue] = useState("");
 
@@ -33,7 +35,7 @@ const InputWithMax = ({
         }}
         min={"0"}
         value={internalValue}
-        placeholder={"Please input amount"}
+        placeholder={placeholder || "Please input amount"}
         step={"any"}
       />
       <div

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { formatEther } from "viem";
 import { useAtomValue } from "jotai";
 import { getSTETHPoolStats } from "@src/state";
-import DepositInput from "@src/components/DepositInput.tsx";
+import DepositETHorStETHInput from "@components/DepositETHorStETHInput.tsx";
 
 const Buy = () => {
   const [buyValue, setBuyValue] = useState(0n);
@@ -11,7 +11,7 @@ const Buy = () => {
 
   return (
     <div>
-      <DepositInput value={buyValue} setValue={setBuyValue} />
+      <DepositETHorStETHInput value={buyValue} setValue={setBuyValue} />
       <div className={"my-8"}></div>
       <p>lstETH Amount</p>
       <div className={"my-2"}></div>

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { formatEtherToFixed } from "@src/utils/number.tsx";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
-import DepositInput, { MintAsset } from "@src/components/DepositInput.tsx";
+import DepositETHorStETHInput, {
+  MintAsset
+} from "@components/DepositETHorStETHInput.tsx";
 import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
 import { CONTRACT_ADDRESSES, LIQ_PRICE, MINT_REF_ADDR } from "@src/constants";
 import { AdscendoPoolABI } from "@utils/ABIs/AdscendoPoolABI.ts";
@@ -70,7 +72,7 @@ const Mint = () => {
 
   return (
     <div>
-      <DepositInput
+      <DepositETHorStETHInput
         value={mintValue}
         setValue={setMintValue}
         setMintAsset={setMintAsset}

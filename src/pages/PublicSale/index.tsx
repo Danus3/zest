@@ -31,11 +31,13 @@ const PublicSale = () => {
     enabled: isConnected
   });
 
+  const writeEnabled = !!sign && isConnected && mintValue > 0n;
+
   const { write, isLoading, isLoadingWrite } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.publicSale,
     abi: publicSaleABI,
     functionName: "buy",
-    enabled: !!sign && isConnected && mintValue > 0n,
+    enabled: writeEnabled,
     value: mintValue,
     args: ["0x0000000000000000000000000000000000000000", mintValue, 0, sign]
   });
@@ -115,6 +117,7 @@ const PublicSale = () => {
           onClick={write}
           isLoading={isLoadingWrite || isLoading}
           className={"mt-4 w-full"}
+          disabled={!writeEnabled}
         >
           Mint
         </WrappedButton>

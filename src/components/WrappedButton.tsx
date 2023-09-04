@@ -18,7 +18,7 @@ const WrappedButton: React.FC<{
       <img
         src={logoRect}
         className={twMerge(
-          "h-[80%] top-[10%] inline-block absolute opacity-0 transition-all duration-500 scale-150 animate-rotate mr-auto ml-auto left-0 right-0",
+          "h-[60%] top-[20%] inline-block absolute opacity-0 transition-all duration-500 scale-125 animate-rotate mr-auto ml-auto left-0 right-0",
           isLoading && "opacity-100 scale-100"
         )}
         alt={""}

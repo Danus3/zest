@@ -15,6 +15,7 @@ const MintAndRedeem = lazy(() => import("@pages/MintAndRedeem"));
 const Earn = lazy(() => import("@pages/Earn"));
 const Stats = lazy(() => import("@pages/Stats"));
 const EsADO = lazy(() => import("@pages/esADO"));
+const PublicSale = lazy(() => import("@pages/PublicSale"));
 
 // const Homepage = lazy(() => import("./pages/Homepage"));
 
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={routeLoading}>
             <EsADO />
+          </Suspense>
+        )
+      },
+      {
+        path: "public-sale",
+        element: (
+          <Suspense fallback={routeLoading}>
+            <PublicSale />
           </Suspense>
         )
       }

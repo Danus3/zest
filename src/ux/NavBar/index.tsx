@@ -38,7 +38,7 @@ const NavBar = () => {
 
         <div
           className={
-            "w-3/4 flex flex-col md:flex-row justify-start md:justify-between gap-4 mt-8 md:m-auto"
+            "flex flex-col md:flex-row justify-start md:justify-center gap-4 mt-8 md:m-auto"
           }
           onClick={e => {
             e.stopPropagation();
@@ -58,13 +58,19 @@ const NavBar = () => {
               if (routeConfig.disabled) {
                 return null;
               }
+              const match =
+                pathname === routeConfig.path &&
+                "text-amber-400 underline underline-offset-4";
               if (routeConfig.external) {
                 return (
                   <a
                     href={routeConfig.path}
                     key={routeConfig.path}
-                    target={"_blank"}
-                    className={twMerge("animate-slideIn md:animate-none")}
+                    target={routeConfig.newPage === false ? "_self" : "_blank"}
+                    className={twMerge(
+                      "animate-slideIn md:animate-none",
+                      match
+                    )}
                   >
                     {routeConfig.icon || routeConfig.name}
                   </a>
@@ -81,8 +87,7 @@ const NavBar = () => {
                   }}
                   className={twMerge(
                     "animate-slideIn md:animate-none underline-offset-1 transition-all",
-                    pathname === routeConfig.path &&
-                      "text-amber-400 underline underline-offset-4"
+                    match
                   )}
                 >
                   {routeConfig.name}

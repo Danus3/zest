@@ -32,7 +32,7 @@ const DepositETHorStETHInput: React.FC<{
   return (
     <>
       <p className={"flex flex-row justify-between"}>
-        <span>
+        <span className={setMintAsset ? undefined : "hidden"}>
           Deposit&nbsp;
           <span
             className={classNames("cursor-pointer", {

@@ -7,7 +7,6 @@ import publicSaleABI from "@utils/ABIs/publicSaleABI.ts";
 import DepositETHorStETHInput from "@components/DepositETHorStETHInput.tsx";
 import { useMemo, useState } from "react";
 import WrappedButton from "@components/WrappedButton.tsx";
-import { formatEtherToNumber } from "@utils/number.tsx";
 import { prettyDate } from "@utils/time.ts";
 
 const PublicSale = () => {
@@ -81,7 +80,7 @@ const PublicSale = () => {
 
   return (
     <div className={"page-content flex flex-col gap-4"}>
-      <h1>Token Sale</h1>
+      <h1>Token Sale - Round 1</h1>
       <div className={"card grow"}>
         <div
           className={
@@ -90,11 +89,7 @@ const PublicSale = () => {
         >
           <div className={"flexRow justify-between items-center"}>
             <p>Sale Cap</p>
-            <h3>
-              {saleDataFormatted
-                ? formatEtherToNumber(saleDataFormatted.saleCap)
-                : "Loading..."}
-            </h3>
+            <h3>30ETH</h3>
           </div>
           <div className={"flexRow justify-between items-center"}>
             <p>Private Sale</p>
@@ -134,12 +129,12 @@ const PublicSale = () => {
           onClick={write}
           isLoading={isLoadingWrite || isLoading}
           className={"mt-4 w-full"}
-          disabled={!writeEnabled && !!write}
+          disabled={!writeEnabled || !write}
         >
           {(isPublicSalePhrase
           ? true
           : sign)
-            ? "Mint"
+            ? "Invest"
             : "You are not whitelisted"}
         </WrappedButton>
       </div>

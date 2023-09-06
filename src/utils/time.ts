@@ -21,7 +21,7 @@ export const formatSecondToDHMS = (second: number) => {
 };
 
 export const prettyDate = (date: number | Date | undefined) => {
-  return new Intl.DateTimeFormat(navigator.language, {
+  return new Intl.DateTimeFormat("en", {
     dateStyle: "full",
     timeStyle: "short"
   }).format(date);

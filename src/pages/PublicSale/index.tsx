@@ -15,42 +15,15 @@ const PublicSale = () => {
 
   const [mintValue, setMintValue] = useState(0n);
 
-  const { data: sign } = useQuery({
-    queryKey: ["public-sale", "sign", address],
-    queryFn: async () => {
-      return axios
-        .get("https://adscendo.pro/whitelist/", {
-          params: {
-            msg_sender: address
-          }
-        })
-        .then(response => {
-          return response.data;
-        });
-    },
-    enabled: isConnected
-  });
-
-  const writeEnabled = !!sign && isConnected && mintValue > 0n;
-
-  const { write, isLoading, isLoadingWrite } = useWrappedWriteContract({
-    address: CONTRACT_ADDRESSES.publicSale,
-    abi: publicSaleABI,
-    functionName: "buy",
-    enabled: writeEnabled,
-    value: mintValue,
-    args: ["0x0000000000000000000000000000000000000000", mintValue, 0, sign]
-  });
-
   const { data: saleData } = useContractReads({
     contracts: [
       {
-        address: CONTRACT_ADDRESSES.publicSale,
+        address: CONTRACT_ADDRESSES.tokenSale,
         abi: publicSaleABI,
         functionName: "saleTimeData"
       },
       {
-        address: CONTRACT_ADDRESSES.publicSale,
+        address: CONTRACT_ADDRESSES.tokenSale,
         abi: publicSaleABI,
         functionName: "whitelistSaleCap"
       }
@@ -67,9 +40,48 @@ const PublicSale = () => {
     };
   }, [saleData]);
 
+  const isPublicSalePhrase = saleDataFormatted
+    ? new Date().getTime() > Number(saleDataFormatted.salePublic) * 1000
+    : false;
+
+  const { data: sign } = useQuery({
+    queryKey: ["public-sale", "sign", address],
+    queryFn: async () => {
+      return axios
+        .get("https://adscendo.pro/whitelist/", {
+          params: {
+            msg_sender: address
+          }
+        })
+        .then(response => {
+          return response.data;
+        });
+    },
+    enabled: isConnected && !isPublicSalePhrase,
+    refetchOnWindowFocus: false,
+    cacheTime: Infinity
+  });
+
+  const writeEnabled =
+    (isPublicSalePhrase ? true : !!sign) && isConnected && mintValue > 0n;
+
+  const { write, isLoading, isLoadingWrite } = useWrappedWriteContract({
+    address: CONTRACT_ADDRESSES.tokenSale,
+    abi: publicSaleABI,
+    functionName: "buy",
+    enabled: writeEnabled,
+    value: mintValue,
+    args: [
+      "0x0000000000000000000000000000000000000000",
+      mintValue,
+      0,
+      isPublicSalePhrase ? "" : sign
+    ]
+  });
+
   return (
     <div className={"page-content flex flex-col gap-4"}>
-      <h1>Public Sale</h1>
+      <h1>Token Sale</h1>
       <div className={"card grow"}>
         <div
           className={
@@ -105,7 +117,12 @@ const PublicSale = () => {
             <p>
               {" "}
               {saleDataFormatted
-                ? prettyDate(Number(saleDataFormatted.saleDuration) * 1000)
+                ? prettyDate(
+                    Number(
+                      saleDataFormatted.salePublic +
+                        saleDataFormatted.saleDuration
+                    ) * 1000
+                  )
                 : "Loading..."}
             </p>
           </div>
@@ -117,9 +134,13 @@ const PublicSale = () => {
           onClick={write}
           isLoading={isLoadingWrite || isLoading}
           className={"mt-4 w-full"}
-          disabled={!writeEnabled}
+          disabled={!writeEnabled && !!write}
         >
-          Mint
+          {(isPublicSalePhrase
+          ? true
+          : sign)
+            ? "Mint"
+            : "You are not whitelisted"}
         </WrappedButton>
       </div>
     </div>

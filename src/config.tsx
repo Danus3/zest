@@ -2,7 +2,7 @@ import React from "react";
 
 const URLParams = new URL(window.location.href);
 
-const { hostname, searchParams } = URLParams;
+const { hostname, searchParams, pathname } = URLParams;
 
 export const appURL = "https://app.adscendo.xyz";
 
@@ -29,9 +29,7 @@ export const DocsURL = "https://docs.adscendo.xyz/";
 
 export const TwitterURL = "https://twitter.com/Adscendo_fi";
 
-export const isPublicSalePage = window.location.pathname.startsWith(
-  "/public-sale"
-);
+export const isPublicSalePage = pathname.startsWith("/public-sale");
 
 export const routeConfigs: {
   path: string;
@@ -71,7 +69,7 @@ export const routeConfigs: {
   },
   {
     path: "/public-sale",
-    name: "Public Sale",
+    name: "Token Sale",
     disabled: isLandingPage,
     external: true,
     newPage: false

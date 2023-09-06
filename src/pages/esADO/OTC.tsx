@@ -2,7 +2,7 @@ import { useAtomValue } from "jotai";
 import { esADOState } from "@src/state";
 import { formatEtherToFixed } from "@src/utils/number.tsx";
 import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
-import { CONTRACT_ADDRESSES, OTC_RATE } from "@src/constants.ts";
+import { CONTRACT_ADDRESSES, ESADO_OTC_RATE } from "@src/constants.ts";
 import esADOSwapABI from "@src/utils/ABIs/esADOSwapABI.ts";
 import { useState } from "react";
 import { ArrowRightIcon, InfoCircledIcon } from "@radix-ui/react-icons";
@@ -34,7 +34,7 @@ const EsADOOTC = () => {
         <div className={"text-xl"}>
           <p className={"flex gap-4"}>
             <span>OTC esADO rate</span>
-            <span>{OTC_RATE * 100}%</span>
+            <span>{ESADO_OTC_RATE * 100}%</span>
           </p>
 
           <p className={"flex gap-4"}>

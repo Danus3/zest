@@ -8,6 +8,7 @@ import DepositETHorStETHInput from "@components/DepositETHorStETHInput.tsx";
 import { useMemo, useState } from "react";
 import WrappedButton from "@components/WrappedButton.tsx";
 import { prettyDate } from "@utils/time.ts";
+import { formatEtherToFixed, formatEtherToNumber } from "@utils/number.tsx";
 
 const PublicSale = () => {
   const { isConnected, address } = useAccount();
@@ -16,6 +17,11 @@ const PublicSale = () => {
 
   const { data: saleData } = useContractReads({
     contracts: [
+      // {
+      //   address: CONTRACT_ADDRESSES.tokenSale,
+      //   abi: publicSaleABI,
+      //   functionName: "saleTimeData"
+      // },
       {
         address: CONTRACT_ADDRESSES.tokenSale,
         abi: publicSaleABI,
@@ -24,19 +30,51 @@ const PublicSale = () => {
       {
         address: CONTRACT_ADDRESSES.tokenSale,
         abi: publicSaleABI,
-        functionName: "whitelistSaleCap"
+        functionName: "cap"
+      },
+      {
+        address: CONTRACT_ADDRESSES.tokenSale,
+        abi: publicSaleABI,
+        functionName: "getPrice"
+      },
+      {
+        address: CONTRACT_ADDRESSES.tokenSale,
+        abi: publicSaleABI,
+        functionName: "totalSold"
       }
-    ]
+    ].concat(
+      address
+        ? [
+            {
+              address: CONTRACT_ADDRESSES.tokenSale,
+              abi: publicSaleABI,
+              functionName: "shares",
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              args: [address]
+            }
+          ]
+        : []
+    )
   });
 
   const saleDataFormatted = useMemo(() => {
+    console.log(saleData);
     if (!saleData) return null;
+    if (saleData.some(d => d.status === "failure")) return null;
     return {
-      saleCap: saleData[1].result as bigint,
-      saleWhitelist: (saleData as any)[0].result[0] as bigint,
-      salePublic: (saleData as any)[0].result[1] as bigint,
-      saleDuration: (saleData as any)[0].result[2] as bigint
-    };
+      saleWhitelist: new Date(
+        Number((saleData as any)[0].result[0] as bigint) * 1000
+      ),
+      salePublic: new Date(
+        Number((saleData as any)[0].result[1] as bigint) * 1000
+      ),
+      saleDuration: Number((saleData as any)[0].result[2] as bigint),
+      cap: (saleData as any)[1]["result"] as bigint,
+      tokenPrice: (saleData as any)[2]["result"] as bigint,
+      totalSold: (saleData as any)[3]["result"] as bigint,
+      shares: (saleData as any)[4] ? (saleData as any)[4]["result"] : null
+    } as const;
   }, [saleData]);
 
   const isPublicSalePhrase = saleDataFormatted
@@ -78,49 +116,86 @@ const PublicSale = () => {
     ]
   });
 
+  if (!saleDataFormatted) {
+    return (
+      <div className={"page-content flex flex-col gap-4"}>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
+  const saleEnd = new Date(
+    saleDataFormatted.salePublic.getTime() + saleDataFormatted.saleDuration
+  );
+
+  const inSale =
+    new Date().getTime() >= saleDataFormatted.saleWhitelist.getTime() &&
+    new Date().getTime() <= saleEnd.getTime();
+
+  const inWaiting =
+    new Date().getTime() < saleDataFormatted.saleWhitelist.getTime();
+
   return (
     <div className={"page-content flex flex-col gap-4"}>
-      <h1>Token Sale - Round 1</h1>
+      <h1>Token Offering - Round 1</h1>
       <div className={"card grow"}>
-        <div
-          className={
-            "grid md:grid-cols-2 md:grid-rows-2 grid-cols-1 grid-rows-4 gap-x-8 gap-y-4"
-          }
-        >
+        <div className={"flex flex-col gap-6"}>
           <div className={"flexRow justify-between items-center"}>
             <p>Sale Cap</p>
-            <h3>30ETH</h3>
+            <h3>
+              {(
+                formatEtherToNumber(saleDataFormatted.totalSold) *
+                formatEtherToNumber(saleDataFormatted.tokenPrice)
+              ).toFixed(4)}
+              /
+              {(
+                formatEtherToNumber(saleDataFormatted.cap) *
+                formatEtherToNumber(saleDataFormatted.tokenPrice)
+              ).toFixed(0)}
+              &nbsp; ETH
+            </h3>
           </div>
           <div className={"flexRow justify-between items-center"}>
-            <p>Private Sale</p>
-            <p>
-              {saleDataFormatted
-                ? prettyDate(Number(saleDataFormatted.saleWhitelist) * 1000)
-                : "Loading..."}
-            </p>
+            <p>Price</p>
+            <h3>
+              {formatEtherToNumber(saleDataFormatted.tokenPrice)}
+              ETH per ADO
+            </h3>
           </div>
           <div className={"flexRow justify-between items-center"}>
-            <p>Public Sale</p>
-            <p>
-              {saleDataFormatted
-                ? prettyDate(Number(saleDataFormatted.salePublic) * 1000)
-                : "Loading..."}
-            </p>
+            <p className={"whitespace-nowrap"}>Start Sale</p>
+            <h3>{prettyDate(saleDataFormatted.saleWhitelist)}</h3>
           </div>
           <div className={"flexRow justify-between items-center"}>
-            <p>End of Sale</p>
-            <p>
-              {" "}
-              {saleDataFormatted
-                ? prettyDate(
-                    Number(
-                      saleDataFormatted.salePublic +
-                        saleDataFormatted.saleDuration
-                    ) * 1000
-                  )
-                : "Loading..."}
-            </p>
+            <p>Round Status</p>
+            <h3
+              className={
+                inWaiting
+                  ? "text-yellow-500"
+                  : inSale
+                  ? "text-green-500"
+                  : "text-red-500"
+              }
+            >
+              {inWaiting ? "Not opened" : inSale ? "Open" : "Closed"}
+            </h3>
           </div>
+          {inSale && (
+            <div className={"flexRow justify-between items-center"}>
+              <p>Target</p>
+              <h3>
+                {new Date().getTime() < saleDataFormatted.salePublic.getTime()
+                  ? "Whitelist"
+                  : "Public"}
+              </h3>
+            </div>
+          )}
+          {saleDataFormatted.shares && (
+            <div className={"flexRow justify-between items-center"}>
+              <p>My Share</p>
+              <h3>{formatEtherToFixed(saleDataFormatted.shares, 0)} ADO</h3>
+            </div>
+          )}
         </div>
       </div>
       <div className={"grow"}>
@@ -129,7 +204,7 @@ const PublicSale = () => {
           onClick={write}
           isLoading={isLoadingWrite || isLoading}
           className={"mt-4 w-full"}
-          disabled={!writeEnabled || !write}
+          disabled={!writeEnabled || !write || !inSale}
         >
           {(isPublicSalePhrase
           ? true

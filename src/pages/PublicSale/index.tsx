@@ -190,12 +190,11 @@ const PublicSale = () => {
               </h3>
             </div>
           )}
-          {saleDataFormatted.shares && (
-            <div className={"flexRow justify-between items-center"}>
-              <p>My Share</p>
-              <h3>{formatEtherToFixed(saleDataFormatted.shares, 0)} ADO</h3>
-            </div>
-          )}
+
+          <div className={"flexRow justify-between items-center"}>
+            <p>My Share</p>
+            <h3>{formatEtherToFixed(saleDataFormatted.shares ?? 0n, 0)} ADO</h3>
+          </div>
         </div>
       </div>
       <div className={"grow"}>

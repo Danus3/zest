@@ -125,7 +125,8 @@ const PublicSale = () => {
   }
 
   const saleEnd = new Date(
-    saleDataFormatted.salePublic.getTime() + saleDataFormatted.saleDuration
+    saleDataFormatted.salePublic.getTime() +
+      saleDataFormatted.saleDuration * 1000
   );
 
   const inSale =

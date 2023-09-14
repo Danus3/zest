@@ -78,7 +78,7 @@ const PublicSale = () => {
   }, [saleData]);
 
   const isPublicSalePhrase = saleDataFormatted
-    ? new Date().getTime() > Number(saleDataFormatted.salePublic) * 1000
+    ? new Date().getTime() > Number(saleDataFormatted.salePublic)
     : false;
 
   const { data: sign } = useQuery({

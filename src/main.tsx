@@ -5,7 +5,7 @@ import App from "./index.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { goerli, mainnet } from "@wagmi/chains";
+import { mainnet } from "@wagmi/chains";
 
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 
@@ -13,12 +13,11 @@ import * as Toast from "@radix-ui/react-toast";
 import * as ToastPrimitive from "@radix-ui/react-toast";
 import { publicProvider } from "wagmi/providers/public";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
-import { isPublicSalePage } from "./config.tsx";
 
 export const queryClient = new QueryClient();
 
-const chain = isPublicSalePage ? [mainnet] : [goerli];
-// const chain = isPublicSalePage ? [goerli] : [goerli];
+// const chain = isPublicSalePage ? [mainnet] : [goerli];
+const chain = [mainnet];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -51,12 +50,10 @@ const { chains } = configureChains(chain, [publicProvider()]);
 const config = createConfig(
   getDefaultConfig({
     // Required API Keys
-    [`${"alch"}${"emyId"}`]: isPublicSalePage
-      ? `${"3nDQrJ9xGiV4EP24"}${"Rakw3PexQLkfwnJy"}`
-      : `${"Mta34UtJ5Pxozx4"}${"hhSwNWQHOqa8GBOHb"}`,
-    // [`${"alch"}${"emyId"}`]: isPublicSalePage
-    //   ? `${"Mta34UtJ5Pxozx4"}${"hhSwNWQHOqa8GBOHb"}`
+    // [`${"alch"}${"emyId"}`]: true
+    //   ? `${"3nDQrJ9xGiV4EP24"}${"Rakw3PexQLkfwnJy"}`
     //   : `${"Mta34UtJ5Pxozx4"}${"hhSwNWQHOqa8GBOHb"}`,
+    [`${"alch"}${"emyId"}`]: `${"3nDQrJ9xGiV4EP24"}${"Rakw3PexQLkfwnJy"}`,
     autoConnect: true,
     walletConnectProjectId: "5d33f0689d3a5b2b54836b30032fc6e3",
 

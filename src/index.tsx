@@ -19,6 +19,16 @@ const PublicSale = lazy(() => import("@pages/PublicSale"));
 
 // const Homepage = lazy(() => import("./pages/Homepage"));
 
+// function Email(props) {
+//   const { url } = props;
+//
+//   return (
+//     <Html lang="en">
+//       <Button href={url}>Click me</Button>
+//     </Html>
+//   );
+// }
+
 const routeLoading = (
   <div className={"page-content flex flex-col gap-4"}>
     {Array.from({ length: 2 }).map((_, index) => (

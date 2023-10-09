@@ -41,38 +41,27 @@ export const routeConfigs: {
 }[] = [
   {
     path: isApp ? "/" : "/stats",
-    name: "Dashboard",
-    disabled: isLandingPage,
-    external: isPublicSalePage ? true : false,
-    newPage: false
+    name: "Dashboard"
   },
   {
     path: "/mint-redeem",
-    name: "Mint&Redeem",
-    disabled: isLandingPage,
-    external: isPublicSalePage ? true : false,
-    newPage: false
+    name: "Mint&Redeem"
   },
   {
     path: "/earn",
     name: "Earn",
-    disabled: isLandingPage,
-    external: isPublicSalePage ? true : false,
-    newPage: false
+    disabled: true
   },
   {
     path: "/esADO",
     name: "esADO",
-    disabled: isLandingPage,
-    external: isPublicSalePage ? true : false,
+    disabled: true,
     newPage: false
   },
   {
     path: "/public-sale",
     name: "Token Sale",
-    disabled: isLandingPage,
-    external: true,
-    newPage: false
+    disabled: isLandingPage
   },
   {
     path: WeedPaperURL,

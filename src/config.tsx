@@ -41,11 +41,13 @@ export const routeConfigs: {
 }[] = [
   {
     path: isApp ? "/" : "/stats",
-    name: "Dashboard"
+    name: "Dashboard",
+    disabled: isLandingPage
   },
   {
     path: "/mint-redeem",
-    name: "Mint&Redeem"
+    name: "Mint&Redeem",
+    disabled: isLandingPage
   },
   {
     path: "/earn",

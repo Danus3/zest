@@ -38,7 +38,7 @@ const NavBar = () => {
 
         <div
           className={
-            "flex flex-col md:flex-row justify-start md:justify-center gap-4 mt-8 md:m-auto"
+            "flex flex-col md:flex-row justify-start md:justify-around gap-4 mt-8 md:m-auto"
           }
           onClick={e => {
             e.stopPropagation();

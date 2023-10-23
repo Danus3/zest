@@ -8,6 +8,7 @@ import {
 import {
   commas,
   formatEtherToFixed,
+  formatEtherToNumber,
   normalizeNumber
 } from "@src/utils/number.tsx";
 
@@ -20,6 +21,13 @@ import Mint from "./Mint.tsx";
 import Redeem from "./Redeem.tsx";
 import Buy from "./Buy.tsx";
 import { LIQ_PRICE } from "@src/constants.ts";
+import WrappedButton from "@components/WrappedButton.tsx";
+// import { computePoolAddress, FeeAmount } from "@uniswap/v3-sdk";
+// import { ChainId, QUOTER_ADDRESSES, Token } from "@uniswap/sdk-core";
+// import { useContractRead, useContractReads } from "wagmi";
+//
+// import IUniswapV3PoolABI from "@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json";
+// import Quoter from "@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json";
 
 const MintAndRedeem = () => {
   const {
@@ -37,10 +45,78 @@ const MintAndRedeem = () => {
 
   const [tab, setTab] = useState<number>(0);
 
+  // const { data, isError, isLoading } = useContractRead({
+  //   address: '0xFC4816F8D4dac18d4ddA9058B6f711460818180a',
+  //   abi: wagmigotchiABI,
+  //   functionName: 'getHunger',
+  // })
+
+  // const USDC_TOKEN = new Token(
+  //   ChainId.MAINNET,
+  //   "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  //   6,
+  //   "USDC",
+  //   "USD//C"
+  // );
+  // const AUSD_TOKEN = new Token(
+  //   ChainId.MAINNET,
+  //   "0x258bB9E4b6AB36FeCa231f95aC7632B8470726f5",
+  //   18,
+  //   "AUSD",
+  //   "Adscendo USD"
+  // );
+  // const currentPoolAddress = computePoolAddress({
+  //   factoryAddress: "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+  //   tokenA: USDC_TOKEN,
+  //   tokenB: AUSD_TOKEN,
+  //   fee: FeeAmount.LOW
+  // });
+  //
+  // const data = useContractReads({
+  //   contracts: [
+  //     {
+  //       address: currentPoolAddress,
+  //       abi: IUniswapV3PoolABI.abi,
+  //       functionName: "token0"
+  //     },
+  //     {
+  //       address: currentPoolAddress,
+  //       abi: IUniswapV3PoolABI.abi,
+  //       functionName: "token1"
+  //     },
+  //     {
+  //       address: currentPoolAddress,
+  //       abi: IUniswapV3PoolABI.abi,
+  //       functionName: "fee"
+  //     }
+  //   ]
+  // });
+  //
+  // const data2 = useContractRead({
+  //   address: QUOTER_ADDRESSES[ChainId.MAINNET],
+  //   abi: Quoter.abi,
+  //   functionName: "quoteExactInputSingle",
+  //   args: [
+  //     USDC_TOKEN.address,
+  //     AUSD_TOKEN.address,
+  //     FeeAmount.LOW,
+  //     parseEther("100"),
+  //     0
+  //   ]
+  // });
+  //
+  // console.log(data2.data ? formatEther(data2.data) : 0);
+
+  // useEffect(async () => {
+  //
+  //
+  //
+  // }, []);
+
   return (
     <div className={"page-content flex-col flex gap-4 mint-redeem"}>
       <div className={"flex flex-col gap-2 md:flex-row  justify-between"}>
-        <h1 className={"text-left"}>Overview(Technical Preview)</h1>
+        <h1 className={"text-left"}>Overview</h1>
         <div className={"flex gap-4 md:gap-8 text-[1.1em]"}>
           <div className={"stack gap-0 text-right"}>
             <span>ETH/USD</span>
@@ -48,9 +124,39 @@ const MintAndRedeem = () => {
           </div>
           <div className={"stack gap-0 text-right"}>
             <span>aUSD/USDC</span>
-            <span>${aUSDPrice.toFixed(2)}</span>
+            <span>${aUSDPrice.toFixed(4)}</span>
+          </div>
+          <div className={"stack gap-0 text-right"}>
+            <span>TVL</span>
+            <span>
+              ${(formatEtherToNumber(stETHLocked) * stETHPrice).toFixed(2)}
+            </span>
           </div>
         </div>
+      </div>
+      <div className={"flex gap-4 justify-start md:justify-end"}>
+        <WrappedButton className={"self-center"}>
+          <a
+            target={"_blank"}
+            href={
+              "https://app.uniswap.org/swap?inputCurrency=ETH&outputCurrency=0x258bB9E4b6AB36FeCa231f95aC7632B8470726f5"
+            }
+            className={"text-black hover:no-underline"}
+          >
+            aUSD Swap
+          </a>
+        </WrappedButton>
+        <WrappedButton className={"self-center"}>
+          <a
+            className={"text-black hover:no-underline"}
+            target={"_blank"}
+            href={
+              "https://app.uniswap.org/add/0x258bB9E4b6AB36FeCa231f95aC7632B8470726f5/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/500?minPrice=0.998903&maxPrice=1.000903"
+            }
+          >
+            Add Liquidity
+          </a>
+        </WrappedButton>
       </div>
       <div className={"card p-4 rounded-2xl md:pb-0"}>
         <h3 className={"mb-8"}>stETH Genesis Pool</h3>

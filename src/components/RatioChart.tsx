@@ -31,7 +31,7 @@ const RatioChart = () => {
 
   // const currentStETHPrice = 1800;
   // const currentStETHPrice =
-  //   useQueryClient().getQueryData<number>(["stEthPrice", "usd"]) || 0;
+  //   useQueryClient().getQueryData<number>(["ethPrice", "usd"]) || 0;
 
   const currentStETHPrice = useAtomValue(stEtherPriceAtom);
 
@@ -52,8 +52,8 @@ const RatioChart = () => {
       className={"w-full h-full max-w-[1200px] m-auto flex flex-col font-bold"}
     >
       <div className={"flex justify-between"}>
-        <div>lstETH Value: ${calculatedLstETHPrice.toFixed(2)}</div>
-        <div>stETH Price: ${calculatedStETHPrice.toFixed(2)}</div>
+        <div>mirrorETH Value: ${calculatedLstETHPrice.toFixed(2)}</div>
+        <div>ETH Price: ${calculatedStETHPrice.toFixed(2)}</div>
       </div>
       <div className={"my-1"}></div>
       <div className={"flex justify-between relative"}>
@@ -62,9 +62,9 @@ const RatioChart = () => {
             "absolute left-0 top-0 h-full bg-amber-400 z-0 rounded-l-md"
           }
           style={{
-            width: `${(lstLeverageRatio /
-              (lstLeverageRatio + aUSDLeverageRatio)) *
-              100}%`
+            width: `${
+              (lstLeverageRatio / (lstLeverageRatio + aUSDLeverageRatio)) * 100
+            }%`,
           }}
         ></div>
         <div
@@ -72,16 +72,16 @@ const RatioChart = () => {
             "absolute right-0 top-0 h-full bg-cyan-400 z-0 rounded-r-md"
           }
           style={{
-            width: `${(aUSDLeverageRatio /
-              (lstLeverageRatio + aUSDLeverageRatio)) *
-              100}%`
+            width: `${
+              (aUSDLeverageRatio / (lstLeverageRatio + aUSDLeverageRatio)) * 100
+            }%`,
           }}
         ></div>
         <div className={"text-black pl-1 relative z-10"}>
-          lstETH Leverage Ratio: {lstLeverageRatio.toFixed(2)}x
+          mirrorETH Leverage Ratio: {lstLeverageRatio.toFixed(2)}x
         </div>
         <div className={"text-black text-right pr-1 relative z-10"}>
-          aUSD APR Leverage Ratio: {aUSDLeverageRatio.toFixed(2)}x&nbsp;
+          zUSD APR Leverage Ratio: {aUSDLeverageRatio.toFixed(2)}x&nbsp;
         </div>
       </div>
       <div className={"my-2"}></div>
@@ -90,7 +90,7 @@ const RatioChart = () => {
           "w-full grow border-l-[1px] border-b-[1px] border-neutral-400 text-left relative min-h-[200px]"
         }
         ref={chartRef}
-        onMouseMove={e => {
+        onMouseMove={(e) => {
           setOffsetX(
             Math.max(
               0,
@@ -98,7 +98,7 @@ const RatioChart = () => {
             )
           );
         }}
-        onTouchMove={e => {
+        onTouchMove={(e) => {
           setOffsetX(
             Math.max(
               0,
@@ -119,13 +119,13 @@ const RatioChart = () => {
             "text-left rotate-90 inline-block text-neutral-400 origin-top-left translate-x-[1.5em] inline-block bg-black relative z-10"
           }
         >
-          &nbsp;lstETH Value
+          &nbsp;mirrorETH Value
         </span>
         <div
           className={`h-[1.5px] bg-amber-400 absolute bottom-0 left-0 origin-left z-10 transition-[width] duration-500`}
           style={{
             width: isInViewPort ? slopeLength : 0,
-            transform: `rotate(-${slopeDeg}deg)`
+            transform: `rotate(-${slopeDeg}deg)`,
           }}
         >
           <div
@@ -136,7 +136,7 @@ const RatioChart = () => {
               visibility:
                 (offsetXRatio || currentPriceRatio) > 0 ? "visible" : "hidden",
               left: `${(offsetXRatio || currentPriceRatio) * slopeLength}px`,
-              transitionDuration: !offsetXRatio ? "0.25s" : "0s"
+              transitionDuration: !offsetXRatio ? "0.25s" : "0s",
             }}
           ></div>
         </div>
@@ -146,13 +146,13 @@ const RatioChart = () => {
           }
           style={{
             left: offsetX,
-            visibility: offsetX > 0 ? "visible" : "hidden"
+            visibility: offsetX > 0 ? "visible" : "hidden",
           }}
         ></div>
         <div
           className={"absolute right-0 bottom-0 text-neutral-400 bg-black z-10"}
         >
-          stETH Price
+          ETH Price
         </div>
       </div>
       <div className={"flex justify-between text-neutral-400"}>

@@ -55,9 +55,15 @@ const router = createBrowserRouter([
         path: "",
         element: (
           <Suspense fallback={routeLoading}>
-            {isApp ? <Stats /> : <Homepage />}
+            {isApp ? (
+              <Suspense fallback={routeLoading}>
+                <MintAndRedeem />
+              </Suspense>
+            ) : (
+              <Homepage />
+            )}
           </Suspense>
-        )
+        ),
       },
       {
         path: "mint-redeem",
@@ -65,42 +71,42 @@ const router = createBrowserRouter([
           <Suspense fallback={routeLoading}>
             <MintAndRedeem />
           </Suspense>
-        )
+        ),
       },
-      {
-        path: "stats",
-        element: (
-          <Suspense fallback={routeLoading}>
-            <Stats />
-          </Suspense>
-        )
-      },
-      {
-        path: "earn",
-        element: (
-          <Suspense fallback={routeLoading}>
-            <Earn />
-          </Suspense>
-        )
-      },
-      {
-        path: "esADO",
-        element: (
-          <Suspense fallback={routeLoading}>
-            <EsADO />
-          </Suspense>
-        )
-      },
-      {
-        path: "public-sale",
-        element: (
-          <Suspense fallback={routeLoading}>
-            <PublicSale />
-          </Suspense>
-        )
-      }
-    ]
-  }
+      // {
+      //   path: "stats",
+      //   element: (
+      //     <Suspense fallback={routeLoading}>
+      //       <Stats />
+      //     </Suspense>
+      //   ),
+      // },
+      // {
+      //   path: "earn",
+      //   element: (
+      //     <Suspense fallback={routeLoading}>
+      //       <Earn />
+      //     </Suspense>
+      //   ),
+      // },
+      // {
+      //   path: "esADO",
+      //   element: (
+      //     <Suspense fallback={routeLoading}>
+      //       <EsADO />
+      //     </Suspense>
+      //   ),
+      // },
+      // {
+      //   path: "public-sale",
+      //   element: (
+      //     <Suspense fallback={routeLoading}>
+      //       <PublicSale />
+      //     </Suspense>
+      //   ),
+      // },
+    ],
+  },
 ]);
 
 const App = () => {
@@ -110,30 +116,30 @@ const App = () => {
    * @description Fetch stETH price from coingecko
    */
   useQuery<number>(
-    ["stEthPrice", "usd"],
+    ["ethereum", "usd"],
     async () => {
       return axios
         .get<{
-          ["staked-ether"]: {
+          ["ethereum"]: {
             usd: number;
           };
         }>(
-          "https://api.coingecko.com/api/v3/simple/price?ids=staked-ether&vs_currencies=usd"
+          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
         )
-        .then(response => {
-          const stEthPrice = response.data["staked-ether"].usd || 0;
-          setEThPrice(stEthPrice);
-          return stEthPrice;
+        .then((response) => {
+          const ethPrice = response.data["ethereum"].usd || 0;
+          setEThPrice(ethPrice);
+          return ethPrice;
         });
     },
     {
-      refetchInterval: 30000
+      refetchInterval: 60000,
     }
   );
 
-  useTokenInfo();
+  // useTokenInfo();
 
-  useUserBalance();
+  // useUserBalance();
 
   return <RouterProvider router={router}></RouterProvider>;
 };

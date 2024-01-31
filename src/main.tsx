@@ -5,7 +5,8 @@ import App from "./index.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { mainnet } from "@wagmi/chains";
+
+import { type Chain } from "viem";
 
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 
@@ -17,42 +18,31 @@ import * as RadixTooltip from "@radix-ui/react-tooltip";
 export const queryClient = new QueryClient();
 
 // const chain = isPublicSalePage ? [mainnet] : [goerli];
+
+const mainnet = {
+  id: 168587773,
+  name: "Blast",
+  network: "blast-sepolia",
+  nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+  rpcUrls: {
+    default: { http: ["https://sepolia.blast.io"] },
+    public: { http: ["https://rpc.ankr.com/blast_testnet_sepolia"] },
+  },
+  blockExplorers: {
+    default: { name: "BlastIO", url: "https://testnet.blastscan.io" },
+  },
+
+  testnet: true,
+} as const satisfies Chain;
+
 const chain = [mainnet];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const { chains } = configureChains(chain, [publicProvider()]);
 
-// const config = createConfig({
-//   autoConnect: true,
-//   publicClient: createPublicClient({
-//     chain: goerli,
-//     transport: http()
-//   }),
-//   connectors: [
-//     new InjectedConnector({
-//       chains,
-//       options: {
-//         name: "Injected",
-//         shimDisconnect: true
-//       }
-//     }),
-//     new MetaMaskConnector({ chains }),
-//     new WalletConnectConnector({
-//       chains,
-//       options: {
-//         projectId: "5d33f0689d3a5b2b54836b30032fc6e3"
-//       }
-//     })
-//   ]
-// });
-
 const config = createConfig(
   getDefaultConfig({
-    // Required API Keys
-    // [`${"alch"}${"emyId"}`]: true
-    //   ? `${"3nDQrJ9xGiV4EP24"}${"Rakw3PexQLkfwnJy"}`
-    //   : `${"Mta34UtJ5Pxozx4"}${"hhSwNWQHOqa8GBOHb"}`,
     [`${"alch"}${"emyId"}`]: `${"3nDQrJ9xGiV4EP24"}${"Rakw3PexQLkfwnJy"}`,
     autoConnect: true,
     walletConnectProjectId: "5d33f0689d3a5b2b54836b30032fc6e3",
@@ -64,7 +54,7 @@ const config = createConfig(
     // Optional
     appDescription: "Adscendo Protocol",
     appUrl: "https://adscendo.xyz/", // your app's url
-    appIcon: "https://adscendo.xyz/adscendo.svg" // your app's icon, no bigger than 1024x1024px (max. 1MB),
+    appIcon: "https://adscendo.xyz/adscendo.svg", // your app's icon, no bigger than 1024x1024px (max. 1MB),
   })
 );
 
@@ -77,7 +67,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <ConnectKitProvider
               options={{
                 hideNoWalletCTA: true,
-                overlayBlur: 4
+                overlayBlur: 4,
               }}
             >
               <App />

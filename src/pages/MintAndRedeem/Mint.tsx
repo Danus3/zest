@@ -2,7 +2,7 @@ import { useState } from "react";
 import { formatEtherToFixed } from "@src/utils/number.tsx";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import DepositETHorStETHInput, {
-  MintAsset
+  MintAsset,
 } from "@components/DepositETHorStETHInput.tsx";
 import useWrappedWriteContract from "@src/hooks/useWrappedWriteContract.ts";
 import { CONTRACT_ADDRESSES, LIQ_PRICE, MINT_REF_ADDR } from "@src/constants";
@@ -12,6 +12,8 @@ import ApproveCheck from "@components/ApproveCheck.tsx";
 import lstETHABI from "@utils/ABIs/lstETHABI.ts";
 import TickleNumber from "@components/TickleNumber.tsx";
 import WrappedButton from "@components/WrappedButton.tsx";
+import { zESTABI } from "@utils/ABIs/ZestABI";
+import useGetPythUpdateData from "@hooks/useGetPythUpdateData";
 
 const MintStETH: React.FC<{
   mintValue: bigint;
@@ -19,13 +21,13 @@ const MintStETH: React.FC<{
   const {
     write: mintUsingEther,
     isLoadingWrite,
-    isLoading
+    isLoading,
   } = useWrappedWriteContract({
     address: CONTRACT_ADDRESSES.adscendoPool,
     abi: AdscendoPoolABI,
     enabled: mintValue > 0n,
     functionName: "mint",
-    args: [mintValue]
+    args: [mintValue],
   });
 
   return (
@@ -50,25 +52,31 @@ const Mint = () => {
 
   const mintAUSDAmount = mintValue * BigInt(LIQ_PRICE);
 
+  const priceData = useGetPythUpdateData();
+
   const {
     write: mintUsingEther,
     isLoadingWrite,
     prepareContractError,
-    isLoading
+    isLoading,
   } = useWrappedWriteContract({
-    address: CONTRACT_ADDRESSES.adscendoPool,
-    abi: AdscendoPoolABI,
-    enabled: mintValue > 0n && mintAsset === "ETH",
-    functionName: "mintWithETH",
-    args: [MINT_REF_ADDR],
-    value: mintValue
+    address: CONTRACT_ADDRESSES.zEST,
+    abi: zESTABI,
+    enabled: mintValue > 0n && !!priceData,
+    functionName: "mint",
+    args: [priceData],
+    value: mintValue,
   });
 
-  const { data: mintFee } = useContractRead({
-    address: CONTRACT_ADDRESSES.adscendoPool,
-    abi: AdscendoPoolABI,
-    functionName: "mintFee"
-  });
+  // console.log("%c~LOG~", "color: yellow; font-size: 16px;", mintUsingEther);
+
+  // const { data: mintFee } = useContractRead({
+  //   address: CONTRACT_ADDRESSES.adscendoPool,
+  //   abi: AdscendoPoolABI,
+  //   functionName: "mintFee",
+  // });
+
+  const mintFee = 0n;
 
   return (
     <div>
@@ -93,7 +101,7 @@ const Mint = () => {
               )
             )}
           />
-          aUSD
+          zUSD
         </div>
         <div>
           <PlusCircledIcon />
@@ -111,7 +119,7 @@ const Mint = () => {
               )
             )}
           />
-          lstETH
+          mirrorETH
         </div>
       </div>
       <div className={"my-8"}></div>

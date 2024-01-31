@@ -17,11 +17,11 @@ const NavBar = () => {
     <>
       <div
         className={twMerge(
-          "p-3 flex justify-center backdrop-blur-md md:backdrop-blur-[2px] fixed md:fixed top-0 w-full  h-[100vh] md:h-auto md:block z-20 transition-[backdrop-filter] duration-300",
+          "p-3 flex justify-center fixed md:fixed top-0 w-full  h-[100vh] md:h-auto md:block z-20 transition-[backdrop-filter] duration-300",
           !isMenuOpen && "hidden"
         )}
         style={{
-          background: "rgba(0, 0, 0, 0.20)"
+          background: "rgba(0, 0, 0, 0.90)",
         }}
       >
         <div
@@ -40,7 +40,7 @@ const NavBar = () => {
           className={
             "flex flex-col md:flex-row justify-start md:justify-around gap-4 mt-8 md:m-auto"
           }
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
           }}
         >
@@ -54,7 +54,7 @@ const NavBar = () => {
             <img src={logo} className={"w-32 m-auto"} alt={"logo"} />
           </Link>
           <div className={"flex items-center gap-4 flex-col md:flex-row"}>
-            {routeConfigs.map(routeConfig => {
+            {routeConfigs.map((routeConfig) => {
               if (routeConfig.disabled) {
                 return null;
               }
@@ -68,7 +68,7 @@ const NavBar = () => {
                     key={routeConfig.path}
                     target={routeConfig.newPage === false ? "_self" : "_blank"}
                     className={twMerge(
-                      "animate-slideIn md:animate-none",
+                      "animate-slideIn md:animate-none transition-all underline-offset-1 hover:underline-offset-4",
                       match
                     )}
                   >
@@ -86,7 +86,7 @@ const NavBar = () => {
                     }, 300);
                   }}
                   className={twMerge(
-                    "animate-slideIn md:animate-none underline-offset-1 transition-all",
+                    "animate-slideIn md:animate-none transition-all underline-offset-1 hover:underline-offset-4",
                     match
                   )}
                 >
@@ -102,7 +102,7 @@ const NavBar = () => {
         className={classNames(
           "fixed md:invisible z-20 left-4 top-4 p-2 rounded-full bg-[rgba(45,45,45,0.9)]",
           {
-            invisible: isMenuOpen
+            invisible: isMenuOpen,
           },
           "transition-opacity duration-300",
           isMenuOpen ? "opacity-0" : "opacity-100"

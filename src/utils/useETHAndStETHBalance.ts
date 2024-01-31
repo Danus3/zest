@@ -10,18 +10,21 @@ const useETHAndStETHBalance = () => {
 
   const { data: ETHBalanceData } = useBalance({
     address,
-    watch: focused
+    watch: focused,
   });
 
-  const { data: stETHBalanceData } = useBalance({
-    address,
-    token: isPublicSalePage
-      ? "0xae7ab96520de3a18e5e111b5eaab095312d7fe84"
-      : CONTRACT_ADDRESSES.stETH,
-    watch: focused
-  });
+  // const { data: stETHBalanceData } = useBalance({
+  //   address,
+  //   token: isPublicSalePage
+  //     ? "0xae7ab96520de3a18e5e111b5eaab095312d7fe84"
+  //     : CONTRACT_ADDRESSES.stETH,
+  //   watch: focused
+  // });
 
-  return [ETHBalanceData?.value || 0n, stETHBalanceData?.value || 0n];
+  /**
+   * always return ETH balance
+   */
+  return [ETHBalanceData?.value || 0n, ETHBalanceData?.value || 0n];
 };
 
 export default useETHAndStETHBalance;

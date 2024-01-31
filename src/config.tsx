@@ -40,54 +40,54 @@ export const routeConfigs: {
   icon?: React.ReactNode;
 }[] = [
   {
-    path: isApp ? "/" : "/stats",
-    name: "Dashboard",
-    disabled: isLandingPage
+    path: isApp ? "/" : "/mint-redeem",
+    name: "Mint&Redeem",
+    disabled: isLandingPage,
   },
   {
     path: "/mint-redeem",
     name: "Mint&Redeem",
-    disabled: isLandingPage
+    disabled: true,
   },
   {
     path: "/earn",
     name: "Earn",
-    disabled: true
+    disabled: true,
   },
   {
     path: "/esADO",
     name: "esADO",
     disabled: true,
-    newPage: false
+    newPage: false,
   },
   {
     path: "/public-sale",
     name: "Token Sale",
-    disabled: isLandingPage
+    disabled: true,
   },
   {
     path: WeedPaperURL,
     name: "WeedPaper",
     external: true,
-    disabled: isApp
+    disabled: isApp,
   },
   {
     path: MediumURL,
     name: "Medium",
     external: true,
-    disabled: isApp
+    disabled: isApp,
   },
   {
     path: DocsURL,
     name: "Docs",
     external: true,
-    disabled: isApp
+    disabled: isApp,
   },
   {
     path: TwitterURL,
     name: "Twitter",
     external: true,
     disabled: isApp,
-    icon: <span className={"text-2xl"}>𝕏</span>
-  }
+    icon: <span className={"text-2xl"}>𝕏</span>,
+  },
 ];

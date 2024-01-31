@@ -31,47 +31,7 @@ const DepositETHorStETHInput: React.FC<{
 
   return (
     <>
-      <p className={"flex flex-row justify-between"}>
-        <span className={setMintAsset ? undefined : "hidden"}>
-          Deposit&nbsp;
-          <span
-            className={classNames("cursor-pointer", {
-              "text-amber-400": selected === "ETH"
-            })}
-            onClick={() => {
-              toggleAsset("ETH");
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={selected === "ETH"}
-              className={"bg-amber-400"}
-              onChange={() => {
-                toggleAsset("ETH");
-              }}
-            />
-            &nbsp;ETH
-          </span>{" "}
-          or{" "}
-          <span
-            className={classNames("cursor-pointer", {
-              "text-amber-400": selected === "stETH"
-            })}
-            onClick={() => {
-              toggleAsset("stETH");
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={selected === "stETH"}
-              className={"bg-amber-400"}
-              onChange={() => {
-                toggleAsset("stETH");
-              }}
-            />
-            &nbsp;stETH
-          </span>
-        </span>
+      <p className={"flex flex-row justify-end"}>
         <span
           className={"cursor-pointer"}
           onClick={() => {
@@ -83,7 +43,7 @@ const DepositETHorStETHInput: React.FC<{
       </p>
       <div className={"my-4"}></div>
       <InputWithMax
-        setValue={value => setValue(parseEther(value))}
+        setValue={(value) => setValue(parseEther(value))}
         maxValue={formatEther(currentBalance)}
         placeholder={`0 ${selected}`}
         value={formatEther(value)}

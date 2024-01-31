@@ -2,7 +2,7 @@ import {
   useContractWrite,
   usePrepareContractWrite,
   UsePrepareContractWriteConfig,
-  useWaitForTransaction
+  useWaitForTransaction,
 } from "wagmi";
 import { useDebounce } from "ahooks";
 import { useEffect } from "react";
@@ -23,7 +23,7 @@ const useWrappedWriteContract = ({
       const debouncedArg = useDebounce(args[i], {
         wait: 1000,
         leading: true,
-        trailing: true
+        trailing: true,
       });
       argsArr.push(debouncedArg);
     }
@@ -32,10 +32,10 @@ const useWrappedWriteContract = ({
   const {
     config,
     isLoading: isLoadingWrite,
-    error: prepareContractError
+    error: prepareContractError,
   } = usePrepareContractWrite({
     args: argsArr,
-    ...rest
+    ...rest,
   });
   const { data, write } = useContractWrite(config);
 
@@ -43,16 +43,16 @@ const useWrappedWriteContract = ({
     hash: data?.hash,
     onSuccess: () => {
       data &&
-        setTransactions(prev => [
+        setTransactions((prev) => [
           ...prev,
-          { hash: data.hash, status: "complete" }
+          { hash: data.hash, status: "complete" },
         ]);
-    }
+    },
   });
 
   useEffect(() => {
     if (data?.hash) {
-      setTransactions(prev => [...prev, { hash: data.hash, status: "init" }]);
+      setTransactions((prev) => [...prev, { hash: data.hash, status: "init" }]);
     }
   }, [data, setTransactions]);
 
@@ -61,7 +61,7 @@ const useWrappedWriteContract = ({
     isLoading,
     isSuccess,
     isLoadingWrite,
-    prepareContractError
+    prepareContractError,
   };
 };
 

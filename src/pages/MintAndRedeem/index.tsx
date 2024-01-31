@@ -3,13 +3,13 @@ import {
   aUSDState,
   getAllPrices,
   getSTETHPoolStats,
-  lstETHState
+  lstETHState,
 } from "@src/state";
 import {
   commas,
   formatEtherToFixed,
   formatEtherToNumber,
-  normalizeNumber
+  normalizeNumber,
 } from "@src/utils/number.tsx";
 
 import "./index.css";
@@ -30,12 +30,8 @@ import WrappedButton from "@components/WrappedButton.tsx";
 // import Quoter from "@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json";
 
 const MintAndRedeem = () => {
-  const {
-    stETHLocked,
-    liquidityPrice,
-    lstETHPrice,
-    lstETHLeverageRatio
-  } = useAtomValue(getSTETHPoolStats);
+  const { stETHLocked, liquidityPrice, lstETHPrice, lstETHLeverageRatio } =
+    useAtomValue(getSTETHPoolStats);
 
   const { totalSupply: aUSDCirculatingSupply } = useAtomValue(aUSDState);
 
@@ -123,7 +119,7 @@ const MintAndRedeem = () => {
             <span>${normalizeNumber(stETHPrice, 2)}</span>
           </div>
           <div className={"stack gap-0 text-right"}>
-            <span>aUSD/USDC</span>
+            <span>zUSD/USDC</span>
             <span>${aUSDPrice.toFixed(4)}</span>
           </div>
           <div className={"stack gap-0 text-right"}>
@@ -143,7 +139,7 @@ const MintAndRedeem = () => {
             }
             className={"text-black hover:no-underline"}
           >
-            aUSD Swap
+            zUSD Swap
           </a>
         </WrappedButton>
         <WrappedButton className={"self-center"}>
@@ -159,14 +155,14 @@ const MintAndRedeem = () => {
         </WrappedButton>
       </div>
       <div className={"card p-4 rounded-2xl md:pb-0"}>
-        <h3 className={"mb-8"}>stETH Genesis Pool</h3>
+        <h3 className={"mb-8"}>ETH Genesis Pool</h3>
         <div
           className={
             "grid md:grid-cols-4 md:grid-rows-2 grid-cols-2 grid-rows-4 gap-x-8 gap-y-2"
           }
         >
           <div className={"stack"}>
-            <p>stETH Locked</p>
+            <p>ETH Locked</p>
             <h3>Ξ{formatEtherToFixed(stETHLocked, 4)}</h3>
             <div className="divider"></div>
           </div>
@@ -176,12 +172,12 @@ const MintAndRedeem = () => {
             <div className="divider"></div>
           </div>
           <div className={"stack"}>
-            <p>aUSD Minted</p>
+            <p>zUSD Minted</p>
             <h3>{commas(formatEther(aUSDCirculatingSupply))}</h3>
             <div className="divider"></div>
           </div>
           <div className={"stack"}>
-            <p>lstETH Minted</p>
+            <p>mirrorETH Minted</p>
             <h3>{commas(formatEther(lstETHCirculatingSupply))}</h3>
             <div className="divider"></div>
           </div>
@@ -191,16 +187,16 @@ const MintAndRedeem = () => {
             <div className="divider md:hidden"></div>
           </div>
           <div className={"stack"}>
-            <p>aUSD APR</p>
+            <p>zUSD APR</p>
             <h3 className={"text-amber-400"}>{0}</h3>
             <div className="divider md:hidden"></div>
           </div>
           <div className={"stack"}>
-            <p>lstETH Value</p>
+            <p>mirrorETH Value</p>
             <h3>${normalizeNumber(lstETHPrice)}</h3>
           </div>
           <div className={"stack"}>
-            <p>lstETH Leverage Ratio</p>
+            <p>mirrorETH Leverage Ratio</p>
             <h3 className={"text-amber-400"}>
               {normalizeNumber(lstETHLeverageRatio)}x
             </h3>
@@ -209,7 +205,7 @@ const MintAndRedeem = () => {
       </div>
       <div className={"my-4"}></div>
       <h1 className={"text-left"}>
-        {tab === 0 ? "Mint" : tab === 1 ? "Redeem" : "Buy lstETH"}
+        {tab === 0 ? "Mint" : tab === 1 ? "Redeem" : "Buy mirrorETH"}
       </h1>
       <div className={"flex flex-col md:flex-row gap-8"}>
         <div className={"stack w-full md:w-1/2 text-left gap-4"}>
@@ -217,46 +213,44 @@ const MintAndRedeem = () => {
             <>
               <ul className={"leading-6"}>
                 <li className={"list-none"}>
-                  You can mint aUSD and lstETH with stETH/ETH.
+                  You can mint zUSD and mirrorETH with ETH.
                 </li>
-                <li>aUSD: Enjoy Leveraged ETH Staking Yield (1x-5x)</li>
+                <li>zUSD: Enjoy Leveraged ETH Staking Yield (1x-5x)</li>
                 <li>
-                  lstETH: Enjoy Long-term On-chain Leveraged ETH Derivative
+                  mirrorETH: Enjoy Long-term On-chain Leveraged ETH Derivative
                   (3x-6x)
                 </li>
               </ul>
-              <p className={"text-amber-400"}>
-                1 stETH/ETH = 1300*aUSD+1*lstETH
-              </p>
+              <p className={"text-amber-400"}>1 ETH = 1300*zUSD+1*mirrorETH</p>
               <RatioChart />
             </>
           ) : tab === 1 ? (
             <>
               <p>
-                You can use 1300 aUSD and 1 lstETH to redeem 1 stETH.
+                You can use 1300 zUSD and 1 mirrorETH to redeem 1 ETH.
                 <br />{" "}
                 <span className={"text-amber-400"}>
-                  1300*aUSD+1*lstETH = 1 stETH
+                  1300*zUSD+1*mirrorETH = 1 ETH
                 </span>
               </p>
 
               <a href="/">
                 <button className={"bg-amber-400 text-black emphasis"} disabled>
-                  Buy aUSD
+                  Buy zUSD
                 </button>
               </a>
             </>
           ) : (
             <>
               <p>For ETH price increase part,</p>
-              <p className={"text-amber-400 text-2xl"}>1 lstETH = 1ETH</p>
+              <p className={"text-amber-400 text-2xl"}>1 mirrorETH = 1ETH</p>
               <RatioChart />
             </>
           )}
         </div>
         <div className={"stack w-full md:w-1/2 text-left gap-4"}>
           <Tabs
-            labels={["Mint", "Redeem", "Buy lstETH"]}
+            labels={["Mint", "Redeem", "Buy mirrorETH"]}
             currentTab={tab}
             onChange={(_, value) => {
               setTab(value);

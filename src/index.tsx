@@ -1,21 +1,19 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./ux/Layout.tsx";
+import { stEtherPriceAtom } from "@state";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSetAtom } from "jotai";
-import { stEtherPriceAtom } from "@state";
 import { Fragment, lazy, Suspense } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./ux/Layout.tsx";
 // import MintAndRedeem from "./pages/MintAndRedeem";
-import { isApp } from "./config.tsx";
 import Homepage from "@pages/Homepage";
-import useTokenInfo from "@hooks/useTokenInfo.ts";
-import useUserBalance from "@hooks/useUserBalance.ts";
+import { isApp } from "./config.tsx";
 
 const MintAndRedeem = lazy(() => import("@pages/MintAndRedeem"));
-const Earn = lazy(() => import("@pages/Earn"));
-const Stats = lazy(() => import("@pages/Stats"));
-const EsADO = lazy(() => import("@pages/esADO"));
-const PublicSale = lazy(() => import("@pages/PublicSale"));
+// const Earn = lazy(() => import("@pages/Earn"));
+// const Stats = lazy(() => import("@pages/Stats"));
+// const EsADO = lazy(() => import("@pages/esADO"));
+// const PublicSale = lazy(() => import("@pages/PublicSale"));
 
 // const Homepage = lazy(() => import("./pages/Homepage"));
 

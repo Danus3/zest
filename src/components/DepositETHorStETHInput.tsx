@@ -1,9 +1,8 @@
-import classNames from "classnames";
 import { formatEtherToFixed } from "@src/utils/number.tsx";
-import InputWithMax from "./InputWithMax.tsx";
-import { formatEther, parseEther } from "viem";
-import { useState } from "react";
 import useETHAndStETHBalance from "@utils/useETHAndStETHBalance.ts";
+import { useState } from "react";
+import { formatEther, parseEther } from "viem";
+import InputWithMax from "./InputWithMax.tsx";
 
 export type MintAsset = "ETH" | "stETH";
 
@@ -11,23 +10,23 @@ const DepositETHorStETHInput: React.FC<{
   value: bigint;
   setValue: (value: bigint) => void;
   setMintAsset?: (value: MintAsset) => void;
-}> = ({ value, setValue: setValue, setMintAsset }) => {
-  const [selected, setSelected] = useState<MintAsset>("ETH");
+}> = ({ value, setValue: setValue }) => {
+  const [selected] = useState<MintAsset>("ETH");
 
   const currentBalance = useETHAndStETHBalance()[selected === "ETH" ? 0 : 1];
 
-  const toggleAsset = (selectedAsset: MintAsset) => {
-    if (selectedAsset === selected) return;
-    if (selected === "ETH") {
-      setSelected("stETH");
-      setValue(0n);
-      setMintAsset?.("stETH");
-    } else {
-      setSelected("ETH");
-      setValue(0n);
-      setMintAsset?.("ETH");
-    }
-  };
+  // const toggleAsset = (selectedAsset: MintAsset) => {
+  //   if (selectedAsset === selected) return;
+  //   if (selected === "ETH") {
+  //     setSelected("stETH");
+  //     setValue(0n);
+  //     setMintAsset?.("stETH");
+  //   } else {
+  //     setSelected("ETH");
+  //     setValue(0n);
+  //     setMintAsset?.("ETH");
+  //   }
+  // };
 
   return (
     <>

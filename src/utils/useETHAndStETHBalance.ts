@@ -1,7 +1,5 @@
-import { useAccount, useBalance } from "wagmi";
-import { CONTRACT_ADDRESSES } from "@src/constants.ts";
 import useTabFocused from "@hooks/utils/useTabFocused.ts";
-import { isPublicSalePage } from "@src/config.tsx";
+import { useAccount, useBalance } from "wagmi";
 
 const useETHAndStETHBalance = () => {
   const { address } = useAccount();

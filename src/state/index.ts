@@ -20,7 +20,7 @@ export const esADOState = atomWithImmer({
 export const aUSDState = atomWithImmer({
   balance: 0n,
   totalSupply: 0n,
-  price: 0.9995,
+  price: 1,
 });
 
 export const lstETHState = atomWithImmer({

@@ -13,29 +13,36 @@ import useWrappedWriteContract from "@hooks/useWrappedWriteContract.ts";
 import { AdscendoPoolABI } from "@utils/ABIs/AdscendoPoolABI.ts";
 import TickleNumber from "@components/TickleNumber.tsx";
 import WrappedButton from "@components/WrappedButton.tsx";
+import useGetPythUpdateData from "@hooks/useGetPythUpdateData";
+import { zESTABI } from "@utils/ABIs/ZestABI";
 
 const RedeemButton: React.FC<{
   disabled: boolean;
   lstETHAmount: bigint;
   onRedeem: () => void;
 }> = ({ disabled, lstETHAmount, onRedeem }) => {
+  const {
+    data: priceData,
+    isFetching,
+    isLoading: isPriceDataLoading,
+  } = useGetPythUpdateData(lstETHAmount);
   const { write, isLoading } = useWrappedWriteContract({
-    address: CONTRACT_ADDRESSES.adscendoPool,
-    abi: AdscendoPoolABI,
-    enabled: !disabled,
+    address: CONTRACT_ADDRESSES.zEST,
+    abi: zESTABI,
+    enabled: !disabled && !!priceData,
     functionName: "redeem",
-    args: [lstETHAmount]
+    args: [lstETHAmount, priceData],
+    onTransactionComplete: onRedeem,
   });
 
   return (
     <WrappedButton
       className={"bg-amber-400 text-black w-full emphasis"}
-      isLoading={isLoading}
+      isLoading={isLoading || isFetching || isPriceDataLoading}
       disabled={disabled}
       onClick={() => {
         if (write) {
           write();
-          onRedeem();
         }
       }}
     >
@@ -57,14 +64,14 @@ const Redeem = () => {
       <div>
         <p>Balance</p>
         <div className={"flex flex-row justify-between"}>
-          <span>aUSD: {formatEtherToNumber(AUSDBalance)}</span>
-          <span>lstETH: {formatEtherToNumber(lstETHBalance)}</span>
+          <span>zUSD: {formatEtherToNumber(AUSDBalance)}</span>
+          <span>mirrorETH: {formatEtherToNumber(lstETHBalance)}</span>
         </div>
       </div>
       {/*<div className={"my-4"}></div>*/}
       <div className={"flex flex-row justify-between items-center gap-2"}>
         <InputWithMax
-          setValue={value => {
+          setValue={(value) => {
             const parsedValue = parseEther(value);
             setAUSDAmount(parsedValue);
             setLstETHAmount(parsedValue / BigInt(LIQ_PRICE));
@@ -74,7 +81,7 @@ const Redeem = () => {
         />
         <PlusCircledIcon />
         <InputWithMax
-          setValue={value => {
+          setValue={(value) => {
             const parsedValue = parseEther(value);
             setLstETHAmount(parsedValue);
             setAUSDAmount(parsedValue * BigInt(LIQ_PRICE));
@@ -94,24 +101,24 @@ const Redeem = () => {
         <TickleNumber
           numberString={String(formatEtherToNumber(lstETHAmount))}
         />{" "}
-        stETH
+        ETH
       </div>
       <div className={"my-8"}></div>
       <ApproveCheck
-        spender={CONTRACT_ADDRESSES.adscendoPool}
-        token={CONTRACT_ADDRESSES.aUSD}
+        spender={CONTRACT_ADDRESSES.zEST}
+        token={CONTRACT_ADDRESSES.zUSD}
         tokenABI={AUSDABI}
         spendingAmount={aUSDAmount}
         className={"w-full"}
-        tokenName={"aUSD"}
+        tokenName={"zUSD"}
       >
         <ApproveCheck
-          spender={CONTRACT_ADDRESSES.adscendoPool}
-          token={CONTRACT_ADDRESSES.lstETH}
+          spender={CONTRACT_ADDRESSES.zEST}
+          token={CONTRACT_ADDRESSES.mirrorETH}
           tokenABI={lstETHABI}
           spendingAmount={lstETHAmount}
           className={"w-full"}
-          tokenName={"lstETH"}
+          tokenName={"mirrorETH"}
         >
           <RedeemButton
             disabled={

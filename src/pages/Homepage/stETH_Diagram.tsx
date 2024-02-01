@@ -7,7 +7,7 @@ const STETHDiagram = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [inViewPort] = useInViewport(ref, {
-    rootMargin: `-${window.innerHeight / 4}px`
+    rootMargin: `-${window.innerHeight / 4}px`,
   });
 
   return (
@@ -15,19 +15,19 @@ const STETHDiagram = () => {
       className={"flex justify-center flex-col items-center font-bold"}
       ref={ref}
     >
-      <div className={"w-1/2 md:w-1/4 max-w-[250px] orb"}>stETH</div>
+      <div className={"w-1/2 md:w-1/4 max-w-[250px] orb"}>ETH</div>
       <div
         className={classNames(
           "flex justify-between w-full md:w-6/12 text-neutral-400 mt-[-1em] md:mt-[-2em] mb-8 max-w-[500px] opacity-0 transition-all duration-500",
           {
-            ["opacity-100"]: inViewPort
+            ["opacity-100"]: inViewPort,
           }
         )}
       >
         <div className={"diagram-explain"}>
           <div
             style={{
-              width: "6em"
+              width: "6em",
             }}
           >
             Price Volatility
@@ -46,14 +46,14 @@ const STETHDiagram = () => {
           <div
             className={"img-container"}
             style={{
-              transform: "translateX(-150%)"
+              transform: "translateX(-150%)",
             }}
           >
             <img src={arrow} alt="arrow" className={"rotate-[270deg]"} />
           </div>
           <div
             style={{
-              width: "6em"
+              width: "6em",
             }}
           >
             Staking Yield
@@ -64,18 +64,18 @@ const STETHDiagram = () => {
         <div
           className={classNames("orb-square opacity-0", {
             ["translate-x-0 translate-y-0 opacity-100"]: inViewPort,
-            ["-translate-y-full translate-x-full"]: !inViewPort
+            ["-translate-y-full translate-x-full"]: !inViewPort,
           })}
         >
-          lstETH
+          mirrorETH
         </div>
         <div
           className={classNames("orb-square opacity-0", {
             ["translate-x-0 translate-y-0 opacity-100"]: inViewPort,
-            ["-translate-x-full -translate-y-full"]: !inViewPort
+            ["-translate-x-full -translate-y-full"]: !inViewPort,
           })}
         >
-          aUSD
+          zUSD
         </div>
       </div>
     </div>

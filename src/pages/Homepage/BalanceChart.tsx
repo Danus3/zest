@@ -11,14 +11,14 @@ const BalanceChart = () => {
             I'm risk-averse. <br />I just want to hold stablecoins to earn a
             higher annual return.
           </p>
-          <p>aUSD</p>
+          <p>zUSD</p>
         </div>
         <div className={"balance-square right"}>
           <p>
             I'm bullish on the market. <br />I want to hold leveraged stETH for
             higher returns during a bull market.
           </p>
-          <p className={"right-0"}>lstETH</p>
+          <p className={"right-0"}>mirrorETH</p>
         </div>
         <img src={balanceImg} alt="balance" className={"balance-img"} />
       </div>

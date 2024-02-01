@@ -52,7 +52,11 @@ const Mint = () => {
 
   const mintAUSDAmount = mintValue * BigInt(LIQ_PRICE);
 
-  const priceData = useGetPythUpdateData();
+  const {
+    data: priceData,
+    isFetching,
+    isLoading: isPriceDataLoading,
+  } = useGetPythUpdateData(mintValue);
 
   const {
     write: mintUsingEther,
@@ -134,9 +138,13 @@ const Mint = () => {
             mintValue === 0n ||
             !!prepareContractError ||
             !isConnected ||
-            isLoading
+            isLoading ||
+            isFetching ||
+            isPriceDataLoading
           }
-          isLoading={isLoadingWrite || isLoading}
+          isLoading={
+            isLoadingWrite || isLoading || isFetching || isPriceDataLoading
+          }
         >
           {isLoading ? "Minting..." : "Mint"}
         </WrappedButton>

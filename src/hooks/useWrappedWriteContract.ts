@@ -11,8 +11,11 @@ import { useSetAtom } from "jotai/index";
 
 const useWrappedWriteContract = ({
   args,
+  onTransactionComplete,
   ...rest
-}: UsePrepareContractWriteConfig) => {
+}: UsePrepareContractWriteConfig & {
+  onTransactionComplete?: () => void;
+}) => {
   const argsArr = [];
 
   const setTransactions = useSetAtom(transactionsToastAtom);
@@ -37,7 +40,7 @@ const useWrappedWriteContract = ({
     args: argsArr,
     ...rest,
   });
-  const { data, write } = useContractWrite(config);
+  const { data, write, isLoading: isWriting } = useContractWrite(config);
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
@@ -47,6 +50,7 @@ const useWrappedWriteContract = ({
           ...prev,
           { hash: data.hash, status: "complete" },
         ]);
+      onTransactionComplete && onTransactionComplete();
     },
   });
 
@@ -58,7 +62,7 @@ const useWrappedWriteContract = ({
 
   return {
     write,
-    isLoading,
+    isLoading: isLoading || isWriting,
     isSuccess,
     isLoadingWrite,
     prepareContractError,

@@ -2,6 +2,7 @@ import {
   PriceServiceConnection,
   HexString,
 } from "@pythnetwork/price-service-client";
+import { useQuery } from "@tanstack/react-query";
 import { Buffer } from "buffer";
 import { useEffect, useState } from "react";
 
@@ -20,15 +21,12 @@ export class EvmPriceServiceConnection extends PriceServiceConnection {
     );
   }
 }
+const connection = new EvmPriceServiceConnection("https://hermes.pyth.network"); // See Hermes endpoints section below for other endpoints
 
-const useGetPythUpdateData = () => {
-  const [data, setData] = useState<string[]>();
-  useEffect(() => {
-    async function main() {
-      const connection = new EvmPriceServiceConnection(
-        "https://hermes.pyth.network"
-      ); // See Hermes endpoints section below for other endpoints
-
+const useGetPythUpdateData = (value: bigint) => {
+  const state = useQuery(
+    ["PythUpdateData", String(value)],
+    async () => {
       const priceIds = [
         // You can find the ids of prices at https://pyth.network/developers/price-feed-ids#pyth-evm-stable
         "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace", // ETH/USD price id
@@ -40,11 +38,14 @@ const useGetPythUpdateData = () => {
       const priceUpdateData = await connection.getPriceFeedsUpdateData(
         priceIds
       );
-      setData(priceUpdateData);
+      return priceUpdateData;
+    },
+    {
+      staleTime: 1000 * 30,
     }
-    main().catch(console.error);
-  }, []);
-  return data;
+  );
+
+  return state;
 };
 
 export default useGetPythUpdateData;

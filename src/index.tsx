@@ -8,6 +8,8 @@ import Layout from "./ux/Layout.tsx";
 // import MintAndRedeem from "./pages/MintAndRedeem";
 import Homepage from "@pages/Homepage";
 import { isApp } from "./config.tsx";
+import useUserBalance from "@hooks/useUserBalance.ts";
+import useTokenInfo from "@hooks/useTokenInfo.ts";
 
 const MintAndRedeem = lazy(() => import("@pages/MintAndRedeem"));
 // const Earn = lazy(() => import("@pages/Earn"));
@@ -135,9 +137,9 @@ const App = () => {
     }
   );
 
-  // useTokenInfo();
+  useTokenInfo();
 
-  // useUserBalance();
+  useUserBalance();
 
   return <RouterProvider router={router}></RouterProvider>;
 };

@@ -18,13 +18,13 @@ const Homepage = () => {
       }
     >
       <div className={"homepage-card px-3 flex-grow"}>
-        <h2 className={"font-bold"}>aUSD: yield-bearing stablecoin</h2>
+        <h2 className={"font-bold"}>zUSD: yield-bearing stablecoin</h2>
         <p className={"mt-4 text-neutral-400"}>
           Get leveraged ETH staking yield from 6%-40%
         </p>
       </div>
       <div className={"homepage-card px-3 flex-grow"}>
-        <h2 className={"font-bold"}>lstETH: leveraged stETH derivatives</h2>
+        <h2 className={"font-bold"}>mirrorETH: leveraged stETH derivatives</h2>
         <p className={"mt-4 text-neutral-400"}>
           Long ETH with 3x-6x Leverage without funding fees
         </p>
@@ -77,17 +77,11 @@ const Homepage = () => {
             "flex flex-col lg:flex-row lg:items-stretch gap-16 relative z-10"
           }
         >
-          <div className={"homepage-card w-full lg:w-5/12 shrink-0"}>
+          {/* <div className={"homepage-card w-full lg:w-5/12 shrink-0"}>
             <LazyImage src={Banner1} className={"w-1/2"} />
             <h6 className={"mt-4 text-2xl"}>stETH Genesis Pool</h6>
-            {/*<p className={"text-neutral-400"}>*/}
-            {/*  ETH Leverage Ratio: <span className={"text-amber-400"}>3.6x</span>*/}
-            {/*</p>*/}
-            {/*<p className={"text-neutral-400"}>*/}
-            {/*  ETH Staking Yield Leverage Ratio:{" "}*/}
-            {/*  <span className={"text-amber-400 "}>1.5x</span>*/}
-            {/*</p>*/}
-          </div>
+         
+          </div> */}
           <div className={"flex-grow"}>
             <RatioChart />
           </div>
@@ -105,7 +99,7 @@ const Homepage = () => {
           <div className={"flex flex-col justify-center gap-6"}>
             <h2 className={"font-bold"}>
               LSD-Native Stablecoin,{" "}
-              <span className={"text-amber-400"}>aUSD</span>
+              <span className={"text-amber-400"}>zUSD</span>
             </h2>
             <div
               className={
@@ -149,7 +143,7 @@ const Homepage = () => {
         }
         style={{
           backgroundImage: `linear-gradient(to top, transparent 0%, #000000 100%), url(${homepageFooter})`,
-          zIndex: -1
+          zIndex: -1,
         }}
       ></div>
     </>

@@ -18,8 +18,7 @@ export const isApp =
 export const isLandingPage =
   searchParams.get("domain") === "landing" || hostname === landingPageURLHost;
 
-export const WeedPaperURL =
-  "https://medium.com/@Adscendo/weedpaper-of-adscendo-773eb7356bad";
+export const WeedPaperURL = "https://docs.zestprotocol.xyz/";
 
 export const MotivationURL = "https://docs.adscendo.xyz/motivation";
 
@@ -27,7 +26,7 @@ export const MediumURL = "https://medium.com/@Adscendo";
 
 export const DocsURL = "https://docs.adscendo.xyz/";
 
-export const TwitterURL = "https://twitter.com/Adscendo_fi";
+export const TwitterURL = "https://twitter.com/Zest_Blast";
 
 export const isPublicSalePage = pathname.startsWith("/public-sale");
 
@@ -75,13 +74,13 @@ export const routeConfigs: {
     path: MediumURL,
     name: "Medium",
     external: true,
-    disabled: isApp,
+    disabled: true,
   },
   {
     path: DocsURL,
     name: "Docs",
     external: true,
-    disabled: isApp,
+    disabled: true,
   },
   {
     path: TwitterURL,

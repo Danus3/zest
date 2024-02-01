@@ -7,6 +7,8 @@ import { Link, useLocation } from "react-router-dom";
 import ConnectBtn from "./ConnectBtn.tsx";
 import { twMerge } from "tailwind-merge";
 import { ConnectKitButton } from "connectkit";
+import zestShape from "@/assets/zest-shape.svg";
+import zestChar from "@/assets/zest-char.svg";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,9 +51,10 @@ const NavBar = () => {
             onClick={() => {
               setIsMenuOpen(false);
             }}
-            className={"shrink-0 self-center"}
+            className={"shrink-0 self-center flex gap-1"}
           >
-            <img src={logo} className={"w-32 m-auto"} alt={"logo"} />
+            <img src={zestShape} className={"w-16 m-auto"} alt={"logo"} />
+            <img src={zestChar} className={"w-16 m-auto"} alt={"logo"} />
           </Link>
           <div className={"flex items-center gap-4 flex-col md:flex-row"}>
             {routeConfigs.map((routeConfig) => {

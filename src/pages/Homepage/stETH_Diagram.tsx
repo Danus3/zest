@@ -15,7 +15,7 @@ const STETHDiagram = () => {
       className={"flex justify-center flex-col items-center font-bold"}
       ref={ref}
     >
-      <div className={"w-1/2 md:w-1/4 max-w-[250px] orb"}>ETH</div>
+      <div className={"w-1/2 md:w-1/4 max-w-[250px] orb"}>Blast ETH</div>
       <div
         className={classNames(
           "flex justify-between w-full md:w-6/12 text-neutral-400 mt-[-1em] md:mt-[-2em] mb-8 max-w-[500px] opacity-0 transition-all duration-500",
@@ -56,7 +56,7 @@ const STETHDiagram = () => {
               width: "6em",
             }}
           >
-            Staking Yield
+            Blast Native Yield
           </div>
         </div>
       </div>

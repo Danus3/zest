@@ -130,7 +130,7 @@ const MintAndRedeem = () => {
           </div>
         </div>
       </div>
-      <div className={"flex gap-4 justify-start md:justify-end"}>
+      <div className={"flex gap-4 justify-start md:justify-end hidden"}>
         <WrappedButton className={"self-center"}>
           <a
             target={"_blank"}
@@ -213,7 +213,7 @@ const MintAndRedeem = () => {
             <>
               <ul className={"leading-6"}>
                 <li className={"list-none"}>
-                  You can mint zUSD and mirrorETH with ETH.
+                  You can mint zUSD and mirrorETH with Blast_ETH.
                 </li>
                 <li>zUSD: Enjoy Leveraged ETH Staking Yield (1x-5x)</li>
                 <li>
@@ -221,7 +221,9 @@ const MintAndRedeem = () => {
                   (3x-6x)
                 </li>
               </ul>
-              <p className={"text-amber-400"}>1 ETH = 1300*zUSD+1*mirrorETH</p>
+              <p className={"text-amber-400"}>
+                1 Blast_ETH = 1300*zUSD+1*mirrorETH
+              </p>
               <RatioChart />
             </>
           ) : tab === 1 ? (
@@ -234,7 +236,7 @@ const MintAndRedeem = () => {
                 </span>
               </p>
 
-              <a href="/">
+              <a href="/" className="hidden">
                 <button className={"bg-amber-400 text-black emphasis"} disabled>
                   Buy zUSD
                 </button>

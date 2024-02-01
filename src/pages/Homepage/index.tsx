@@ -1,14 +1,12 @@
-import Banner1 from "@assets/homepage-banner-1.webp";
-import "./homepage.css";
-import LazyImage from "@src/components/image.tsx";
-import { DocsURL, MotivationURL, WeedPaperURL } from "@src/config";
 import homepageBg from "@assets/homepage-bg.webp";
 import homepageFooter from "@assets/homepage-footer.jpg";
 import ParallelBanner from "@src/components/ParallelBanner.tsx";
-import TypeWriter from "@src/components/TypeWriter";
-import StETH_Diagram from "./stETH_Diagram.tsx";
 import RatioChart from "@src/components/RatioChart.tsx";
+import TypeWriter from "@src/components/TypeWriter";
+import { MotivationURL, WeedPaperURL } from "@src/config";
 import BalanceChart from "./BalanceChart.tsx";
+import "./homepage.css";
+import StETH_Diagram from "./stETH_Diagram.tsx";
 
 const Homepage = () => {
   const subBanner = (
@@ -19,14 +17,12 @@ const Homepage = () => {
     >
       <div className={"homepage-card px-3 flex-grow"}>
         <h2 className={"font-bold"}>zUSD: yield-bearing stablecoin</h2>
-        <p className={"mt-4 text-neutral-400"}>
-          Get leveraged ETH staking yield from 6%-40%
-        </p>
+        <p className={"mt-4 text-neutral-400"}>Blast ETH native yield</p>
       </div>
       <div className={"homepage-card px-3 flex-grow"}>
-        <h2 className={"font-bold"}>mirrorETH: leveraged stETH derivatives</h2>
+        <h2 className={"font-bold"}>mirrorETH: leveraged ETH derivatives</h2>
         <p className={"mt-4 text-neutral-400"}>
-          Long ETH with 3x-6x Leverage without funding fees
+          1 mirrorETH = 1 ETH, in terms of value changes
         </p>
       </div>
     </div>
@@ -66,7 +62,7 @@ const Homepage = () => {
         <div className={"my-8"}></div>
         {subBanner}
         <div className={"my-8"}></div>
-        <div>
+        <div className="hidden">
           <a className={"link-btn"} href={MotivationURL} target={"_blank"}>
             Motivation
           </a>
@@ -87,7 +83,7 @@ const Homepage = () => {
           </div>
         </div>
         <div className={"my-8"}></div>
-        <div>
+        <div className="hidden">
           <a className={"link-btn"} href={WeedPaperURL} target={"_blank"}>
             WeedPaper
           </a>
@@ -95,7 +91,7 @@ const Homepage = () => {
         <div className={"my-16"}></div>
         <StETH_Diagram />
         <div className={"my-24"}></div>
-        <div>
+        <div className="hidden">
           <div className={"flex flex-col justify-center gap-6"}>
             <h2 className={"font-bold"}>
               LSD-Native Stablecoin,{" "}
@@ -131,7 +127,7 @@ const Homepage = () => {
             </div>
           </div>
           <div className={"mt-16"}>
-            <a className={"link-btn"} href={DocsURL} target={"_blank"}>
+            <a className={"link-btn"} href={WeedPaperURL} target={"_blank"}>
               Docs
             </a>
           </div>

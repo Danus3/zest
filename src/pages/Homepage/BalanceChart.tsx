@@ -1,4 +1,4 @@
-import balanceImg from "@src/assets/balance.webp";
+import balanceImg from "@src/assets/balance.svg";
 
 const BalanceChart = () => {
   return (
@@ -15,7 +15,7 @@ const BalanceChart = () => {
         </div>
         <div className={"balance-square right"}>
           <p>
-            I'm bullish on the market. <br />I want to hold leveraged stETH for
+            I'm bullish on the market. <br />I want to hold leveraged ETH for
             higher returns during a bull market.
           </p>
           <p className={"right-0"}>mirrorETH</p>

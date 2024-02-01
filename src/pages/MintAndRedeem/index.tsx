@@ -213,16 +213,16 @@ const MintAndRedeem = () => {
             <>
               <ul className={"leading-6"}>
                 <li className={"list-none"}>
-                  You can mint zUSD and mirrorETH with Blast_ETH.
+                  You can mint zUSD and mirrorETH with Blast ETH.
                 </li>
-                <li>zUSD: Enjoy Leveraged ETH Staking Yield (1x-5x)</li>
+                <li>zUSD: Enjoy Leveraged Blast ETH Staking Yield (1x-5x)</li>
                 <li>
                   mirrorETH: Enjoy Long-term On-chain Leveraged ETH Derivative
                   (3x-6x)
                 </li>
               </ul>
               <p className={"text-amber-400"}>
-                1 Blast_ETH = 1300*zUSD+1*mirrorETH
+                1 Blast ETH = 1300*zUSD+1*mirrorETH
               </p>
               <RatioChart />
             </>

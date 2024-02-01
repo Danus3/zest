@@ -24,7 +24,7 @@ export const MotivationURL = "https://docs.adscendo.xyz/motivation";
 
 export const MediumURL = "https://medium.com/@Adscendo";
 
-export const DocsURL = "https://docs.adscendo.xyz/";
+export const DocsURL = "https://docs.zestprotocol.xyz/";
 
 export const TwitterURL = "https://twitter.com/Zest_Blast";
 
@@ -68,7 +68,7 @@ export const routeConfigs: {
     path: WeedPaperURL,
     name: "WeedPaper",
     external: true,
-    disabled: isApp,
+    disabled: true,
   },
   {
     path: MediumURL,
@@ -80,7 +80,7 @@ export const routeConfigs: {
     path: DocsURL,
     name: "Docs",
     external: true,
-    disabled: true,
+    disabled: isApp,
   },
   {
     path: TwitterURL,

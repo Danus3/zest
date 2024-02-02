@@ -4,13 +4,13 @@ const URLParams = new URL(window.location.href);
 
 const { hostname, searchParams, pathname } = URLParams;
 
-export const appURL = "https://app.adscendo.xyz";
+export const appURL = "https://app.zestprotocol.xyz";
 
-export const appURLHost = "app.adscendo.xyz";
+export const appURLHost = "app.zestprotocol.xyz";
 
-export const landingPageURL = "https://adscendo.xyz";
+export const landingPageURL = "https://zestprotocol.xyz";
 
-export const landingPageURLHost = "adscendo.xyz";
+export const landingPageURLHost = "zestprotocol.xyz";
 
 export const isLocalhost = hostname === "localhost";
 export const isApp =
@@ -20,9 +20,9 @@ export const isLandingPage =
 
 export const WeedPaperURL = "https://docs.zestprotocol.xyz/";
 
-export const MotivationURL = "https://docs.adscendo.xyz/motivation";
+export const MotivationURL = "https://docs.zestprotocol.xyz/motivation";
 
-export const MediumURL = "https://medium.com/@Adscendo";
+export const MediumURL = "https://medium.com/@zestprotocol";
 
 export const DocsURL = "https://docs.zestprotocol.xyz/";
 

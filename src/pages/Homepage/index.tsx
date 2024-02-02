@@ -38,6 +38,13 @@ const Homepage = () => {
             "z-10 flex gap-4 flex-col m-auto mt-[-24vw] md:mt-[-12vw] relative"
           }
         >
+          {["SET 100 SVH homepage height!!!"].map((text, index) => {
+            return (
+              <h1 key={index} className={"md:h-auto h-[4em]"}>
+                <TypeWriter text={text}></TypeWriter>
+              </h1>
+            );
+          })}
           {["Capital Efficiency is all you need, for Buy&Forget users."].map(
             (text, index) => {
               return (

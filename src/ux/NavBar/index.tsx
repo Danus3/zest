@@ -1,14 +1,13 @@
-import logo from "@/assets/logo.png";
-import { routeConfigs } from "@src/config";
-import { useState } from "react";
-import classNames from "classnames";
-import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { Link, useLocation } from "react-router-dom";
-import ConnectBtn from "./ConnectBtn.tsx";
-import { twMerge } from "tailwind-merge";
-import { ConnectKitButton } from "connectkit";
-import zestShape from "@/assets/zest-shape.svg";
 import zestChar from "@/assets/zest-char.svg";
+import zestShape from "@/assets/zest-shape.svg";
+import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { routeConfigs } from "@src/config";
+import classNames from "classnames";
+import { ConnectKitButton } from "connectkit";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
+import ConnectBtn from "./ConnectBtn.tsx";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

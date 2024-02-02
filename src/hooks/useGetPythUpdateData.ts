@@ -1,10 +1,9 @@
 import {
-  PriceServiceConnection,
   HexString,
+  PriceServiceConnection,
 } from "@pythnetwork/price-service-client";
 import { useQuery } from "@tanstack/react-query";
 import { Buffer } from "buffer";
-import { useEffect, useState } from "react";
 
 export class EvmPriceServiceConnection extends PriceServiceConnection {
   /**

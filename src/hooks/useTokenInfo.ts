@@ -7,7 +7,6 @@ import {
   getSTETHPoolStats,
   lstETHState,
 } from "@src/state";
-import { AdscendoPoolABI } from "@utils/ABIs/AdscendoPoolABI.ts";
 import { zESTABI } from "@utils/ABIs/ZestABI";
 import aUSDABI from "@utils/ABIs/aUSDABI.ts";
 import lstETHABI from "@utils/ABIs/lstETHABI.ts";

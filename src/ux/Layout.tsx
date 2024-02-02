@@ -1,12 +1,12 @@
-import NavBar from "./NavBar";
-import { Outlet } from "react-router-dom";
-import classNames from "classnames";
-import { isApp, isLocalhost } from "@src/config";
-import { useAtomValue } from "jotai/index";
-import { transactionsToastAtom } from "@src/state/ui.ts";
-import * as ToastPrimitive from "@radix-ui/react-toast";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import * as ToastPrimitive from "@radix-ui/react-toast";
+import { isApp } from "@src/config";
+import { transactionsToastAtom } from "@src/state/ui.ts";
+import classNames from "classnames";
 import { useChains } from "connectkit";
+import { useAtomValue } from "jotai/index";
+import { Outlet } from "react-router-dom";
+import NavBar from "./NavBar";
 
 // import homepageBg from "@assets/homepage-bg.webp";
 
@@ -26,19 +26,18 @@ const Layout = () => {
   return (
     <div
       className={classNames("text-center text-white pb-16", {
-        [isApp || isLocalhost ? "md:pt-32 pt-20" : "pt-0"]: true
+        [isApp ? "md:pt-32 pt-20" : "pt-0"]: true,
       })}
       style={{
-        background:
-          isApp || isLocalhost
-            ? "radial-gradient(50% 50% at 100% 0%, #111111 0%, black 100%)"
-            : undefined
+        background: isApp
+          ? "radial-gradient(50% 50% at 100% 0%, #111111 0%, black 100%)"
+          : undefined,
       }}
     >
       <NavBar />
       <Outlet></Outlet>
 
-      {sentHashes.map(hash => {
+      {sentHashes.map((hash) => {
         return (
           <ToastPrimitive.Root
             key={hash.hash + hash.status}

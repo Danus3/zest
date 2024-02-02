@@ -17,7 +17,9 @@ const Homepage = () => {
     >
       <div className={"homepage-card px-3 flex-grow"}>
         <h2 className={"font-bold"}>zUSD: yield-bearing stablecoin</h2>
-        <p className={"mt-4 text-neutral-400"}>Blast ETH native yield</p>
+        <p className={"mt-4 text-neutral-400"}>
+          Get leveraged Blast ETH Native Yield from 6%-40%
+        </p>
       </div>
       <div className={"homepage-card px-3 flex-grow"}>
         <h2 className={"font-bold"}>mirrorETH: leveraged ETH derivatives</h2>
@@ -38,13 +40,6 @@ const Homepage = () => {
             "z-10 flex gap-4 flex-col m-auto mt-[-24vw] md:mt-[-12vw] relative"
           }
         >
-          {["SET 100 SVH homepage height!!!"].map((text, index) => {
-            return (
-              <h1 key={index} className={"md:h-auto h-[4em]"}>
-                <TypeWriter text={text}></TypeWriter>
-              </h1>
-            );
-          })}
           {["Capital Efficiency is all you need, for Buy&Forget users."].map(
             (text, index) => {
               return (

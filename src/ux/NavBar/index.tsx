@@ -1,7 +1,7 @@
 import zestChar from "@/assets/zest-char.svg";
 import zestShape from "@/assets/zest-shape.svg";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { routeConfigs } from "@src/config";
+import { landingPageURL, routeConfigs } from "@src/config";
 import classNames from "classnames";
 import { ConnectKitButton } from "connectkit";
 import { useState } from "react";
@@ -46,7 +46,7 @@ const NavBar = () => {
           }}
         >
           <Link
-            to={"/"}
+            to={landingPageURL}
             onClick={() => {
               setIsMenuOpen(false);
             }}

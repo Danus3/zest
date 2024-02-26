@@ -3,7 +3,6 @@ import balanceImg from "@src/assets/balance.svg";
 const BalanceChart = () => {
   return (
     <div className={"flex flex-col gap-4 mb-20 sm:mb-0 md:mb-48"}>
-      <h1>Adscendo Protocol</h1>
       <p>Splitting Yield and Volatility of stETH</p>
       <div className={"flex flex-row gap-8 relative text-center text-black"}>
         <div className={"balance-square left"}>

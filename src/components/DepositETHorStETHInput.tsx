@@ -10,7 +10,8 @@ const DepositETHorStETHInput: React.FC<{
   value: bigint;
   setValue: (value: bigint) => void;
   setMintAsset?: (value: MintAsset) => void;
-  customeBalance?: bigint;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  customeBalance?: any;
 }> = ({ value, setValue, customeBalance }) => {
   const [selected] = useState<MintAsset>("ETH");
 

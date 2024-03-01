@@ -3,7 +3,8 @@ import classNames from "classnames";
 
 const ParallelBanner: React.FC<{
   src: string;
-}> = ({ src }) => {
+  style?: React.CSSProperties;
+}> = ({ src, style }) => {
   const [translateX, setTranslateX] = React.useState(0);
   const [translateY, setTranslateY] = React.useState(0);
   const [moveOut, setMoveOut] = React.useState(false);
@@ -19,7 +20,7 @@ const ParallelBanner: React.FC<{
           setMoveOut(false);
         }, 100);
       }}
-      onMouseMove={e => {
+      onMouseMove={(e) => {
         setTranslateX((e.clientX - window.innerWidth / 2) / 20);
         setTranslateY((e.clientY - window.innerHeight / 2) / 20);
       }}
@@ -28,6 +29,7 @@ const ParallelBanner: React.FC<{
         setTranslateY(0);
         setMoveOut(true);
       }}
+      style={style}
     >
       <img
         alt={"banner"}
@@ -35,14 +37,14 @@ const ParallelBanner: React.FC<{
         className={classNames(
           "object-cover absolute inset-0 h-full duration-100 origin-center",
           {
-            "transition-all": moveOut
+            "transition-all": moveOut,
           }
         )}
         style={{
           transform:
             window.innerWidth <= 768
               ? undefined
-              : `scale(1.1) translate(${translateX}px, ${translateY}px)`
+              : `scale(1.1) translate(${translateX}px, ${translateY}px)`,
         }}
       ></img>
       <div

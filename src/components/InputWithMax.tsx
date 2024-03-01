@@ -1,10 +1,11 @@
+import { ConnectKitButton } from "connectkit";
 import { useEffect, useState } from "react";
 
 const InputWithMax = ({
   setValue,
   maxValue,
   value,
-  placeholder
+  placeholder,
 }: {
   setValue: (value: string) => void;
   maxValue: string;
@@ -23,7 +24,7 @@ const InputWithMax = ({
       <input
         // type="number"
         className={"w-full placeholder:text-neutral-600"}
-        onChange={e => {
+        onChange={(e) => {
           setInternalValue(e.target.value);
           if (
             isNaN(Number(e.target.value)) ||
@@ -38,17 +39,27 @@ const InputWithMax = ({
         placeholder={placeholder || "Please input amount"}
         step={"any"}
       />
-      <div
-        className={
-          "absolute top-2 right-2 flex flex-col justify-center text-black bg-amber-400 px-1 rounded-md cursor-pointer"
-        }
-        onClick={() => {
-          setInternalValue(maxValue);
-          setValue(maxValue);
+      <ConnectKitButton.Custom>
+        {({ isConnected, show }) => {
+          return (
+            <div
+              className={
+                "absolute top-2 right-2 flex flex-col justify-center text-black bg-amber-400 px-1 rounded-md cursor-pointer"
+              }
+              onClick={() => {
+                if (!isConnected) {
+                  show?.();
+                } else {
+                  setInternalValue(maxValue);
+                  setValue(maxValue);
+                }
+              }}
+            >
+              {isConnected ? "MAX" : "Connect"}
+            </div>
+          );
         }}
-      >
-        MAX
-      </div>
+      </ConnectKitButton.Custom>
     </div>
   );
 };

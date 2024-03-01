@@ -14,14 +14,15 @@ import * as Toast from "@radix-ui/react-toast";
 import * as ToastPrimitive from "@radix-ui/react-toast";
 import { publicProvider } from "wagmi/providers/public";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
+import { isMintRedeemPage } from "../src/config.tsx";
 
 export const queryClient = new QueryClient();
 
 // const chain = isPublicSalePage ? [mainnet] : [goerli];
 
-const mainnet = {
+const sepolia = {
   id: 168587773,
-  name: "Blast",
+  name: "Blast Sepolia",
   network: "blast-sepolia",
   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
   rpcUrls: {
@@ -35,7 +36,23 @@ const mainnet = {
   testnet: true,
 } as const satisfies Chain;
 
-const chain = [mainnet];
+const mainnet = {
+  id: 81457,
+  name: "Blast Mainnet",
+  network: "blast",
+  nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+  rpcUrls: {
+    default: { http: ["https://rpc.blast.io	"] },
+    public: { http: ["https://rpc.ankr.com/blast"] },
+  },
+  blockExplorers: {
+    default: { name: "BlastIO", url: "https://blastscan.io" },
+  },
+
+  testnet: true,
+} as const satisfies Chain;
+
+const chain = isMintRedeemPage ? [sepolia] : [mainnet];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -48,13 +65,13 @@ const config = createConfig(
     walletConnectProjectId: "5d33f0689d3a5b2b54836b30032fc6e3",
 
     // Required
-    appName: "Adscendo",
+    appName: "Zest",
     chains,
 
     // Optional
-    appDescription: "Adscendo Protocol",
-    appUrl: "https://adscendo.xyz/", // your app's url
-    appIcon: "https://adscendo.xyz/adscendo.svg", // your app's icon, no bigger than 1024x1024px (max. 1MB),
+    appDescription: "Zest Protocol",
+    appUrl: "https://zestprotocol.xyz/", // your app's url
+    appIcon: "https://zestprotocol.xyz/zest.svg", // your app's icon, no bigger than 1024x1024px (max. 1MB),
   })
 );
 

@@ -1,6 +1,6 @@
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import * as ToastPrimitive from "@radix-ui/react-toast";
-import { isApp } from "@src/config";
+import { isApp, isLocalhost } from "@src/config";
 import { transactionsToastAtom } from "@src/state/ui.ts";
 import classNames from "classnames";
 import { useChains } from "connectkit";

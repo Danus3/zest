@@ -10,6 +10,7 @@ import Homepage from "@pages/Homepage";
 import { isApp } from "./config.tsx";
 import useUserBalance from "@hooks/useUserBalance.ts";
 import useTokenInfo from "@hooks/useTokenInfo.ts";
+import Stake from "@pages/Stake/index.tsx";
 
 const MintAndRedeem = lazy(() => import("@pages/MintAndRedeem"));
 // const Earn = lazy(() => import("@pages/Earn"));
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
             ) : (
               <Homepage />
             )}
+          </Suspense>
+        ),
+      },
+      {
+        path: "genesis",
+        element: (
+          <Suspense fallback={routeLoading}>
+            <Stake />
           </Suspense>
         ),
       },

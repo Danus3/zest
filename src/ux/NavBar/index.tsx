@@ -63,8 +63,9 @@ const NavBar = () => {
               const match =
                 pathname === routeConfig.path &&
                 "text-amber-400 underline underline-offset-4";
+              let link: JSX.Element;
               if (routeConfig.external) {
-                return (
+                link = (
                   <a
                     href={routeConfig.path}
                     key={routeConfig.path}
@@ -77,23 +78,34 @@ const NavBar = () => {
                     {routeConfig.icon || routeConfig.name}
                   </a>
                 );
+              } else {
+                link = (
+                  <Link
+                    to={routeConfig.path}
+                    key={routeConfig.path}
+                    onClick={() => {
+                      setTimeout(() => {
+                        setIsMenuOpen(false);
+                      }, 300);
+                    }}
+                    className={twMerge(
+                      "animate-slideIn md:animate-none transition-all underline-offset-1 hover:underline-offset-4",
+                      match
+                    )}
+                  >
+                    {routeConfig.name}
+                  </Link>
+                );
               }
               return (
-                <Link
-                  to={routeConfig.path}
-                  key={routeConfig.path}
-                  onClick={() => {
-                    setTimeout(() => {
-                      setIsMenuOpen(false);
-                    }, 300);
-                  }}
-                  className={twMerge(
-                    "animate-slideIn md:animate-none transition-all underline-offset-1 hover:underline-offset-4",
-                    match
-                  )}
-                >
-                  {routeConfig.name}
-                </Link>
+                <span>
+                  {link}
+                  {routeConfig.tag ? (
+                    <sup className={twMerge("ms-1", match, "no-underline")}>
+                      {routeConfig.tag}
+                    </sup>
+                  ) : null}
+                </span>
               );
             })}
             <ConnectBtn />

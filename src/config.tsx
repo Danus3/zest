@@ -30,6 +30,8 @@ export const TwitterURL = "https://twitter.com/Zest_Blast";
 
 export const isPublicSalePage = pathname.startsWith("/public-sale");
 
+export const isMintRedeemPage = pathname.startsWith("/mint-redeem");
+
 export const routeConfigs: {
   path: string;
   name: string;
@@ -37,16 +39,22 @@ export const routeConfigs: {
   disabled?: boolean;
   newPage?: boolean;
   icon?: React.ReactNode;
+  tag?: string;
 }[] = [
+  {
+    path: "/genesis",
+    name: "Genesis",
+    external: true,
+    newPage: false,
+    tag: "mainnet",
+  },
   {
     path: isApp ? "/" : "/mint-redeem",
     name: "Mint&Redeem",
     disabled: isLandingPage,
-  },
-  {
-    path: "/mint-redeem",
-    name: "Mint&Redeem",
-    disabled: true,
+    external: true,
+    newPage: false,
+    tag: "testnet",
   },
   {
     path: "/earn",
@@ -84,7 +92,7 @@ export const routeConfigs: {
   },
   {
     path: TwitterURL,
-    name: "Twitter",
+    name: "𝕏",
     external: true,
     disabled: isApp,
     icon: <span className={"text-2xl"}>𝕏</span>,

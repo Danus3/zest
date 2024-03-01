@@ -1,0 +1,151 @@
+import ParallelBanner from "@components/ParallelBanner";
+import homepageBg from "@assets/homepage-bg.webp";
+import WrappedButton from "@components/WrappedButton";
+import { twMerge } from "tailwind-merge";
+import Tabs from "@components/Tabs";
+import { useState } from "react";
+import DepositETHorStETHInput from "@components/DepositETHorStETHInput";
+import useWrappedWriteContract from "@hooks/useWrappedWriteContract";
+import BlastABI from "@utils/ABIs/BlastABI";
+import { CONTRACT_ADDRESSES } from "../../constants";
+import { useAccount, useContractReads } from "wagmi";
+
+const Stake = () => {
+  const [tab, setTab] = useState<number>(0);
+  const [mintValue, setMintValue] = useState(0n);
+
+  const { address } = useAccount();
+
+  const { data } = useContractReads({
+    contracts: [
+      {
+        address: CONTRACT_ADDRESSES.blastSephoia,
+        abi: BlastABI,
+        functionName: "balanceOf",
+        args: [address as `0x${string}`],
+      },
+    ],
+    enabled: !!address,
+    watch: true,
+  });
+
+  const {
+    write: stake,
+    isLoadingWrite,
+    isLoading,
+  } = useWrappedWriteContract({
+    address: CONTRACT_ADDRESSES.blastSephoia,
+    abi: BlastABI,
+    functionName: "stake",
+    args: [mintValue],
+    value: mintValue,
+    enabled: mintValue > 0n && tab === 0,
+    onTransactionComplete() {
+      setMintValue(0n);
+    },
+  });
+
+  const {
+    write: unstake,
+    isLoadingWrite: isLoadingWriteUnstake,
+    isLoading: isLoadingUnstake,
+  } = useWrappedWriteContract({
+    address: CONTRACT_ADDRESSES.blastSephoia,
+    abi: BlastABI,
+    functionName: "withdraw",
+    args: [mintValue],
+    enabled: mintValue > 0n && tab === 1,
+    onTransactionComplete() {
+      setMintValue(0n);
+      setTab(0);
+    },
+  });
+
+  return (
+    <div className="mt-36 max-w-[960px] m-auto">
+      <ParallelBanner
+        src={homepageBg}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          zIndex: -1,
+        }}
+      />
+      <h1>
+        🏆 <span className="text-amber-400">Blast BigBang</span> Honorable
+        Mentions
+      </h1>
+      <h3 className="mt-20">Empowering users with freedom to choose:</h3>
+      <p className="flex gap-4 items-center justify-center mt-6">
+        <WrappedButton className="w-[120px]">Yield</WrappedButton>
+        or
+        <WrappedButton className="w-[120px]">Volatility</WrappedButton>
+      </p>
+      <h2 className="mt-20">Genesis Pool</h2>
+      <div className="mt-8 flex gap-2 justify-center">
+        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
+          <h2 className="text-amber-400 mb-2">ETH</h2>
+          <p className="text-gray-300">ETH Locked</p>
+        </div>
+        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
+          <h2 className="text-amber-400 mb-2">ETH</h2>
+          <p className="text-gray-300">TVL</p>
+        </div>
+      </div>
+      <div className="mt-16 flex gap-2 justify-center flex-wrap">
+        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
+          <p className="text-gray-300">Staked</p>
+          <h3>ETH</h3>
+        </div>
+        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
+          <p className="text-gray-300">APY</p>
+          <h3>💥💥💥</h3>
+        </div>
+        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
+          <p className="text-gray-300">Blast points</p>
+          <h3>Coming soom</h3>
+        </div>
+        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
+          <p className="text-gray-300">Zest points</p>
+          <h3>12345</h3>
+        </div>
+      </div>
+      <h2 className="mt-32 mb-16">Stake</h2>
+      <div className="max-w-[480px] m-auto">
+        <Tabs
+          labels={["Stake", "UnStake"]}
+          currentTab={tab}
+          onChange={(_, value) => {
+            setTab(value);
+          }}
+          name={"tab"}
+          disabled={[false, !data?.[0].result]}
+        />
+        <div className="my-8"></div>
+        <DepositETHorStETHInput
+          value={mintValue}
+          setValue={setMintValue}
+          customeBalance={tab === 1 ? data?.[0].result : undefined}
+        />
+        <WrappedButton
+          className="w-full mt-6"
+          isLoading={
+            isLoadingWrite ||
+            isLoading ||
+            isLoadingWriteUnstake ||
+            isLoadingUnstake
+          }
+          onClick={() => {
+            tab === 1 ? unstake?.() : stake?.();
+          }}
+        >
+          {tab === 0 ? "Stake" : "UnStake"}
+        </WrappedButton>
+      </div>
+    </div>
+  );
+};
+
+export default Stake;

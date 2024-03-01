@@ -10,10 +10,13 @@ const DepositETHorStETHInput: React.FC<{
   value: bigint;
   setValue: (value: bigint) => void;
   setMintAsset?: (value: MintAsset) => void;
-}> = ({ value, setValue: setValue }) => {
+  customeBalance?: bigint;
+}> = ({ value, setValue, customeBalance }) => {
   const [selected] = useState<MintAsset>("ETH");
 
   const currentBalance = useETHAndStETHBalance()[selected === "ETH" ? 0 : 1];
+
+  const usedBalance = customeBalance || currentBalance;
 
   // const toggleAsset = (selectedAsset: MintAsset) => {
   //   if (selectedAsset === selected) return;
@@ -34,16 +37,16 @@ const DepositETHorStETHInput: React.FC<{
         <span
           className={"cursor-pointer"}
           onClick={() => {
-            setValue(currentBalance);
+            setValue(usedBalance);
           }}
         >
-          Available: {formatEtherToFixed(currentBalance, 4)} {selected}
+          Available: {formatEtherToFixed(usedBalance, 4)} {selected}
         </span>
       </p>
       <div className={"my-4"}></div>
       <InputWithMax
         setValue={(value) => setValue(parseEther(value))}
-        maxValue={formatEther(currentBalance)}
+        maxValue={formatEther(usedBalance)}
         placeholder={`0 ${selected}`}
         value={formatEther(value)}
       />

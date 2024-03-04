@@ -27,7 +27,7 @@ const sepolia = {
   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
   rpcUrls: {
     default: { http: ["https://sepolia.blast.io"] },
-    public: { http: ["https://rpc.ankr.com/blast_testnet_sepolia"] },
+    public: { http: ["https://sepolia.blast.io"] },
   },
   blockExplorers: {
     default: { name: "BlastIO", url: "https://testnet.blastscan.io" },
@@ -52,7 +52,7 @@ const mainnet = {
   testnet: true,
 } as const satisfies Chain;
 
-const chain = isMintRedeemPage ? [sepolia] : [mainnet];
+const chain = isMintRedeemPage ? [sepolia] : [sepolia];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

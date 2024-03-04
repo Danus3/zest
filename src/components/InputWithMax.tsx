@@ -1,6 +1,20 @@
 import { ConnectKitButton } from "connectkit";
 import { useEffect, useState } from "react";
 
+import BigNumber from "bignumber.js";
+
+export const formatInputValue = (value: string) => {
+  const regex = /^(\d+\.?\d*|\.\d*)/;
+  const matches = value.match(regex);
+  if (matches !== null) {
+    value = matches[0];
+  } else {
+    value = "";
+  }
+
+  return value;
+};
+
 const InputWithMax = ({
   setValue,
   maxValue,
@@ -25,14 +39,16 @@ const InputWithMax = ({
         // type="number"
         className={"w-full placeholder:text-neutral-600"}
         onChange={(e) => {
-          setInternalValue(e.target.value);
-          if (
-            isNaN(Number(e.target.value)) ||
-            e.target.value.match(/^[0.]+$/)
-          ) {
+          const formatValue = formatInputValue(e.target.value);
+
+          setInternalValue(formatValue);
+
+          if (isNaN(Number(formatValue)) || formatValue.match(/^[0.]+$/)) {
             return;
           }
-          setValue(e.target.value);
+
+          const isGreaterThanMax = new BigNumber(formatValue).gt(maxValue);
+          setValue(isGreaterThanMax ? maxValue : formatValue);
         }}
         min={"0"}
         value={internalValue}

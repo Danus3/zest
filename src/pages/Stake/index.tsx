@@ -3,12 +3,20 @@ import homepageBg from "@assets/homepage-bg.webp";
 import WrappedButton from "@components/WrappedButton";
 import { twMerge } from "tailwind-merge";
 import Tabs from "@components/Tabs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DepositETHorStETHInput from "@components/DepositETHorStETHInput";
 import useWrappedWriteContract from "@hooks/useWrappedWriteContract";
 import BlastABI from "@utils/ABIs/BlastABI";
+import zestStakingABI from "@utils/ABIs/zestStakingABI";
+import zptABI from "@utils/ABIs/zptABI";
 import { CONTRACT_ADDRESSES } from "../../constants";
-import { useAccount, useContractReads } from "wagmi";
+import { useAccount, useBalance, useContractReads } from "wagmi";
+import { etherUnits, formatEther } from "viem";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import BigNumber from "bignumber.js";
+
+const usdcPricePath = "https://api.scattering.io/api/v1/getTokenInUsdcPrice";
 
 const Stake = () => {
   const [tab, setTab] = useState<number>(0);
@@ -16,12 +24,22 @@ const Stake = () => {
 
   const { address } = useAccount();
 
+  const result = useBalance({
+    address: CONTRACT_ADDRESSES.zestStaking,
+  });
+
   const { data } = useContractReads({
     contracts: [
       {
-        address: CONTRACT_ADDRESSES.blastSephoia,
-        abi: BlastABI,
-        functionName: "balanceOf",
+        address: CONTRACT_ADDRESSES.zestStaking,
+        abi: zestStakingABI as any,
+        functionName: "balancesOf",
+        args: [address as `0x${string}`],
+      },
+      {
+        address: CONTRACT_ADDRESSES.zestStaking,
+        abi: zestStakingABI as any,
+        functionName: "points",
         args: [address as `0x${string}`],
       },
     ],
@@ -29,15 +47,32 @@ const Stake = () => {
     watch: true,
   });
 
+  const ethPrice = useQuery({
+    queryKey: ["getAmount"],
+    queryFn: async ({ queryKey }) => {
+      const res: any = await handleGetPrice();
+      return res;
+    },
+  });
+
+  const points = data?.[1]?.result?.toString() as any;
+  const lockedETH = result?.data?.formatted;
+  const stakedETH = data?.[0]?.result?.toString() as any;
+
+  const tvl =
+    lockedETH && ethPrice?.data
+      ? new BigNumber(ethPrice?.data).multipliedBy(lockedETH)?.toFixed(4)
+      : "--";
+
   const {
-    write: stake,
-    isLoadingWrite,
-    isLoading,
+    write: newStake,
+    isLoadingWrite: newIsLoadingWrite,
+    isLoading: newIsLoading,
   } = useWrappedWriteContract({
-    address: CONTRACT_ADDRESSES.blastSephoia,
-    abi: BlastABI,
-    functionName: "stake",
-    args: [mintValue],
+    address: CONTRACT_ADDRESSES.zestStaking,
+    abi: zestStakingABI as any,
+    functionName: "join",
+    args: [],
     value: mintValue,
     enabled: mintValue > 0n && tab === 0,
     onTransactionComplete() {
@@ -50,9 +85,9 @@ const Stake = () => {
     isLoadingWrite: isLoadingWriteUnstake,
     isLoading: isLoadingUnstake,
   } = useWrappedWriteContract({
-    address: CONTRACT_ADDRESSES.blastSephoia,
-    abi: BlastABI,
-    functionName: "withdraw",
+    address: CONTRACT_ADDRESSES.zestStaking,
+    abi: zestStakingABI as any,
+    functionName: "exit",
     args: [mintValue],
     enabled: mintValue > 0n && tab === 1,
     onTransactionComplete() {
@@ -60,6 +95,21 @@ const Stake = () => {
       setTab(0);
     },
   });
+
+  const handleGetPrice = async () => {
+    try {
+      const res = await axios.post(usdcPricePath, {});
+      console.log("res", res?.data?.data?.eth);
+      return res?.data?.data?.eth;
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    handleGetPrice();
+  }, []);
 
   return (
     <div className="mt-36 max-w-[960px] m-auto">
@@ -86,18 +136,18 @@ const Stake = () => {
       <h2 className="mt-20">Genesis Pool</h2>
       <div className="mt-8 flex gap-2 justify-center">
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
-          <h2 className="text-amber-400 mb-2">ETH</h2>
+          <h2 className="text-amber-400 mb-2">{lockedETH || "--"} ETH</h2>
           <p className="text-gray-300">ETH Locked</p>
         </div>
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
-          <h2 className="text-amber-400 mb-2">ETH</h2>
+          <h2 className="text-amber-400 mb-2">{tvl} ETH</h2>
           <p className="text-gray-300">TVL</p>
         </div>
       </div>
       <div className="mt-16 flex gap-2 justify-center flex-wrap">
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
           <p className="text-gray-300">Staked</p>
-          <h3>ETH</h3>
+          <h3>{stakedETH ? formatEther(stakedETH).slice(0, 6) : "--"} ETH</h3>
         </div>
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
           <p className="text-gray-300">APY</p>
@@ -109,7 +159,7 @@ const Stake = () => {
         </div>
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
           <p className="text-gray-300">Zest points</p>
-          <h3>12345</h3>
+          <h3> {points ? formatEther(points).slice(0, 6) : "--"}</h3>
         </div>
       </div>
       <h2 className="mt-32 mb-16">Stake</h2>
@@ -132,13 +182,13 @@ const Stake = () => {
         <WrappedButton
           className="w-full mt-6"
           isLoading={
-            isLoadingWrite ||
-            isLoading ||
+            newIsLoadingWrite ||
+            newIsLoading ||
             isLoadingWriteUnstake ||
             isLoadingUnstake
           }
           onClick={() => {
-            tab === 1 ? unstake?.() : stake?.();
+            tab === 1 ? unstake?.() : newStake?.();
           }}
         >
           {tab === 0 ? "Stake" : "UnStake"}

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { Fragment, lazy, Suspense } from "react";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./ux/Layout.tsx";
 // import MintAndRedeem from "./pages/MintAndRedeem";
 import Homepage from "@pages/Homepage";
@@ -45,7 +45,7 @@ const routeLoading = (
   </div>
 );
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,

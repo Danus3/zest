@@ -36,7 +36,7 @@ const sepolia = {
   testnet: true,
 } as const satisfies Chain;
 
-const mainnet = {
+export const mainnet = {
   id: 81457,
   name: "Blast Mainnet",
   network: "blast",

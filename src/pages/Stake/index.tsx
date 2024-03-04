@@ -6,12 +6,12 @@ import Tabs from "@components/Tabs";
 import { useEffect, useState } from "react";
 import DepositETHorStETHInput from "@components/DepositETHorStETHInput";
 import useWrappedWriteContract from "@hooks/useWrappedWriteContract";
-import BlastABI from "@utils/ABIs/BlastABI";
+
 import zestStakingABI from "@utils/ABIs/zestStakingABI";
-import zptABI from "@utils/ABIs/zptABI";
+
 import { CONTRACT_ADDRESSES } from "../../constants";
 import { useAccount, useBalance, useContractReads } from "wagmi";
-import { etherUnits, formatEther } from "viem";
+import { formatEther } from "viem";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import BigNumber from "bignumber.js";
@@ -49,7 +49,7 @@ const Stake = () => {
 
   const ethPrice = useQuery({
     queryKey: ["getAmount"],
-    queryFn: async ({ queryKey }) => {
+    queryFn: async () => {
       const res: any = await handleGetPrice();
       return res;
     },

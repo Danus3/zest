@@ -26,8 +26,8 @@ const sepolia = {
   network: "blast-sepolia",
   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
   rpcUrls: {
-    default: { http: ["https://sepolia.blast.io"] },
-    public: { http: ["https://sepolia.blast.io"] },
+    default: { http: ["https://blast-sepolia.blockpi.network/v1/rpc/public"] },
+    public: { http: ["https://blast-sepolia.blockpi.network/v1/rpc/public"] },
   },
   blockExplorers: {
     default: { name: "BlastIO", url: "https://testnet.blastscan.io" },

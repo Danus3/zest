@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./index.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import { ConfigProvider, theme } from "antd";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 
 import { type Chain } from "viem";
@@ -52,7 +52,7 @@ export const mainnet = {
   testnet: true,
 } as const satisfies Chain;
 
-const chain = isMintRedeemPage ? [sepolia] : [sepolia];
+const chain = isMintRedeemPage ? [sepolia, mainnet] : [sepolia, mainnet];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -77,22 +77,32 @@ const config = createConfig(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Toast.Provider swipeDirection={"right"}>
-      <RadixTooltip.Provider delayDuration={0}>
-        <QueryClientProvider client={queryClient}>
-          <WagmiConfig config={config}>
-            <ConnectKitProvider
-              options={{
-                hideNoWalletCTA: true,
-                overlayBlur: 4,
-              }}
-            >
-              <App />
-            </ConnectKitProvider>
-            <ToastPrimitive.Viewport className="[--viewport-padding:_25px] fixed top-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[10px] w-[390px] max-w-[100vw] m-0 list-none z-[2147483647] outline-none" />
-          </WagmiConfig>
-        </QueryClientProvider>
-      </RadixTooltip.Provider>
-    </Toast.Provider>
+    <ConfigProvider
+      theme={{
+        // 1. 单独使用暗色算法
+        algorithm: theme.darkAlgorithm,
+
+        // 2. 组合使用暗色算法与紧凑算法
+        // algorithm: [theme.darkAlgorithm, theme.compactAlgorithm],
+      }}
+    >
+      <Toast.Provider swipeDirection={"right"}>
+        <RadixTooltip.Provider delayDuration={0}>
+          <QueryClientProvider client={queryClient}>
+            <WagmiConfig config={config}>
+              <ConnectKitProvider
+                options={{
+                  hideNoWalletCTA: true,
+                  overlayBlur: 4,
+                }}
+              >
+                <App />
+              </ConnectKitProvider>
+              <ToastPrimitive.Viewport className="[--viewport-padding:_25px] fixed top-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[10px] w-[390px] max-w-[100vw] m-0 list-none z-[2147483647] outline-none" />
+            </WagmiConfig>
+          </QueryClientProvider>
+        </RadixTooltip.Provider>
+      </Toast.Provider>
+    </ConfigProvider>
   </React.StrictMode>
 );

@@ -1,5 +1,7 @@
 import React from "react";
 
+import gitbook from "./assets/gitbook.svg";
+
 const URLParams = new URL(window.location.href);
 
 const { hostname, searchParams, pathname } = URLParams;
@@ -35,8 +37,10 @@ export const isMintRedeemPage = pathname.startsWith("/mint-redeem");
 export const routeConfigs: {
   path: string;
   name: string;
+  image?: string;
   external?: boolean;
   disabled?: boolean;
+  isNotLink?: boolean;
   newPage?: boolean;
   icon?: React.ReactNode;
   tag?: string;
@@ -46,15 +50,17 @@ export const routeConfigs: {
     name: "Genesis",
     external: true,
     newPage: false,
-    tag: "mainnet",
+    tag: "live",
   },
   {
     path: isApp ? "/" : "/mint-redeem",
     name: "Mint&Redeem",
     disabled: isLandingPage,
+    isNotLink: true,
     external: true,
     newPage: false,
-    tag: "testnet",
+    // disabled: true,
+    tag: "coming soon",
   },
   {
     path: "/earn",
@@ -89,6 +95,7 @@ export const routeConfigs: {
     name: "Docs",
     external: true,
     disabled: isApp,
+    icon: <img className="h-5" src={gitbook} alt="" />,
   },
   {
     path: TwitterURL,

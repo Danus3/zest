@@ -8,11 +8,28 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import ConnectBtn from "./ConnectBtn.tsx";
+import { useNetwork, useSwitchNetwork } from "wagmi";
+import { Dropdown, MenuProps } from "antd";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const { chain } = useNetwork();
+  const { chains, error, isLoading, pendingChainId, switchNetwork } =
+    useSwitchNetwork();
+
   const { pathname } = useLocation();
+
+  const items: MenuProps["items"] = (chains || []).map((chain, index) => {
+    return {
+      key: index + 1,
+      label: chain.name,
+      disabled: chain.id === pendingChainId,
+      onClick: () => {
+        switchNetwork?.(chain.id);
+      },
+    };
+  });
 
   return (
     <>
@@ -39,7 +56,7 @@ const NavBar = () => {
 
         <div
           className={
-            "flex flex-col md:flex-row justify-start md:justify-around gap-4 mt-8 md:m-auto"
+            "px-5 flex flex-col md:flex-row justify-start md:justify-between gap-4 mt-8 md:m-auto"
           }
           onClick={(e) => {
             e.stopPropagation();
@@ -55,7 +72,7 @@ const NavBar = () => {
             <img src={zestShape} className={"w-16 m-auto"} alt={"logo"} />
             <img src={zestChar} className={"w-16 m-auto"} alt={"logo"} />
           </Link>
-          <div className={"flex items-center gap-4 flex-col md:flex-row"}>
+          <div className={"flex items-center gap-7 flex-col md:flex-row"}>
             {routeConfigs.map((routeConfig) => {
               if (routeConfig.disabled) {
                 return null;
@@ -67,11 +84,17 @@ const NavBar = () => {
               if (routeConfig.external) {
                 link = (
                   <a
-                    href={routeConfig.path}
+                    href={
+                      routeConfig?.isNotLink
+                        ? "javascript:void(0)"
+                        : routeConfig.path
+                    }
                     key={routeConfig.path}
                     target={routeConfig.newPage === false ? "_self" : "_blank"}
                     className={twMerge(
-                      "animate-slideIn md:animate-none transition-all underline-offset-1 hover:underline-offset-4",
+                      `animate-slideIn md:animate-none transition-all underline-offset-1 hover:underline-offset-4 ${
+                        routeConfig?.isNotLink ? "cursor-not-allowed" : ""
+                      }`,
                       match
                     )}
                   >
@@ -89,7 +112,9 @@ const NavBar = () => {
                       }, 300);
                     }}
                     className={twMerge(
-                      "animate-slideIn md:animate-none transition-all underline-offset-1 hover:underline-offset-4",
+                      `animate-slideIn md:animate-none transition-all underline-offset-1 hover:underline-offset-4 ${
+                        routeConfig?.isNotLink ? "cursor-not-allowed" : ""
+                      }`,
                       match
                     )}
                   >
@@ -108,6 +133,12 @@ const NavBar = () => {
                 </span>
               );
             })}
+            <Dropdown menu={{ items }} placement="bottomLeft">
+              <div className="text-amber-400 hover:cursor-pointer hover:opacity-80">
+                {chain?.name}
+              </div>
+            </Dropdown>
+
             <ConnectBtn />
           </div>
         </div>

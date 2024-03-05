@@ -111,6 +111,8 @@ const Stake = () => {
     handleGetPrice();
   }, []);
 
+  console.log("mintValue", mintValue?.toString());
+
   return (
     <div className="mt-36 max-w-[960px] m-auto">
       <ParallelBanner
@@ -140,7 +142,7 @@ const Stake = () => {
           <p className="text-gray-300">ETH Locked</p>
         </div>
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
-          <h2 className="text-amber-400 mb-2">{tvl} ETH</h2>
+          <h2 className="text-amber-400 mb-2">{tvl} </h2>
           <p className="text-gray-300">TVL</p>
         </div>
       </div>
@@ -150,43 +152,46 @@ const Stake = () => {
           <h3>{stakedETH ? formatEther(stakedETH).slice(0, 6) : "--"} ETH</h3>
         </div>
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
-          <p className="text-gray-300">APY</p>
-          <h3>💥💥💥</h3>
-        </div>
-        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
-          <p className="text-gray-300">Blast points</p>
-          <h3>Coming soom</h3>
-        </div>
-        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
           <p className="text-gray-300">Zest points</p>
           <h3> {points ? formatEther(points).slice(0, 6) : "--"}</h3>
         </div>
+        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
+          <p className="text-gray-300">Blast points</p>
+          <h3>Coming soon</h3>
+        </div>
+        <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
+          <p className="text-gray-300">APY</p>
+          <h3>💥💥💥</h3>
+        </div>
       </div>
       {/* <h2 className="mt-32 mb-16">Stake</h2> */}
-      <div className="max-w-[480px] m-auto mt-32 mb-16">
+      <div className="max-w-[480px] m-auto mt-20 mb-16">
         <Tabs
           labels={["Stake", "UnStake"]}
           currentTab={tab}
           onChange={(_, value) => {
             setTab(value);
+            setMintValue(0n);
           }}
           name={"tab"}
-          disabled={[false, !data?.[0].result]}
+          disabled={[false, false]}
         />
         <div className="my-8"></div>
         <DepositETHorStETHInput
           value={mintValue}
           setValue={setMintValue}
-          customeBalance={tab === 1 ? data?.[0].result : undefined}
+          customeBalance={tab === 1 ? data?.[0].result || null : undefined}
         />
         <WrappedButton
           className="w-full mt-6"
+          disabled={!Number(mintValue?.toString())}
           isLoading={
             newIsLoadingWrite ||
             newIsLoading ||
             isLoadingWriteUnstake ||
             isLoadingUnstake
           }
+          // disabled={!mintValue}
           onClick={() => {
             tab === 1 ? unstake?.() : newStake?.();
           }}

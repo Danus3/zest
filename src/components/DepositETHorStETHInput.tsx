@@ -17,7 +17,8 @@ const DepositETHorStETHInput: React.FC<{
 
   const currentBalance = useETHAndStETHBalance()[selected === "ETH" ? 0 : 1];
 
-  const usedBalance = customeBalance || currentBalance;
+  const usedBalance =
+    customeBalance !== undefined ? customeBalance || 0 : currentBalance;
 
   // const toggleAsset = (selectedAsset: MintAsset) => {
   //   if (selectedAsset === selected) return;

@@ -52,7 +52,7 @@ export const mainnet = {
   testnet: true,
 } as const satisfies Chain;
 
-const chain = isMintRedeemPage ? [sepolia, mainnet] : [sepolia, mainnet];
+const chain = isMintRedeemPage ? [mainnet] : [mainnet];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

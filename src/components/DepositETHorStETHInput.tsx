@@ -20,19 +20,6 @@ const DepositETHorStETHInput: React.FC<{
   const usedBalance =
     customeBalance !== undefined ? customeBalance || 0 : currentBalance;
 
-  // const toggleAsset = (selectedAsset: MintAsset) => {
-  //   if (selectedAsset === selected) return;
-  //   if (selected === "ETH") {
-  //     setSelected("stETH");
-  //     setValue(0n);
-  //     setMintAsset?.("stETH");
-  //   } else {
-  //     setSelected("ETH");
-  //     setValue(0n);
-  //     setMintAsset?.("ETH");
-  //   }
-  // };
-
   return (
     <>
       <p className={"flex flex-row justify-end"}>
@@ -42,7 +29,7 @@ const DepositETHorStETHInput: React.FC<{
             setValue(usedBalance);
           }}
         >
-          Available: {formatEtherToFixed(usedBalance, 4)} {selected}
+          Available: {formatEther(usedBalance)} {selected}
         </span>
       </p>
       <div className={"my-4"}></div>

@@ -28,7 +28,7 @@ const Stake = () => {
     address: CONTRACT_ADDRESSES.zestStaking,
   });
 
-  const { data } = useContractReads({
+  const { data, refetch } = useContractReads({
     contracts: [
       {
         address: CONTRACT_ADDRESSES.zestStaking,
@@ -77,6 +77,7 @@ const Stake = () => {
     enabled: mintValue > 0n && tab === 0,
     onTransactionComplete() {
       setMintValue(0n);
+      refetch();
     },
   });
 
@@ -93,6 +94,7 @@ const Stake = () => {
     onTransactionComplete() {
       setMintValue(0n);
       setTab(0);
+      refetch();
     },
   });
 
@@ -112,6 +114,8 @@ const Stake = () => {
   }, []);
 
   console.log("mintValue", mintValue?.toString());
+
+  console.log("data?.[0].result", data?.[0].result);
 
   return (
     <div className="mt-36 max-w-[960px] m-auto">

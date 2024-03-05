@@ -77,7 +77,7 @@ const Stake = () => {
     enabled: mintValue > 0n && tab === 0,
     onTransactionComplete() {
       setMintValue(0n);
-      refetch();
+      refetch().catch(console.error);
     },
   });
 
@@ -94,7 +94,7 @@ const Stake = () => {
     onTransactionComplete() {
       setMintValue(0n);
       setTab(0);
-      refetch();
+      refetch().catch(console.error);
     },
   });
 

@@ -113,10 +113,6 @@ const Stake = () => {
     handleGetPrice();
   }, []);
 
-  console.log("mintValue", mintValue?.toString());
-
-  console.log("data?.[0].result", data?.[0].result);
-
   return (
     <div className="mt-36 max-w-[960px] m-auto">
       <ParallelBanner

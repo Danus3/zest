@@ -47,20 +47,19 @@ export const routeConfigs: {
 }[] = [
   {
     path: "/genesis",
-    name: "Genesis",
+    name: "Genesis Pool",
     external: true,
     newPage: false,
-    tag: "live",
+    tag: "Live",
   },
   {
     path: isApp ? "/" : "/mint-redeem",
     name: "Mint&Redeem",
     disabled: isLandingPage,
-    isNotLink: true,
     external: true,
     newPage: false,
     // disabled: true,
-    tag: "coming soon",
+    tag: "Live",
   },
   {
     path: "/earn",

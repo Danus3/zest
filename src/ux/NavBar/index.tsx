@@ -15,17 +15,17 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { chain } = useNetwork();
-  const { chains, pendingChainId, switchNetwork } = useSwitchNetwork();
+  const { chains, switchNetwork } = useSwitchNetwork();
 
   const { pathname } = useLocation();
 
-  const items: MenuProps["items"] = (chains || []).map((chain, index) => {
+  const items: MenuProps["items"] = (chains || []).map((chainItem, index) => {
     return {
       key: index + 1,
-      label: chain.name,
-      disabled: chain.id === pendingChainId,
+      label: chainItem.name,
+      disabled: chainItem.id === chain?.id,
       onClick: () => {
-        switchNetwork?.(chain.id);
+        switchNetwork?.(chainItem.id);
       },
     };
   });

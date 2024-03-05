@@ -20,7 +20,7 @@ export const queryClient = new QueryClient();
 
 // const chain = isPublicSalePage ? [mainnet] : [goerli];
 
-const sepolia = {
+export const sepolia = {
   id: 168587773,
   name: "Blast Sepolia",
   network: "blast-sepolia",

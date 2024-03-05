@@ -15,8 +15,7 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { chain } = useNetwork();
-  const { chains, error, isLoading, pendingChainId, switchNetwork } =
-    useSwitchNetwork();
+  const { chains, pendingChainId, switchNetwork } = useSwitchNetwork();
 
   const { pathname } = useLocation();
 

@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         amber: {
-          400: "rgb(252 252 3)",
+          400: "rgb(251, 191, 36)",
         },
       },
       keyframes: {

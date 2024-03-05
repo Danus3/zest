@@ -61,7 +61,7 @@ const Stake = () => {
 
   const tvl =
     lockedETH && ethPrice?.data
-      ? new BigNumber(ethPrice?.data).multipliedBy(lockedETH)?.toFixed(4)
+      ? `$ ${new BigNumber(ethPrice?.data).multipliedBy(lockedETH)?.toFixed(4)}`
       : "--";
 
   const {
@@ -162,8 +162,8 @@ const Stake = () => {
           <h3> {points ? formatEther(points).slice(0, 6) : "--"}</h3>
         </div>
       </div>
-      <h2 className="mt-32 mb-16">Stake</h2>
-      <div className="max-w-[480px] m-auto">
+      {/* <h2 className="mt-32 mb-16">Stake</h2> */}
+      <div className="max-w-[480px] m-auto mt-32 mb-16">
         <Tabs
           labels={["Stake", "UnStake"]}
           currentTab={tab}

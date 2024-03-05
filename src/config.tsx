@@ -10,7 +10,7 @@ export const appURL = "https://app.zestprotocol.xyz";
 
 export const appURLHost = "app.zestprotocol.xyz";
 
-export const landingPageURL = "https://zestprotocol.xyz";
+export const landingPageURL = window.location.origin;
 
 export const landingPageURLHost = "zestprotocol.xyz";
 

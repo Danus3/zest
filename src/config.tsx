@@ -56,10 +56,11 @@ export const routeConfigs: {
     path: isApp ? "/" : "/mint-redeem",
     name: "Mint&Redeem",
     disabled: isLandingPage,
+    isNotLink: true,
     external: true,
     newPage: false,
     // disabled: true,
-    tag: "Live",
+    tag: "Coming Soon",
   },
   {
     path: "/earn",

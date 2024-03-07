@@ -35,7 +35,7 @@ export const CONTRACT_ADDRESSES = {
   zEST: "0x9E4E4DDcE31451Fd26dd5d24d1E9084EA323a8aa",
   blastSephoia: "0x4b85a7afdde72B36b13E743F2D5c4F560c410C0a",
   zpt: "0xA8e4420001b5328B2412DDCb985Fa4c3358a6aB0",
-  zestStaking: "0xF1879792Da5Ee0a0B90E0de6816284cf476A4975",
+  zestStaking: "0x5243fd1ffdaa697c7378c1dcaf2260411355aab3",
 } as const;
 
 export const ESADO_OTC_RATE = 0.15;

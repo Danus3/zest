@@ -120,9 +120,9 @@ const RatioChart = () => {
         onTouchEnd={() => {
           setOffsetX(0);
         }}
-        onMouseLeave={() => {
-          setOffsetX(0);
-        }}
+        // onMouseLeave={() => {
+        //   setOffsetX(600);
+        // }}
       >
         <span
           className={

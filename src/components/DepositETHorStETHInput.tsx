@@ -1,4 +1,3 @@
-import { formatEtherToFixed } from "@src/utils/number.tsx";
 import useETHAndStETHBalance from "@utils/useETHAndStETHBalance.ts";
 import { useState } from "react";
 import { formatEther, parseEther } from "viem";

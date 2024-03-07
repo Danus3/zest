@@ -47,6 +47,10 @@ const RatioChart = () => {
 
   const aUSDLeverageRatio = calculatedStETHPrice / LIQ_PRICE;
 
+  useEffect(() => {
+    setOffsetX(600);
+  }, []);
+
   return (
     <div
       className={"w-full h-full max-w-[1200px] m-auto flex flex-col font-bold"}
@@ -91,6 +95,12 @@ const RatioChart = () => {
         }
         ref={chartRef}
         onMouseMove={(e) => {
+          console.log(
+            Math.max(
+              0,
+              e.clientX - e.currentTarget.getBoundingClientRect().left
+            )
+          );
           setOffsetX(
             Math.max(
               0,

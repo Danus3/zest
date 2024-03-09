@@ -8,6 +8,7 @@ import DepositETHorStETHInput from "@components/DepositETHorStETHInput";
 import useWrappedWriteContract from "@hooks/useWrappedWriteContract";
 
 import zestStakingABI from "@utils/ABIs/zestStakingABI";
+import erc20ABI from "@utils/ABIs/erc20";
 
 import { CONTRACT_ADDRESSES } from "../../constants";
 import { useAccount, useBalance, useContractReads } from "wagmi";
@@ -15,8 +16,60 @@ import { formatEther } from "viem";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import BigNumber from "bignumber.js";
+import numbro from "numbro";
 
 const usdcPricePath = "https://api.scattering.io/api/v1/getTokenInUsdcPrice";
+const blastMainBaseApi = "https://waitlist-api.prod.blast.io";
+const blastPointAddress = "0x2536FE9ab3F511540F2f9e2eC2A805005C3Dd800";
+const blastPoints = "https://zest-blast-points.vercel.app/blastpoints";
+
+// const getBlastPoints = async () => {
+//   try {
+//     const res = await axios.get(
+//       `${blastMainBaseApi}/v1/contracts/${blastPointAddress}/point-balances`,
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer zest`,
+//         },
+//       }
+//     );
+//     console.log("res", res);
+//     return res;
+//   } catch (error) {
+//     console.log("err", error);
+//   }
+// };
+
+const getChallenge = async (
+  contractAddress: string,
+  operatorAddress: string
+) => {
+  const res = await axios.post(
+    `${blastMainBaseApi}/v1/dapp-auth/challenge`,
+    {
+      contractAddress: contractAddress,
+      operatorAddress: operatorAddress,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  console.log("es", res);
+  return res;
+};
+
+const getBlastPoints = async () => {
+  const res = await axios.get(blastPoints, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  console.log("es", res);
+  return res?.data;
+};
 
 const Stake = () => {
   const [tab, setTab] = useState<number>(0);
@@ -42,6 +95,12 @@ const Stake = () => {
         functionName: "points",
         args: [address as `0x${string}`],
       },
+      {
+        address: CONTRACT_ADDRESSES.zestPoint,
+        abi: erc20ABI as any,
+        functionName: "totalSupply",
+        args: [],
+      },
     ],
     enabled: !!address,
     watch: true,
@@ -54,10 +113,20 @@ const Stake = () => {
       return res;
     },
   });
+  const blastPoints = useQuery({
+    queryKey: ["blastPoints"],
+    queryFn: async () => {
+      const res: any = await getBlastPoints();
+      return res;
+    },
+  });
 
   const points = data?.[1]?.result?.toString() as any;
   const lockedETH = result?.data?.formatted;
   const stakedETH = data?.[0]?.result?.toString() as any;
+  const totalSupply = data?.[2]?.result?.toString() as any;
+  const blastPointsValue =
+    blastPoints?.data?.balancesByPointType?.LIQUIDITY?.earnedCumulative;
 
   const tvl =
     lockedETH && ethPrice?.data
@@ -109,9 +178,12 @@ const Stake = () => {
   };
 
   useEffect(() => {
+    if (!address) return;
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     handleGetPrice();
-  }, []);
+    // getBlastPoints();
+    getChallenge(blastPointAddress, address as string).catch(console.error);
+  }, [address]);
 
   return (
     <div className="mt-36 max-w-[960px] m-auto">
@@ -157,7 +229,14 @@ const Stake = () => {
         </div>
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
           <p className="text-gray-300">Blast points</p>
-          <h3>Coming soon</h3>
+          <h3>
+            {blastPointsValue
+              ? numbro(blastPointsValue).format({
+                  average: true,
+                  mantissa: 2,
+                })
+              : "--"}
+          </h3>
         </div>
         <div className={twMerge("bg-transition p-4 px-16 rounded-2xl grow")}>
           <p className="text-gray-300">APY</p>
